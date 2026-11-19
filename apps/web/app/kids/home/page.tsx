@@ -1,5 +1,7 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { live, LIVE } from "@/lib/api/live";
 import type { Content, ToneKey } from "@kidsworld/types";
 import { categories } from "@/lib/data/taxonomy";
 import { achievements, earnedAchievements } from "@/lib/data/family";
@@ -30,16 +32,35 @@ const worldHref: Record<string, string | null> = {
 
 const kidHref = (c: Content) => (c.type === "game" ? `/kids/play/${c.slug}` : `/kids/story/${c.slug}`);
 
+type Rec = { content: Content; reason: string };
+type Badge = { id: string; title: string; description: string; icon: string; earned: boolean };
+
 export default function KidsHome() {
   const { child, progress, ready } = useKid();
+  // حالت متصل: پیشنهادها و مدال‌ها از سرور (موتور پیشنهاد و قواعد مدال در Backend)
+  const [remote, setRemote] = useState<{ recs: Rec[]; badges: Badge[] } | null>(null);
+  useEffect(() => {
+    if (!LIVE || !child) return;
+    Promise.all([live.recommendations(child.id, 3), live.achievements(child.id)])
+      .then(([r, a]) =>
+        setRemote({
+          recs: r.data.map(({ content, reason }) => ({ content, reason })),
+          badges: a.data.map((b) => ({ id: b.id, title: b.title, description: b.description, icon: b.icon, earned: Boolean(b.earnedAt) })),
+        }),
+      )
+      .catch(() => null);
+  }, [child]);
+
   if (!ready) return <div className="h-96" />;
 
   const name = child?.displayName ?? "دوست من";
   const age = child?.age ?? 5;
   const history = progress?.results ?? [];
-  const recs = recommend({ age, favoriteCategoryIds: child?.favoriteCategoryIds ?? [] }, history, 8)
-    .filter((r) => r.content.type !== "worksheet")
-    .slice(0, 3);
+  const recs: Rec[] =
+    remote?.recs ??
+    recommend({ age, favoriteCategoryIds: child?.favoriteCategoryIds ?? [] }, history, 8)
+      .filter((r) => r.content.type !== "worksheet")
+      .slice(0, 3);
 
   const today = new Date().toDateString();
   const todayResults = history.filter((r) => new Date(r.completedAt).toDateString() === today);
@@ -49,7 +70,8 @@ export default function KidsHome() {
     { label: "یک نقاشی بکش", done: (progress?.drawings ?? 0) > 0, icon: "palette", tone: "berry" as ToneKey },
   ];
   const doneCount = missions.filter((m) => m.done).length;
-  const earned = new Set(child ? earnedAchievements[child.id] : []);
+  const earned = new Set(child ? earnedAchievements[child.id] ?? [] : []);
+  const badges: Badge[] = remote?.badges ?? achievements.map((a) => ({ id: a.id, title: a.title, description: a.description, icon: a.icon, earned: earned.has(a.id) }));
 
   return (
     <div className="space-y-8">
@@ -160,8 +182,8 @@ export default function KidsHome() {
           مدال‌های من
         </h2>
         <ul className="grid grid-cols-3 gap-4 sm:grid-cols-6">
-          {achievements.map((a) => {
-            const has = earned.has(a.id);
+          {badges.map((a) => {
+            const has = a.earned;
             return (
               <li key={a.id} className="flex flex-col items-center gap-2 text-center" title={a.description}>
                 <span className={cn("grid h-20 w-20 place-items-center rounded-full border-[3px]", has ? "border-ink-900 bg-sun-100" : "border-dashed border-ink-300 bg-ink-50")}>

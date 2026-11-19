@@ -1,0 +1,899 @@
+{
+  "worksheets": [
+    {
+      "id": "w-trace-alef",
+      "slug": "trace-alef",
+      "type": "worksheet",
+      "title": "ردگیری حرف «آ»",
+      "description": "با دنبال کردن خط‌چین‌ها، شکل حرف «آ» را یاد بگیر.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 4,
+      "maxAge": 6,
+      "difficulty": "beginner",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-10-01",
+      "template": "tracing",
+      "params": {
+        "letter": "آ",
+        "word": "آب",
+        "rows": 4
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4820
+    },
+    {
+      "id": "w-trace-be",
+      "slug": "trace-be",
+      "type": "worksheet",
+      "title": "ردگیری حرف «ب»",
+      "description": "تمرین نوشتن حرف «ب» در چهار ردیف.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 4,
+      "maxAge": 6,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-10-01",
+      "template": "tracing",
+      "params": {
+        "letter": "ب",
+        "word": "بادکنک",
+        "rows": 4
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3110
+    },
+    {
+      "id": "w-trace-numbers",
+      "slug": "trace-numbers",
+      "type": "worksheet",
+      "title": "ردگیری اعداد ۱ تا ۵",
+      "description": "اعداد را با مداد دنبال کن و بلند بشمار.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 3,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-10-01",
+      "template": "tracing",
+      "params": {
+        "letter": "۱۲۳۴۵",
+        "word": "",
+        "rows": 4
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 5240
+    },
+    {
+      "id": "w-count-apples",
+      "slug": "count-apples",
+      "type": "worksheet",
+      "title": "بشمار و بنویس: میوه‌ها",
+      "description": "میوه‌های هر ردیف را بشمار و عددش را بنویس.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 3,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-10-01",
+      "template": "counting",
+      "params": {
+        "max": 5,
+        "rows": 5,
+        "seed": 11
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 6120
+    },
+    {
+      "id": "w-count-to-ten",
+      "slug": "count-to-ten",
+      "type": "worksheet",
+      "title": "بشمار تا ۱۰",
+      "description": "شمارش اشیا تا ۱۰ همراه با نوشتن عدد.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 5,
+      "maxAge": 7,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-10-01",
+      "template": "counting",
+      "params": {
+        "max": 10,
+        "rows": 5,
+        "seed": 29
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1200
+    },
+    {
+      "id": "w-maze-easy",
+      "slug": "maze-easy",
+      "type": "worksheet",
+      "title": "ماز کوچک: راه خانه",
+      "description": "به خرگوش کمک کن راه خانه را پیدا کند.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 4,
+      "maxAge": 6,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-10-01",
+      "template": "maze",
+      "params": {
+        "size": 7,
+        "seed": 3
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 7310
+    },
+    {
+      "id": "w-maze-medium",
+      "slug": "maze-medium",
+      "type": "worksheet",
+      "title": "ماز جنگل",
+      "description": "یک ماز بزرگ‌تر با راه‌های پیچ‌درپیچ.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 6,
+      "maxAge": 8,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-10-01",
+      "template": "maze",
+      "params": {
+        "size": 11,
+        "seed": 42
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2980
+    },
+    {
+      "id": "w-maze-hard",
+      "slug": "maze-hard",
+      "type": "worksheet",
+      "title": "ماز بزرگ قلعه",
+      "description": "چالش ماز برای کاشفان حرفه‌ای!",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-10-01",
+      "template": "maze",
+      "params": {
+        "size": 15,
+        "seed": 77
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1200
+    },
+    {
+      "id": "w-dots-star",
+      "slug": "dots-star",
+      "type": "worksheet",
+      "title": "نقطه به نقطه: ستاره",
+      "description": "نقطه‌ها را به ترتیب وصل کن تا یک ستاره ظاهر شود.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 4,
+      "maxAge": 6,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-10-01",
+      "template": "dot-to-dot",
+      "params": {
+        "shape": "star"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3890
+    },
+    {
+      "id": "w-dots-house",
+      "slug": "dots-house",
+      "type": "worksheet",
+      "title": "نقطه به نقطه: خانه",
+      "description": "یک خانه‌ی کوچک با وصل کردن نقطه‌ها بساز.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 5,
+      "maxAge": 7,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-10-01",
+      "template": "dot-to-dot",
+      "params": {
+        "shape": "house"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1200
+    },
+    {
+      "id": "w-match-shapes",
+      "slug": "match-shapes",
+      "type": "worksheet",
+      "title": "تطبیق شکل‌ها",
+      "description": "هر شکل را به سایه‌ی خودش وصل کن.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 3,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-pattern",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-10-01",
+      "template": "matching",
+      "params": {
+        "set": "shapes",
+        "seed": 5
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4410
+    },
+    {
+      "id": "w-color-garden",
+      "slug": "color-garden",
+      "type": "worksheet",
+      "title": "رنگ‌آمیزی: باغ گل",
+      "description": "باغ را با رنگ‌های دلخواهت زنده کن.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 2,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-creativity",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-10-01",
+      "template": "coloring",
+      "params": {
+        "scene": "garden"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 8020
+    },
+    {
+      "id": "w-add-within-10",
+      "slug": "add-within-10",
+      "type": "worksheet",
+      "title": "جمع تا ۱۰",
+      "description": "جمع‌های ساده با کمک تصویر.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 6,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-10-01",
+      "template": "addition",
+      "params": {
+        "max": 10,
+        "count": 8,
+        "seed": 9
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3370
+    },
+    {
+      "id": "w-add-within-20",
+      "slug": "add-within-20",
+      "type": "worksheet",
+      "title": "جمع تا ۲۰",
+      "description": "جمع‌های دو رقمی برای نوآموزان کلاس اول و دوم.",
+      "categoryId": "c-sheets",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 7,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-10-01",
+      "template": "addition",
+      "params": {
+        "max": 20,
+        "count": 12,
+        "seed": 18
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1200
+    }
+  ],
+  "games": [
+    {
+      "id": "g-memory-animals",
+      "slug": "memory-garden",
+      "type": "game",
+      "title": "باغ حافظه",
+      "description": "کارت‌ها را برگردان و جفت‌های یکسان را پیدا کن. هرچه کمتر اشتباه کنی، ستاره‌ی بیشتری می‌گیری!",
+      "categoryId": "c-brain",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-memory",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.6
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-09-12",
+      "gameType": "memory",
+      "engine": "react-svg",
+      "levels": [
+        {
+          "levelNumber": 1,
+          "difficulty": "beginner",
+          "configuration": {
+            "pairs": 3,
+            "cols": 3
+          }
+        },
+        {
+          "levelNumber": 2,
+          "difficulty": "easy",
+          "configuration": {
+            "pairs": 6,
+            "cols": 4
+          }
+        },
+        {
+          "levelNumber": 3,
+          "difficulty": "intermediate",
+          "configuration": {
+            "pairs": 8,
+            "cols": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "g-pattern",
+      "slug": "pattern-train",
+      "type": "game",
+      "title": "قطار الگوها",
+      "description": "واگن بعدی قطار چه شکلی است؟ الگو را پیدا کن و قطار را کامل کن.",
+      "categoryId": "c-brain",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 4,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 6,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-pattern",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-09-20",
+      "gameType": "pattern",
+      "engine": "react-svg",
+      "levels": [
+        {
+          "levelNumber": 1,
+          "difficulty": "beginner",
+          "configuration": {
+            "patterns": [
+              "AB"
+            ],
+            "rounds": 5
+          }
+        },
+        {
+          "levelNumber": 2,
+          "difficulty": "easy",
+          "configuration": {
+            "patterns": [
+              "AB",
+              "AAB",
+              "ABB"
+            ],
+            "rounds": 6
+          }
+        },
+        {
+          "levelNumber": 3,
+          "difficulty": "intermediate",
+          "configuration": {
+            "patterns": [
+              "ABC",
+              "AABB",
+              "ABBC"
+            ],
+            "rounds": 7
+          }
+        }
+      ]
+    },
+    {
+      "id": "g-counting",
+      "slug": "count-the-fish",
+      "type": "game",
+      "title": "ماهی‌ها را بشمار",
+      "description": "در آکواریوم چند ماهی هست؟ بشمار و عدد درست را انتخاب کن.",
+      "categoryId": "c-learn",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 4,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.4
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-10-02",
+      "gameType": "counting",
+      "engine": "react-svg",
+      "levels": [
+        {
+          "levelNumber": 1,
+          "difficulty": "beginner",
+          "configuration": {
+            "max": 5,
+            "rounds": 5
+          }
+        },
+        {
+          "levelNumber": 2,
+          "difficulty": "easy",
+          "configuration": {
+            "max": 8,
+            "rounds": 6
+          }
+        },
+        {
+          "levelNumber": 3,
+          "difficulty": "intermediate",
+          "configuration": {
+            "max": 12,
+            "rounds": 7
+          }
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "st-moon",
+      "slug": "little-cloud",
+      "type": "story",
+      "title": "ابرک کوچولو و ماه",
+      "description": "ابرک کوچولو می‌خواهد ماه را پیدا کند. تو انتخاب کن از کدام راه برود!",
+      "categoryId": "c-story",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "easy",
+      "estimatedMinutes": 6,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-listening",
+          "weight": 1
+        },
+        {
+          "skillId": "s-empathy",
+          "weight": 0.6
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-09-01",
+      "storyType": "interactive",
+      "chapters": [
+        {
+          "id": "c1",
+          "title": "شب شده",
+          "scene": "night-sky",
+          "body": "شب آرامی بود. ابرک کوچولو بالای شهر شناور بود و دنبال دوستش، ماه، می‌گشت. ولی ماه پشت کوه‌ها پنهان شده بود. ابرک از کدام راه برود؟",
+          "choices": [
+            {
+              "id": "a",
+              "text": "پرواز بالای کوه‌ها",
+              "nextChapterId": "c2"
+            },
+            {
+              "id": "b",
+              "text": "پرسیدن از جغد دانا",
+              "nextChapterId": "c3"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "title": "بالای کوه‌ها",
+          "scene": "mountains",
+          "body": "ابرک آن‌قدر بالا رفت که ستاره‌ها برایش دست تکان دادند. باد خنک گفت: «ماه همین نزدیکی است، فقط کمی صبر کن!»",
+          "choices": [
+            {
+              "id": "a",
+              "text": "صبر کردن کنار ستاره‌ها",
+              "nextChapterId": "c4"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "title": "جغد دانا",
+          "scene": "owl-tree",
+          "body": "جغد روی شاخه‌ی بلوط نشسته بود. گفت: «هوو هوو! ماه هر شب کمی دیرتر می‌آید. اگر با هم آواز بخوانیم، زودتر پیدایش می‌شود.»",
+          "choices": [
+            {
+              "id": "a",
+              "text": "با جغد آواز خواندن",
+              "nextChapterId": "c4"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "title": "سلام ماه!",
+          "scene": "moon-rise",
+          "body": "و ناگهان، ماه گرد و نقره‌ای از پشت کوه بیرون آمد و لبخند زد. ابرک کوچولو آن‌قدر خوشحال شد که چند قطره باران شادی بارید. شب بخیر، ابرک!",
+          "choices": [],
+          "isEnding": true
+        }
+      ]
+    },
+    {
+      "id": "st-seed",
+      "slug": "brave-seed",
+      "type": "story",
+      "title": "دانه‌ی شجاع",
+      "description": "قصه‌ی دانه‌ی کوچکی که یاد گرفت صبر کند تا جوانه بزند.",
+      "categoryId": "c-story",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 2,
+      "maxAge": 6,
+      "difficulty": "beginner",
+      "estimatedMinutes": 4,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-listening",
+          "weight": 1
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-09-15",
+      "storyType": "bedtime",
+      "chapters": [
+        {
+          "id": "c1",
+          "title": "زیر خاک",
+          "scene": "underground",
+          "body": "یک دانه‌ی کوچک زیر خاک خوابیده بود. همه‌جا تاریک بود و دانه کمی می‌ترسید.",
+          "choices": [
+            {
+              "id": "a",
+              "text": "ادامه",
+              "nextChapterId": "c2"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "title": "قطره‌ی باران",
+          "scene": "rain",
+          "body": "یک روز، قطره‌ی بارانی آرام در گوشش گفت: «نترس! تو داری بزرگ می‌شوی.» دانه نفس عمیقی کشید.",
+          "choices": [
+            {
+              "id": "a",
+              "text": "ادامه",
+              "nextChapterId": "c3"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "title": "جوانه",
+          "scene": "sprout",
+          "body": "و صبح بهاری، دانه سرش را از خاک بیرون آورد. حالا یک جوانه‌ی سبز و شجاع بود که به خورشید سلام می‌کرد.",
+          "choices": [],
+          "isEnding": true
+        }
+      ]
+    }
+  ]
+}

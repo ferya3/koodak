@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { children } from "@/lib/data/family";
+import type { ChildProfile } from "@kidsworld/types";
 import { Avatar } from "@/components/brand/Avatar";
 import { cn, fa } from "@/lib/utils";
 
-export function ChildSwitcher({ activeId, basePath }: { activeId: string; basePath: string }) {
+export function ChildSwitcher({ items, activeId, basePath }: { items: ChildProfile[]; activeId: string; basePath: string }) {
   return (
     <div className="flex flex-wrap gap-2" role="tablist" aria-label="انتخاب فرزند">
-      {children.map((c) => (
+      {items.map((c) => (
         <Link
           key={c.id}
           href={`${basePath}?child=${c.id}`}
@@ -21,9 +21,9 @@ export function ChildSwitcher({ activeId, basePath }: { activeId: string; basePa
           </span>
         </Link>
       ))}
-      <button type="button" className="flex items-center gap-2 rounded-2xl border border-dashed border-calm-300 px-4 text-sm font-bold text-calm-500 hover:bg-white">
+      <Link href="/parent/children/new" className="flex items-center gap-2 rounded-2xl border border-dashed border-calm-300 px-4 text-sm font-bold text-calm-500 hover:bg-white">
         + افزودن فرزند
-      </button>
+      </Link>
     </div>
   );
 }

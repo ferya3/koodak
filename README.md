@@ -1,7 +1,7 @@
 # KidsWorld · دنیای بازی و یادگیری کودکان
 
 پلتفرم جامع آموزش، بازی، خلاقیت و کاربرگ برای کودکان ۲ تا ۱۰ سال.
-این مخزن پیاده‌سازی **لایه‌ی تجربه و رابط کاربری (UX/UI)** و **هویت بصری** محصول است: Frontend کامل Next.js با سیستم طراحی، تصویرسازی‌های اختصاصی و سه محیط مجزا.
+این مخزن شامل **Frontend** (Next.js، سیستم طراحی و هویت بصری)، **Backend** (Laravel، Modular Monolith، پنل مدیریت Filament) و **زیرساخت** (Docker، Nginx، CI) است.
 
 ## چه چیزی ساخته شده
 
@@ -16,23 +16,50 @@
 | پنل والدین | `/parent` | KPI، نمودار زمان با سقف، مهارت‌ها، پیشنهادها، تاریخچه، تنظیمات زمان و حریم خصوصی، گزارش‌ها |
 | سیستم طراحی | `/design-system` | توکن‌ها، تایپوگرافی، دکمه‌ها، کامپوننت‌ها، تصویرسازی، سه تم |
 
+## Backend و پنل مدیریت
+
+| بخش | توضیح |
+|---|---|
+| API v1 | ۴۸ مسیر در ۱۱ ماژول: احراز هویت، کودکان، محتوا، کاربرگ، بازی، قصه، پیشرفت، پیشنهاد، اشتراک، داشبورد والدین |
+| امنیت | توکن والد / توکن محدود جلسه‌ی کودک، کنترل مالکیت، محدودیت نرخ، رضایت‌نامه، حذف و خروجی داده |
+| گیمیفیکیشن | ستاره‌ی محاسبه‌شده در سرور، امتیاز، مدال‌های قاعده‌محور، مشاهده‌ی مهارت |
+| پنل مدیریت `/admin` | Filament فارسی و راست‌به‌چپ؛ ساخت کاربرگ/بازی/قصه بدون کدنویسی، گردش کار تأیید، نسخه‌بندی |
+| تست | ۲۸ تست Feature روی PostgreSQL |
+
 ## ساختار مخزن
 
 ```
-apps/web/          Next.js 16 + TypeScript + Tailwind v4
-packages/types/    قرارداد داده‌ی مشترک با Laravel API v1
+apps/web/          Next.js 16 + TypeScript + Tailwind v4 (+ BFF برای توکن‌ها)
+backend/           Laravel 13 – app/Modules/* ، Filament ، تست‌ها
+packages/types/    قرارداد داده‌ی مشترک Frontend ⇄ API v1
+infrastructure/    Dockerfileها و Nginx
 docs/design/       استراتژی UX، نقشه‌ی سایت، جریان‌های کاربری، سیستم طراحی
-docs/architecture/ معماری Frontend
+docs/architecture/ معماری Frontend و Backend + مرجع API
 ```
 
 ## اجرا
+
+**فقط Frontend (حالت نمایشی با داده‌ی نمونه):**
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-سپس `http://localhost:3000` را باز کنید. داده‌ها فعلاً از Seed محلی خوانده می‌شوند؛ با تنظیم `NEXT_PUBLIC_API_URL` به Backend لاراول وصل می‌شود.
+**کامل (Frontend + API):** ابتدا Backend را طبق [`backend/README.md`](backend/README.md) اجرا کنید، سپس:
+
+```bash
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000 pnpm dev
+```
+
+**با Docker:**
+
+```bash
+cp backend/.env.docker.example backend/.env.docker
+docker compose up -d --build
+docker compose exec api php artisan key:generate --force
+docker compose exec api php artisan migrate --seed --force
+```
 
 ## مستندات
 - [استراتژی UX](docs/design/01-ux-strategy.md)
@@ -40,5 +67,6 @@ pnpm dev
 - [جریان‌های کاربری](docs/design/03-user-flows.md)
 - [سیستم طراحی](docs/design/04-design-system.md)
 - [معماری Frontend](docs/architecture/frontend.md)
+- [معماری Backend و مرجع API](docs/architecture/backend.md)
 
 فونت‌ها: Vazirmatn و Vazirmatn Round-Dots از صابر راستی‌کردار (مجوز SIL OFL 1.1).

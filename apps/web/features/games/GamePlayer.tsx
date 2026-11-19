@@ -11,6 +11,8 @@ import { cn, fa } from "@/lib/utils";
 import { bestStars, readProgress, writeProgress } from "@/lib/progress";
 import { difficultyLabel } from "@/lib/data/taxonomy";
 import { gameRegistry } from "./engine/registry";
+import { live, LIVE } from "@/lib/api/live";
+import type { Awards } from "@kidsworld/types";
 import { playSfx } from "./engine/audio";
 import type { GameRuntime, SessionStats } from "./engine/types";
 import { GameCover } from "./GameCover";
@@ -32,6 +34,8 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
   const [result, setResult] = useState<{ stars: 1 | 2 | 3; score: number; stats: SessionStats } | null>(null);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [elapsed, setElapsed] = useState(0);
+  const [awards, setAwards] = useState<Awards | null>(null);
+  const remoteSession = useRef<Promise<string | null> | null>(null);
 
   const stats = useRef<SessionStats>({ correct: 0, mistakes: 0, durationSeconds: 0, events: [] });
   const startedAt = useRef(0);
@@ -61,7 +65,13 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
     stats.current = { correct: 0, mistakes: 0, durationSeconds: 0, events: [] };
     startedAt.current = Date.now();
     track({ type: "start", data: { level: game.levels[idx].levelNumber } });
-    // در حالت متصل: POST /api/v1/games/{id}/sessions
+    setAwards(null);
+    // حالت متصل: POST /games/{slug}/sessions با توکن جلسه‌ی کودک (خطا = ادامه‌ی آفلاین)
+    const childId = readProgress().activeChildId;
+    remoteSession.current =
+      LIVE && childId
+        ? live.game.start(game.slug, childId, game.levels[idx].levelNumber).then((r) => r.sessionId).catch(() => null)
+        : null;
     setPhase("playing");
   };
 
@@ -97,7 +107,13 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
         },
       ],
     }));
-    // در حالت متصل: POST /api/v1/games/sessions/{id}/events (batch) و /complete
+    // حالت متصل: ارسال دسته‌ای رویدادها و ثبت نهایی؛ ستاره‌ی رسمی را سرور محاسبه می‌کند
+    remoteSession.current?.then(async (id) => {
+      if (!id) return;
+      await live.game.events(id, s.events.slice(0, 200)).catch(() => null);
+      const res = await live.game.complete(id, { correct: s.correct, mistakes: s.mistakes, durationSeconds: s.durationSeconds }).catch(() => null);
+      if (res) setAwards(res.awards);
+    });
     setPhase("result");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [def, level, sound, game.id]);
@@ -232,6 +248,13 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
             <span className="rounded-full bg-sky-100 px-4 py-2">⏱ {fa(result.stats.durationSeconds)} ثانیه</span>
             <span className="rounded-full bg-grass-100 px-4 py-2">✔ {fa(result.stats.correct)} درست</span>
           </div>
+          {awards && awards.achievements.length > 0 && (
+            <div className="mt-6 flex animate-pop flex-wrap justify-center gap-2" aria-live="polite">
+              {awards.achievements.map((a) => (
+                <span key={a.id} className="rounded-2xl border-2 border-ink-900 bg-sun-300 px-4 py-2 font-display font-black">🏅 مدال جدید: {a.title}</span>
+              ))}
+            </div>
+          )}
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             {levelIdx + 1 < game.levels.length && (
               <Button variant="kid" tone="grass" size="lg" onClick={() => start(levelIdx + 1)}>

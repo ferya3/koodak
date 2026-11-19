@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { api } from "@/lib/api";
 import { worksheets } from "@/lib/data/content";
-import { categoryById, difficultyLabel, skillById } from "@/lib/data/taxonomy";
+import { difficultyLabel } from "@/lib/data/taxonomy";
 import { tones } from "@/lib/tones";
 import { ageRangeLabel, cn, fa, faNumber } from "@/lib/utils";
 import { Container } from "@/components/ui/Section";
@@ -34,7 +34,8 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const w = await api.worksheet(slug);
   if (!w) notFound();
-  const related = worksheets.filter((x) => x.id !== w.id && (x.template === w.template || x.tone === w.tone)).slice(0, 3);
+  const [{ data: sameTemplate }, names] = await Promise.all([api.worksheets({ template: w.template }), api.lookups()]);
+  const related = sameTemplate.filter((x) => x.id !== w.id).slice(0, 3);
   const t = tones[w.tone];
 
   return (
@@ -80,7 +81,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
               <div className="flex flex-wrap gap-2">
                 {w.skills.map((s) => (
                   <span key={s.skillId} className="rounded-full border-2 border-ink-900 bg-white px-3 py-1 text-sm font-bold">
-                    {skillById(s.skillId).title}
+                    {names.skill(s.skillId)}
                   </span>
                 ))}
               </div>
@@ -97,7 +98,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
             )}
 
             <p className="text-sm text-ink-500">
-              {faNumber(w.downloadCount)} بار دانلود شده · دسته‌ی {categoryById(w.categoryId).title}
+              {faNumber(w.downloadCount)} بار دانلود شده · دسته‌ی {names.category(w.categoryId)}
             </p>
           </div>
         </div>

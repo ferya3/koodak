@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { writeProgress } from "@/lib/progress";
+import { readProgress, writeProgress } from "@/lib/progress";
+import { live, LIVE } from "@/lib/api/live";
 import { Mascot } from "@/components/brand/Mascot";
 import { coloringTemplates, svgToDataUrl } from "./templates";
 
@@ -234,7 +235,9 @@ export function DrawingStudio() {
       localStorage.setItem("kw.gallery", JSON.stringify(next));
     } catch {}
     writeProgress((p) => ({ ...p, drawings: p.drawings + 1 }));
-    // در حالت متصل: آپلود به Object Storage از طریق Signed URL و ثبت در child_artworks
+    // حالت متصل: ثبت فعالیت (مدال «نقاش کوچک»). آپلود خود تصویر به Object Storage در فاز بعد.
+    const childId = readProgress().activeChildId;
+    if (LIVE && childId) live.activity(childId, { type: "drawing", durationSeconds: 300, title: "نقاشی در استودیو" }).catch(() => null);
     setToast(true);
     setTimeout(() => setToast(false), 2200);
   };

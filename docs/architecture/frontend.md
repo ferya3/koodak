@@ -40,8 +40,18 @@ apps/web/
 packages/types/              قرارداد مشترک داده (Resourceهای API v1)
 ```
 
-## اتصال به Backend
-تمام صفحات فقط از `lib/api` داده می‌گیرند. با تنظیم `NEXT_PUBLIC_API_URL` همان توابع به `/api/v1/*` لاراول وصل می‌شوند. تایپ‌ها در `@kidsworld/types` آینه‌ی API Resourceها هستند و باید هم‌زمان با Backend نسخه‌بندی شوند.
+## اتصال به Backend (دو حالت)
+
+| | حالت نمایشی | حالت متصل |
+|---|---|---|
+| فعال‌سازی | بدون متغیر | `NEXT_PUBLIC_API_URL` (+ `API_URL` داخلی در Docker) |
+| محتوای عمومی (SSR) | Seed محلی | `lib/api` ← Laravel `/api/v1` |
+| داشبورد/تنظیمات/گزارش والد | داده‌ی نمونه | `LiveDashboard` / `LiveSettings` / `LiveReports` |
+| محیط کودک | پیشرفت در localStorage | توکن جلسه‌ی کودک؛ بازی/قصه/نقاشی در سرور ثبت می‌شود |
+
+**BFF و امنیت توکن:** مرورگر هرگز توکن نمی‌بیند. `app/api/auth/*` ورود/ثبت‌نام را انجام و توکن والد را در کوکی httpOnly (`kw_parent`) ذخیره می‌کند. `app/api/v1/[...path]` پراکسی هم‌مبدأ است؛ درخواست‌های محیط کودک با هدر `x-kw-actor: child` از کوکی `kw_child` استفاده می‌کنند که هنگام انتخاب پروفایل صادر می‌شود.
+
+تایپ‌ها در `@kidsworld/types` آینه‌ی API Resourceها هستند و باید هم‌زمان با Backend نسخه‌بندی شوند.
 
 ## موتور بازی (Game Engine)
 

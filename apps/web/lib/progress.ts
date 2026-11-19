@@ -4,12 +4,14 @@
  * در حالت متصل، نتایج از طریق POST /games/sessions/{id}/complete به سرور ارسال
  * و این ذخیره به‌عنوان صف آفلاین (Offline Queue) عمل می‌کند.
  */
-import type { GameSessionResult } from "@kidsworld/types";
+import type { ChildProfile, GameSessionResult } from "@kidsworld/types";
 
 const KEY = "kw.progress.v1";
 
 export interface LocalProgress {
   activeChildId: string | null;
+  /** پروفایل کودک فعال در حالت متصل (از API) */
+  activeChild?: ChildProfile | null;
   stars: number;
   points: number;
   results: GameSessionResult[];

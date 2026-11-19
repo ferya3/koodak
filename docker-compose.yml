@@ -1,0 +1,86 @@
+# KidsWorld – محیط کامل محلی / Staging
+#   docker compose up -d --build
+#   docker compose exec api php artisan migrate --seed
+# سرویس‌های اختیاری: --profile search (Meilisearch) · --profile storage (MinIO / S3)
+
+x-api: &api
+  build: { context: ., dockerfile: infrastructure/docker/php/Dockerfile, target: app }
+  image: kidsworld/api:local
+  env_file: backend/.env.docker
+  depends_on:
+    postgres: { condition: service_healthy }
+    redis: { condition: service_healthy }
+  volumes:
+    - api-storage:/var/www/html/storage/app
+    - api-public:/var/www/html/public   # با nginx به اشتراک گذاشته می‌شود (assetهای Filament)
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: kidsworld
+      POSTGRES_USER: kidsworld
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+    volumes: [pg-data:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U kidsworld"], interval: 5s, retries: 10 }
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redis-data:/data]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 10 }
+    restart: unless-stopped
+
+  api:
+    <<: *api
+
+  queue:
+    <<: *api
+    command: ["php", "artisan", "queue:work", "--tries=3", "--max-time=3600"]
+
+  scheduler:
+    <<: *api
+    command: ["php", "artisan", "schedule:work"]
+
+  web:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://api.kidsworld.local}
+        NEXT_PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-http://kidsworld.local}
+    image: kidsworld/web:local
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports: ["80:80"]
+    volumes:
+      - ./infrastructure/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - api-public:/var/www/html/public:ro
+    depends_on: [api, web]
+    restart: unless-stopped
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.11
+    profiles: [search]
+    environment: { MEILI_MASTER_KEY: "${MEILI_MASTER_KEY:-change-me}" }
+    volumes: [meili-data:/meili_data]
+
+  minio:
+    image: minio/minio:RELEASE.2024-10-13T13-34-11Z
+    profiles: [storage]
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment: { MINIO_ROOT_USER: kidsworld, MINIO_ROOT_PASSWORD: "${MINIO_PASSWORD:-change-me-please}" }
+    ports: ["9001:9001"]
+    volumes: [minio-data:/data]
+
+volumes:
+  pg-data:
+  redis-data:
+  api-storage:
+  api-public:
+  meili-data:
+  minio-data:

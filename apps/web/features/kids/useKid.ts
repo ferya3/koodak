@@ -16,6 +16,6 @@ export function useKid() {
       window.removeEventListener("storage", sync);
     };
   }, []);
-  const child = progress?.activeChildId ? childById(progress.activeChildId) : undefined;
+  const child = progress?.activeChild ?? (progress?.activeChildId ? childById(progress.activeChildId) : undefined);
   return { progress, child, ready: progress !== null };
 }

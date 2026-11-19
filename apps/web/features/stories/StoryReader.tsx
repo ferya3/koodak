@@ -6,6 +6,8 @@ import { cn, fa } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Mascot } from "@/components/brand/Mascot";
 import { StoryScene } from "./StoryScene";
+import { live, LIVE } from "@/lib/api/live";
+import { readProgress } from "@/lib/progress";
 
 /**
  * Story Reader – قصه‌ی تصویری + صوتی + تعاملی (انتخاب مسیر)
@@ -35,9 +37,16 @@ export function StoryReader({ story }: { story: Story }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [startedAt] = useState(() => Date.now());
+
   const go = (id: string) => {
     window.speechSynthesis?.cancel();
     setSpeaking(false);
+    // پایان قصه در حالت متصل ثبت می‌شود (مهارت شنیداری، مدال قصه‌خوان)
+    const childId = readProgress().activeChildId;
+    if (LIVE && childId && story.chapters.find((c) => c.id === id)?.isEnding && /^\d+$/.test(story.id)) {
+      live.activity(childId, { type: "story", contentId: Number(story.id), durationSeconds: Math.max(30, Math.round((Date.now() - startedAt) / 1000)) }).catch(() => null);
+    }
     setChapterId(id);
     setPath((p) => [...p, id]);
     setSaved(false);

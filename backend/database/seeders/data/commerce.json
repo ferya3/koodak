@@ -1,0 +1,97 @@
+{
+  "plans": [
+    {
+      "id": "p-free",
+      "name": "رایگان",
+      "tagline": "برای شروع و آشنایی",
+      "priceMonthly": 0,
+      "priceYearly": 0,
+      "currency": "IRR",
+      "audience": "family",
+      "features": [
+        "۱ پروفایل کودک",
+        "بازی‌ها و قصه‌های رایگان",
+        "۱۰ دانلود کاربرگ در ماه",
+        "گزارش هفتگی ساده"
+      ]
+    },
+    {
+      "id": "p-family",
+      "name": "خانواده",
+      "tagline": "محبوب‌ترین انتخاب والدین",
+      "priceMonthly": 290000,
+      "priceYearly": 2490000,
+      "currency": "IRR",
+      "audience": "family",
+      "highlighted": true,
+      "features": [
+        "تا ۴ پروفایل کودک",
+        "دسترسی کامل به همه‌ی دنیاها",
+        "دانلود نامحدود کاربرگ",
+        "گزارش مهارت و خروجی PDF",
+        "کنترل زمان و قفل خواب",
+        "بدون هیچ تبلیغی، همیشه"
+      ]
+    },
+    {
+      "id": "p-school",
+      "name": "مدرسه و مهد",
+      "tagline": "برای کلاس‌ها و مربیان",
+      "priceMonthly": 1900000,
+      "priceYearly": 16900000,
+      "currency": "IRR",
+      "audience": "school",
+      "features": [
+        "تا ۶۰ دانش‌آموز",
+        "پنل مربی و مدیریت کلاس",
+        "اختصاص کاربرگ و تکلیف",
+        "گزارش عملکرد کلاس",
+        "پشتیبانی اختصاصی"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-first",
+      "title": "اولین قدم",
+      "description": "اولین فعالیت را کامل کردی",
+      "icon": "rocket",
+      "points": 10
+    },
+    {
+      "id": "ach-memory",
+      "title": "ذهن فیل",
+      "description": "۳ ستاره در بازی حافظه",
+      "icon": "brain",
+      "points": 30
+    },
+    {
+      "id": "ach-artist",
+      "title": "نقاش کوچک",
+      "description": "۵ نقاشی ذخیره کردی",
+      "icon": "palette",
+      "points": 25
+    },
+    {
+      "id": "ach-reader",
+      "title": "قصه‌خوان",
+      "description": "۳ قصه را تا آخر شنیدی",
+      "icon": "book",
+      "points": 20
+    },
+    {
+      "id": "ach-streak",
+      "title": "۷ روز پیاپی",
+      "description": "یک هفته هر روز یاد گرفتی",
+      "icon": "fire",
+      "points": 50
+    },
+    {
+      "id": "ach-math",
+      "title": "ریاضی‌دان",
+      "description": "۲۰ پاسخ درست شمارش",
+      "icon": "abacus",
+      "points": 30
+    }
+  ]
+}

@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { childById, children } from "@/lib/data/family";
+import { LiveReports } from "@/features/parent/LiveReports";
 import { ChildSwitcher } from "@/features/parent/ChildSwitcher";
 import { fa } from "@/lib/utils";
 
@@ -13,6 +15,13 @@ const reports = [
 
 /** گزارش‌ها – تولید PDF در Backend با Job صف‌شده (POST /parent/reports/generate) */
 export default async function ReportsPage({ searchParams }: { searchParams: Promise<{ child?: string }> }) {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return (
+      <Suspense>
+        <LiveReports />
+      </Suspense>
+    );
+  }
   const { child: id } = await searchParams;
   const child = childById(id ?? "") ?? children[0];
   return (
@@ -22,7 +31,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
           <h1 className="font-sans text-2xl font-bold sm:text-3xl">گزارش‌های {child.displayName}</h1>
           <p className="mt-1 text-sm text-calm-500">هر شنبه صبح یک گزارش هفتگی به‌صورت خودکار ساخته می‌شود.</p>
         </div>
-        <ChildSwitcher activeId={child.id} basePath="/parent/reports" />
+        <ChildSwitcher items={children} activeId={child.id} basePath="/parent/reports" />
       </header>
 
       <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-calm-200 bg-white p-5 shadow-calm">

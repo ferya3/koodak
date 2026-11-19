@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { api } from "@/lib/api";
 import { games } from "@/lib/data/content";
-import { skillById } from "@/lib/data/taxonomy";
 import { ageRangeLabel } from "@/lib/utils";
 import { Container } from "@/components/ui/Section";
 import { GamePlayer } from "@/features/games/GamePlayer";
@@ -23,6 +22,7 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const game = await api.game(slug);
   if (!game) notFound();
+  const names = await api.lookups();
   return (
     <Container className="py-8">
       <nav aria-label="مسیر" className="mb-6 text-sm font-bold text-ink-500">
@@ -37,7 +37,7 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
         <div className="rounded-card border-2 border-ink-900/10 bg-white p-5">
           <h2 className="font-display font-extrabold">برای والدین</h2>
           <p className="mt-1 text-sm leading-7 text-ink-500">
-            مناسب {ageRangeLabel(game.minAge, game.maxAge)} · تمرین {game.skills.map((s) => skillById(s.skillId).title).join("، ")}.
+            مناسب {ageRangeLabel(game.minAge, game.maxAge)} · تمرین {game.skills.map((s) => names.skill(s.skillId)).join("، ")}.
             نتایج در پنل والدین ثبت می‌شود.
           </p>
         </div>

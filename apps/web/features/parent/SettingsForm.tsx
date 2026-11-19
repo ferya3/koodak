@@ -21,7 +21,19 @@ function Toggle({ checked, onChange, label, description }: { checked: boolean; o
 const TYPES: ContentType[] = ["game", "story", "worksheet", "lesson", "drawing"];
 
 /** تنظیمات کنترل والدین – در حالت متصل: PUT /api/v1/children/{id}/settings */
-export function SettingsForm({ initial, childName }: { initial: ParentSettings; childName: string }) {
+export function SettingsForm({
+  initial,
+  childName,
+  onSave,
+  onDelete,
+}: {
+  initial: ParentSettings;
+  childName: string;
+  /** در حالت متصل: PUT /children/{id}/settings */
+  onSave?: (s: ParentSettings) => Promise<void>;
+  onDelete?: () => Promise<void>;
+}) {
+  const [error, setError] = useState<string | null>(null);
   const [s, setS] = useState(initial);
   const [saved, setSaved] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -32,9 +44,15 @@ export function SettingsForm({ initial, childName }: { initial: ParentSettings; 
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setSaved(true);
+        setError(null);
+        try {
+          await onSave?.(s);
+          setSaved(true);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "ذخیره نشد.");
+        }
       }}
       className="space-y-6"
     >
@@ -102,6 +120,7 @@ export function SettingsForm({ initial, childName }: { initial: ParentSettings; 
           ذخیره‌ی تغییرات
         </button>
         {saved && <span className="text-sm font-bold text-grass-700" role="status">✓ ذخیره شد</span>}
+        {error && <span className="text-sm font-bold text-coral-700" role="alert">{error}</span>}
       </div>
 
       <section className="rounded-2xl border border-calm-200 bg-white p-5 shadow-calm">
@@ -131,7 +150,7 @@ export function SettingsForm({ initial, childName }: { initial: ParentSettings; 
             <p className="mt-1 text-sm text-calm-700">پروفایل، نقاشی‌ها و تمام سوابق {childName} ظرف ۳۰ روز به‌طور کامل حذف می‌شود و قابل بازگشت نیست.</p>
             <div className="mt-3 flex gap-2">
               <button type="button" onClick={() => setConfirmDelete(false)} className="h-10 rounded-xl bg-white px-4 text-sm font-bold">انصراف</button>
-              <button type="button" className="h-10 rounded-xl bg-coral-500 px-4 text-sm font-bold text-white">بله، حذف شود</button>
+              <button type="button" onClick={() => onDelete?.()} className="h-10 rounded-xl bg-coral-500 px-4 text-sm font-bold text-white">بله، حذف شود</button>
             </div>
           </div>
         )}

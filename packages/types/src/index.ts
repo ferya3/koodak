@@ -235,3 +235,47 @@ export interface ContentFilter {
   access?: AccessLevel;
   template?: WorksheetTemplate;
 }
+
+/* ───────────── Parent dashboard (GET /parent/dashboard) ───────────── */
+
+export interface SkillObservationView extends SkillObservation {
+  title: string;
+}
+
+export interface DashboardData {
+  child: ChildProfile;
+  settings: ParentSettings | null;
+  kpis: {
+    totalMinutes: number;
+    avgMinutesPerDay: number;
+    activitiesCompleted: number;
+    activitiesPrevWeek: number;
+    streakDays: number;
+    points: number;
+    daysOverLimit: number;
+  };
+  weeklyMinutes: { date: string; minutes: number }[];
+  minutesByType: { type: ContentType; minutes: number }[];
+  skills: SkillObservationView[];
+  recentActivity: ActivityLogItem[];
+  recommendations: { content: Content; reason: string }[];
+}
+
+export interface DashboardResponse {
+  children: ChildProfile[];
+  selected: DashboardData | null;
+}
+
+/* ───────────── Game session API ───────────── */
+
+export interface Awards {
+  points: number;
+  achievements: { id: ID; slug: string; title: string; icon: string; points: number }[];
+}
+
+export interface UserView {
+  id: ID;
+  name: string;
+  email: string;
+  roles: string[];
+}

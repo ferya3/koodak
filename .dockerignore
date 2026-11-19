@@ -1,0 +1,10 @@
+**/node_modules
+**/.next
+**/.git
+backend/vendor
+backend/storage/logs/*
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/.env
+**/*.tsbuildinfo
