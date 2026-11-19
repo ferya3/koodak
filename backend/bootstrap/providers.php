@@ -4,6 +4,7 @@ use App\Modules\Catalog\CatalogServiceProvider;
 use App\Modules\Children\ChildrenServiceProvider;
 use App\Modules\Games\GamesServiceProvider;
 use App\Modules\Identity\IdentityServiceProvider;
+use App\Modules\Learning\LearningServiceProvider;
 use App\Modules\Parent\ParentServiceProvider;
 use App\Modules\Progress\ProgressServiceProvider;
 use App\Modules\Recommendations\RecommendationsServiceProvider;
@@ -23,6 +24,7 @@ return [
     WorksheetsServiceProvider::class,
     GamesServiceProvider::class,
     StoriesServiceProvider::class,
+    LearningServiceProvider::class,
     SubscriptionsServiceProvider::class,
     ProgressServiceProvider::class,
     RecommendationsServiceProvider::class,

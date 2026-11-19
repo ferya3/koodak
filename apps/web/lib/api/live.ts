@@ -4,7 +4,7 @@
  * همه‌ی درخواست‌ها هم‌مبدأ به BFF (/api/v1/*) می‌روند؛ توکن در کوکی httpOnly است.
  * actor="child" یعنی درخواست با توکن جلسه‌ی کودک ارسال شود.
  */
-import type { Awards, ChildProfile, Content, DashboardResponse, GameSessionResult, ParentSettings, UserView } from "@kidsworld/types";
+import type { Awards, ChildProfile, Content, DashboardResponse, GameSessionResult, LessonResult, ParentSettings, UserView } from "@kidsworld/types";
 
 export const LIVE = Boolean(process.env.NEXT_PUBLIC_API_URL);
 
@@ -44,8 +44,18 @@ export const live = {
   updateSettings: (childId: string, body: Record<string, unknown>) => call<{ data: ParentSettings }>(`/children/${childId}/settings`, { method: "PUT", body }),
   deleteChild: (childId: string) => call(`/children/${childId}`, { method: "DELETE" }),
 
+  checkout: (planId: string, billingPeriod: "monthly" | "yearly") =>
+    call<{ paymentId: string; redirectUrl: string }>("/subscriptions/checkout", { method: "POST", body: { planId: Number(planId), billingPeriod } }),
+  subscription: () =>
+    call<{
+      subscription: { plan: { name: string; slug: string }; status: string; billingPeriod: string; startsAt: string; expiresAt: string } | null;
+      entitlements: { maxChildren: number; premiumContent: boolean };
+    }>("/subscriptions/current"),
+  payments: () =>
+    call<{ data: { id: string; amount: number; status: string; refId: string | null; plan: string | null; billingPeriod: string | null; paidAt: string | null; createdAt: string }[] }>("/payments"),
+
   dashboard: (childId?: string) => call<DashboardResponse>(`/parent/dashboard${childId ? `?childId=${childId}` : ""}`),
-  reports: (childId: string) => call<{ data: { id: string; type: string; periodStart: string; periodEnd: string; status: string }[] }>(`/parent/reports?childId=${childId}`),
+  reports: (childId: string) => call<{ data: { id: string; type: string; periodStart: string; periodEnd: string; status: string; format?: string }[] }>(`/parent/reports?childId=${childId}`),
   generateReport: (childId: string, type: "weekly" | "monthly" = "weekly") => call(`/parent/reports/generate`, { method: "POST", body: { childId: Number(childId), type } }),
 
   game: {
@@ -58,10 +68,13 @@ export const live = {
   },
 
   recommendations: (childId: string, limit = 3) =>
-    call<{ data: { content: Content; reason: string; score: number }[] }>(`/children/${childId}/recommendations?limit=${limit}&types[]=game&types[]=story`, { actor: "child" }),
+    call<{ data: { content: Content; reason: string; score: number }[] }>(`/children/${childId}/recommendations?limit=${limit}&types[]=game&types[]=story&types[]=lesson`, { actor: "child" }),
   achievements: (childId: string) =>
     call<{ data: { id: string; slug: string; title: string; description: string; icon: string; points: number; earnedAt: string | null }[] }>(`/children/${childId}/achievements`, { actor: "child" }),
   progress: (childId: string) => call<{ points: number; stars: number; streakDays: number }>(`/children/${childId}/progress`, { actor: "child" }),
+
+  lessonComplete: (slug: string, childId: string, answers: Record<string, string>, durationSeconds: number) =>
+    call<{ result: LessonResult; awards: Awards }>(`/learning/lessons/${slug}/complete`, { method: "POST", body: { childId: Number(childId), answers, durationSeconds }, actor: "child" }),
 
   activity: (childId: string, body: { type: "story" | "drawing" | "worksheet" | "lesson"; contentId?: number; durationSeconds: number; title?: string }) =>
     call<{ awards: Awards }>(`/children/${childId}/activities`, { method: "POST", body, actor: "child" }),

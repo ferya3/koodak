@@ -6,6 +6,7 @@ use App\Modules\Catalog\Enums\ContentType;
 use App\Modules\Catalog\Http\Resources\ContentResource;
 use App\Modules\Catalog\Models\Content;
 use App\Modules\Games\Http\Resources\GameResource;
+use App\Modules\Learning\Http\Resources\LessonResource;
 use App\Modules\Stories\Http\Resources\StoryResource;
 use App\Modules\Worksheets\Http\Resources\WorksheetResource;
 
@@ -18,12 +19,13 @@ final class ContentPresenter
             ContentType::Game => GameResource::make($content),
             ContentType::Story => StoryResource::make($content),
             ContentType::Worksheet => WorksheetResource::make($content),
+            ContentType::Lesson => LessonResource::make($content),
             default => ContentResource::make($content),
         };
     }
 
     public static function relations(): array
     {
-        return ['skills', 'ageGroups', 'game.levels', 'worksheet', 'story.chapters.choices'];
+        return ['skills', 'ageGroups', 'game.levels', 'worksheet', 'story.chapters.choices', 'lesson.steps', 'lesson.prerequisites'];
     }
 }

@@ -104,9 +104,9 @@ export function PatternGame({ level, runtime, seed }: GameComponentProps<Pattern
             type="button"
             onClick={() => choose(i)}
             className={cn(
-              "grid h-24 w-24 place-items-center rounded-3xl border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)] sm:h-28 sm:w-28",
-              wrongPick === i && "animate-shake bg-coral-100",
-              picked === i && "bg-grass-100",
+              "grid h-24 w-24 place-items-center rounded-3xl border-[3px] border-ink-900 btn-3d [--btn-edge:var(--color-ink-900)] sm:h-28 sm:w-28",
+              // فقط یک کلاس پس‌زمینه در هر حالت (ترتیب کلاس‌های هم‌خانواده در Tailwind تضمین‌شده نیست)
+              picked === i ? "bg-grass-100" : wrongPick === i ? "animate-shake bg-coral-100" : "bg-white",
             )}
           >
             <TokenArt t={t} className="h-14 w-14 sm:h-16 sm:w-16" />

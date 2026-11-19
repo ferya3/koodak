@@ -5,7 +5,7 @@ import type { ChildProfile } from "@kidsworld/types";
 import { ApiError, live } from "@/lib/api/live";
 import { ChildSwitcher } from "./ChildSwitcher";
 
-type Report = { id: string; type: string; periodStart: string; periodEnd: string; status: string };
+type Report = { id: string; type: string; periodStart: string; periodEnd: string; status: string; format?: string };
 const date = new Intl.DateTimeFormat("fa-IR", { day: "numeric", month: "long" });
 
 /** گزارش‌ها در حالت متصل: ساخت در صف (Job) و دانلود از طریق BFF */
@@ -65,7 +65,7 @@ export function LiveReports() {
           <ul className="divide-y divide-calm-100">
             {reports.map((r) => (
               <li key={r.id} className="flex items-center gap-4 p-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ocean-100 text-xs font-black text-ocean-700">HTML</span>
+                <span className={r.format === "pdf" ? "grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-coral-100 text-xs font-black text-coral-700" : "grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ocean-100 text-xs font-black text-ocean-700"}>{r.format === "pdf" ? "PDF" : "HTML"}</span>
                 <span className="flex-1">
                   <span className="block font-bold">
                     گزارش {r.type === "monthly" ? "ماهانه" : "هفتگی"} · {date.format(new Date(r.periodStart))} تا {date.format(new Date(r.periodEnd))}

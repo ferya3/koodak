@@ -6,6 +6,7 @@ use App\Modules\Catalog\Models\Content;
 use App\Modules\Children\Models\ChildProfile;
 use App\Modules\Games\Models\GameSession;
 use App\Modules\Progress\Models\ChildProgress;
+use App\Modules\Shared\Support\Fa;
 use App\Modules\Subscriptions\Support\Entitlements;
 use Illuminate\Support\Collection;
 
@@ -41,7 +42,7 @@ class RecommendationEngine
             ->limit(200)->get()
             ->map(function (Content $c) use ($favorites, $best, $target, $age) {
                 $score = 50;
-                $reason = "مناسب {$age} سالگی";
+                $reason = 'مناسب '.Fa::digits($age).' سالگی';
                 if ($favorites->contains($c->category_id)) {
                     $score += 25;
                     $reason = 'از دنیای مورد علاقه';

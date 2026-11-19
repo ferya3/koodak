@@ -95,8 +95,8 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
             type="button"
             onClick={() => choose(i)}
             className={cn(
-              "grid h-20 w-20 place-items-center rounded-3xl border-[3px] border-ink-900 bg-white font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-900)] sm:h-24 sm:w-24 sm:text-5xl",
-              result?.i === i && (result.ok ? "bg-grass-300" : "animate-shake bg-coral-100"),
+              "grid h-20 w-20 place-items-center rounded-3xl border-[3px] border-ink-900 font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-900)] sm:h-24 sm:w-24 sm:text-5xl",
+              result?.i === i ? (result.ok ? "bg-grass-300" : "animate-shake bg-coral-100") : "bg-white",
             )}
           >
             {fa(o)}

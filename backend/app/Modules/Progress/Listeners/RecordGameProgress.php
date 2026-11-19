@@ -6,6 +6,7 @@ use App\Modules\Games\Events\GameSessionCompleted;
 use App\Modules\Games\Models\GameSession;
 use App\Modules\Progress\Support\AchievementEngine;
 use App\Modules\Progress\Support\ProgressRecorder;
+use App\Modules\Shared\Support\Fa;
 
 /** واکنش ماژول Progress به پایان بازی (هم‌زمان، داخل همان تراکنش) */
 class RecordGameProgress
@@ -19,7 +20,7 @@ class RecordGameProgress
         $content = $s->game->content->loadMissing('skills');
         $totalLevels = max(1, $s->game->levels->count());
 
-        $this->recorder->logActivity($child, $content, 'game', "{$content->title} · مرحله {$s->level_number}", $s->duration_seconds,
+        $this->recorder->logActivity($child, $content, 'game', "{$content->title} · مرحله ".Fa::digits($s->level_number), $s->duration_seconds,
             ['stars' => $s->stars, 'score' => $s->score, 'level' => $s->level_number, 'correct' => $s->correct_count, 'mistakes' => $s->mistakes],
             'game_session', $s->id, $s->started_at);
 

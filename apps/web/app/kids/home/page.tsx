@@ -14,11 +14,12 @@ import { WorldIcon } from "@/components/brand/WorldIcon";
 import { Stars } from "@/components/ui/Stars";
 import { GameCover } from "@/features/games/GameCover";
 import { StoryScene } from "@/features/stories/StoryScene";
+import { LessonVisual } from "@/features/learning/LessonVisual";
 import { useKid } from "@/features/kids/useKid";
 
 /** مسیر هر دنیا در محیط کودک (دنیاهایی که هنوز محتوا ندارند «به‌زودی» نمایش داده می‌شوند) */
 const worldHref: Record<string, string | null> = {
-  "learning-academy": "/kids/play/count-the-fish",
+  "learning-academy": "/kids/learn",
   "brain-games": "/kids/play/memory-garden",
   "creative-studio": "/kids/studio",
   "fun-games": "/kids/play/pattern-train",
@@ -30,7 +31,7 @@ const worldHref: Record<string, string | null> = {
   worksheets: null,
 };
 
-const kidHref = (c: Content) => (c.type === "game" ? `/kids/play/${c.slug}` : `/kids/story/${c.slug}`);
+const kidHref = (c: Content) => (c.type === "game" ? `/kids/play/${c.slug}` : c.type === "lesson" ? `/kids/learn/${c.slug}` : `/kids/story/${c.slug}`);
 
 type Rec = { content: Content; reason: string };
 type Badge = { id: string; title: string; description: string; icon: string; earned: boolean };
@@ -131,7 +132,7 @@ export default function KidsHome() {
             return (
               <Link key={content.id} href={kidHref(content)} className="group overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]">
                 <div className="aspect-[4/3] overflow-hidden border-b-[3px] border-ink-900">
-                  {content.type === "game" ? <GameCover game={content} className="h-full w-full transition duration-300 group-hover:scale-105" /> : content.type === "story" ? <StoryScene scene={content.chapters[0].scene} className="h-full w-full transition duration-300 group-hover:scale-105" /> : null}
+                  {content.type === "game" ? <GameCover game={content} className="h-full w-full transition duration-300 group-hover:scale-105" /> : content.type === "story" ? <StoryScene scene={content.chapters[0].scene} className="h-full w-full transition duration-300 group-hover:scale-105" /> : content.type === "lesson" && content.steps[0]?.visual ? <div className={cn("grid h-full w-full place-items-center", tones[content.tone].soft)}><LessonVisual visual={content.steps[0].visual} size="md" /></div> : null}
                 </div>
                 <div className="p-4">
                   <p className="text-xl font-black">{content.title}</p>

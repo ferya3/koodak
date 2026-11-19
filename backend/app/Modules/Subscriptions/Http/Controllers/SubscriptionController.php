@@ -4,10 +4,12 @@ namespace App\Modules\Subscriptions\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Subscriptions\Gateways\PaymentGateway;
+use App\Modules\Subscriptions\Gateways\PaymentGatewayException;
 use App\Modules\Subscriptions\Models\Payment;
 use App\Modules\Subscriptions\Models\Plan;
 use App\Modules\Subscriptions\Support\Entitlements;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -60,24 +62,54 @@ class SubscriptionController extends Controller
             ]);
         });
 
-        $redirect = $gateway->request($payment, url('/api/v1/payments/callback'));
+        try {
+            $redirect = $gateway->request($payment->load('user'), url('/api/v1/payments/callback'));
+        } catch (PaymentGatewayException $e) {
+            $payment->update(['status' => 'failed']);
+            $payment->subscription?->update(['status' => 'cancelled']);
+
+            return response()->json(['message' => $e->getMessage()], 502);
+        }
 
         return response()->json(['paymentId' => (string) $payment->id, 'redirectUrl' => $redirect], 201);
     }
 
-    /** بازگشت از درگاه: تأیید در سرور، فعال‌سازی اشتراک، هدایت به پنل والدین */
-    public function callback(Request $request, PaymentGateway $gateway): JsonResponse
+    /**
+     * بازگشت کاربر از درگاه (GET با Authority و Status).
+     * تأیید همیشه سمت سرور و با مبلغ ذخیره‌شده انجام می‌شود؛ قفل ردیف از تأیید هم‌زمان جلوگیری می‌کند.
+     * مرورگر به پنل والدین هدایت می‌شود؛ درخواست JSON (تست/اپ) پاسخ JSON می‌گیرد.
+     */
+    public function callback(Request $request, PaymentGateway $gateway): JsonResponse|RedirectResponse
     {
-        $payment = Payment::where('authority', (string) $request->input('authority'))->where('status', 'pending')->firstOrFail();
-        $trx = $gateway->verify($payment, $request->all());
+        $authority = (string) ($request->input('Authority') ?? $request->input('authority'));
+        abort_if($authority === '', 404);
 
-        DB::transaction(function () use ($payment, $trx) {
-            if (! $trx) {
-                $payment->update(['status' => 'failed']);
-
-                return;
+        [$status, $ref] = DB::transaction(function () use ($authority, $request, $gateway) {
+            $payment = Payment::where('authority', $authority)->lockForUpdate()->firstOrFail();
+            if ($payment->status === 'paid') {
+                return ['paid', $payment->transaction_id]; // بازگشت تکراری
             }
-            $payment->update(['status' => 'paid', 'transaction_id' => $trx, 'paid_at' => now()]);
+            if ($payment->status !== 'pending') {
+                return ['failed', null];
+            }
+
+            try {
+                $verified = $gateway->verify($payment, $request->query() + $request->post());
+            } catch (PaymentGatewayException) {
+                return ['error', null]; // وضعیت pending می‌ماند تا بعداً دوباره بررسی شود
+            }
+
+            if (! $verified) {
+                $payment->update(['status' => 'failed']);
+                $payment->subscription?->update(['status' => 'cancelled']);
+
+                return ['failed', null];
+            }
+
+            $payment->update([
+                'status' => 'paid', 'transaction_id' => $verified['ref_id'], 'paid_at' => now(),
+                'meta' => [...($payment->meta ?? []), 'card_pan' => $verified['card_pan'] ?? null],
+            ]);
             $sub = $payment->subscription;
             // اشتراک‌های فعال قبلی بسته می‌شوند
             $sub->user->subscriptions()->where('status', 'active')->whereKeyNot($sub->id)->update(['status' => 'cancelled', 'cancelled_at' => now()]);
@@ -86,12 +118,33 @@ class SubscriptionController extends Controller
                 'starts_at' => now(),
                 'expires_at' => $sub->billing_period === 'yearly' ? now()->addYear() : now()->addMonth(),
             ]);
+
+            return ['paid', $verified['ref_id']];
         });
 
-        return response()->json([
-            'status' => $trx ? 'paid' : 'failed',
-            'transactionId' => $trx,
-            'redirectUrl' => config('kidsworld.frontend_url').'/parent?payment='.($trx ? 'success' : 'failed'),
-        ], $trx ? 200 : 402);
+        $redirect = config('kidsworld.frontend_url').'/parent/billing?'.http_build_query(array_filter(['payment' => $status, 'ref' => $ref]));
+
+        if ($request->expectsJson()) {
+            return response()->json(['status' => $status, 'transactionId' => $ref, 'redirectUrl' => $redirect], $status === 'paid' ? 200 : 402);
+        }
+
+        return redirect()->away($redirect);
+    }
+
+    /** تاریخچه‌ی پرداخت‌های والد */
+    public function payments(Request $request): JsonResponse
+    {
+        return response()->json(['data' => Payment::where('user_id', $request->user()->id)->with('subscription.plan')->latest()->limit(50)->get()->map(fn ($p) => [
+            'id' => (string) $p->id,
+            'amount' => $p->amount,
+            'currency' => $p->currency,
+            'status' => $p->status,
+            'gateway' => $p->gateway,
+            'refId' => $p->transaction_id,
+            'plan' => $p->subscription?->plan?->name,
+            'billingPeriod' => $p->subscription?->billing_period,
+            'paidAt' => $p->paid_at?->toIso8601String(),
+            'createdAt' => $p->created_at->toIso8601String(),
+        ])]);
     }
 }

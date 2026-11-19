@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 const items = [
   { href: "/parent", label: "داشبورد", d: "M4 13 H10 V20 H4 Z M14 4 H20 V20 H14 Z M4 4 H10 V9 H4 Z" },
   { href: "/parent/reports", label: "گزارش‌ها", d: "M7 3 H15 L19 7 V21 H7 Z M10 12 H16 M10 16 H16 M15 3 V7 H19" },
+  { href: "/parent/billing", label: "اشتراک و پرداخت", d: "M3 7 H21 V17 H3 Z M3 10 H21 M7 14 H10" },
   { href: "/parent/settings", label: "کنترل و حریم خصوصی", d: "M12 3 L20 6 V12 C20 17 16 20 12 21 C8 20 4 17 4 12 V6 Z M9 12 L11 14 L15 10" },
 ];
 
@@ -42,7 +43,6 @@ export function ParentNav() {
         <Link href="/kids" className="flex items-center justify-center gap-2 rounded-xl border border-calm-300 py-2.5 text-sm font-bold text-calm-900 hover:bg-calm-50">
           ورود به محیط کودک ←
         </Link>
-        <p className="mt-3 text-center text-xs text-calm-500">اشتراک خانواده · فعال تا ۱۴۰۵/۱۲/۲۹</p>
       </div>
     </aside>
   );

@@ -37,7 +37,12 @@ return [
 
     // درگاه پرداخت اشتراک‌ها (Subscriptions\Gateways). fake فقط برای توسعه و تست.
     'payment' => [
-        'driver' => env('PAYMENT_DRIVER', 'fake'),
+        'driver' => env('PAYMENT_DRIVER', 'fake'), // fake | zarinpal
+        'zarinpal' => [
+            'merchant_id' => env('ZARINPAL_MERCHANT_ID'),
+            'sandbox' => env('ZARINPAL_SANDBOX', false),
+            'description' => env('ZARINPAL_DESCRIPTION', 'اشتراک KidsWorld'),
+        ],
     ],
 
 ];

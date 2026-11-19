@@ -161,6 +161,38 @@
       "sortOrder": 10
     }
   ],
+  "subjects": [
+    {
+      "id": "sub-letters",
+      "categoryId": "c-learn",
+      "slug": "alphabet",
+      "title": "حروف الفبا"
+    },
+    {
+      "id": "sub-numbers",
+      "categoryId": "c-learn",
+      "slug": "numbers",
+      "title": "اعداد و شمارش"
+    },
+    {
+      "id": "sub-shapes",
+      "categoryId": "c-learn",
+      "slug": "shapes-colors",
+      "title": "شکل‌ها و رنگ‌ها"
+    },
+    {
+      "id": "sub-math",
+      "categoryId": "c-learn",
+      "slug": "math",
+      "title": "ریاضی"
+    },
+    {
+      "id": "sub-science",
+      "categoryId": "c-learn",
+      "slug": "science",
+      "title": "علوم و طبیعت"
+    }
+  ],
   "skills": [
     {
       "id": "s-memory",

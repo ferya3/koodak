@@ -24,6 +24,13 @@ return [
         'deletion_grace_days' => 30,
     ],
 
+    'reports' => [
+        // html | chromium | gotenberg
+        'driver' => env('REPORTS_PDF_DRIVER', 'html'),
+        'chromium_path' => env('REPORTS_CHROMIUM_PATH', 'chromium'),
+        'gotenberg_url' => env('GOTENBERG_URL', 'http://gotenberg:3000'),
+    ],
+
     'gamification' => [
         // امتیاز پایه برای هر ستاره
         'points_per_star' => 10,

@@ -136,7 +136,46 @@ export interface Story extends ContentBase {
   chapters: StoryChapter[];
 }
 
-export type Content = Worksheet | Game | Story;
+/* ───────────── Learning Academy ───────────── */
+
+/** تصویر هر گام درس – با آیکون‌ها و صحنه‌های سیستم طراحی رندر می‌شود (بدون فایل تصویری) */
+export type LessonVisual =
+  | { kind: "letter"; value: string; word?: string }
+  | { kind: "number"; value: number; icon?: string }
+  | { kind: "icons"; icons: string[] }
+  | { kind: "scene"; scene: string };
+
+export interface LessonOption {
+  id: string;
+  label: string;
+  visual?: LessonVisual;
+}
+
+export interface LessonStep {
+  id: ID;
+  type: "explain" | "quiz";
+  title: string;
+  body: string;
+  visual?: LessonVisual | null;
+  question?: { prompt: string; options: LessonOption[]; answerId: string } | null;
+}
+
+export interface Lesson extends ContentBase {
+  type: "lesson";
+  objectives: string[];
+  prerequisiteIds: ID[];
+  steps: LessonStep[];
+}
+
+export interface LessonResult {
+  score: number;
+  correct: number;
+  total: number;
+  stars: 1 | 2 | 3;
+  steps: { stepId: ID; correct: boolean }[];
+}
+
+export type Content = Worksheet | Game | Story | Lesson;
 
 /* ───────────── Children & Progress ───────────── */
 

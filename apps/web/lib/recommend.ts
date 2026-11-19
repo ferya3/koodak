@@ -1,5 +1,6 @@
 import type { ChildProfile, Content, GameSessionResult } from "@kidsworld/types";
 import { games, stories, worksheets } from "./data/content";
+import { lessons } from "./data/lessons";
 
 /**
  * Recommendation Engine – نسخه‌ی ۱ (Rule-Based)
@@ -15,7 +16,7 @@ export interface Recommendation {
 }
 
 export function recommend(child: Pick<ChildProfile, "age" | "favoriteCategoryIds">, history: GameSessionResult[], limit = 4): Recommendation[] {
-  const pool: Content[] = [...games, ...stories, ...worksheets.filter((w) => w.access === "free")];
+  const pool: Content[] = [...games, ...lessons, ...stories, ...worksheets.filter((w) => w.access === "free")];
   const played = new Map<string, number>();
   history.forEach((h) => played.set(h.gameId, Math.max(played.get(h.gameId) ?? 0, h.stars)));
   const avgStars = history.length ? history.reduce((s, h) => s + h.stars, 0) / history.length : 2;

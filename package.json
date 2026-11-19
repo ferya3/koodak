@@ -6,6 +6,7 @@
     "dev": "pnpm --filter @kidsworld/web dev",
     "build": "pnpm --filter @kidsworld/web build",
     "start": "pnpm --filter @kidsworld/web start",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "seed:export": "node scripts/export-seed-data.mjs"
   }
 }

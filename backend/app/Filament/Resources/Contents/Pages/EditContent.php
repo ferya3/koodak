@@ -42,7 +42,7 @@ class EditContent extends EditRecord
                 }),
             Action::make('preview')->label('پیش‌نمایش در سایت')->icon('heroicon-o-eye')->color('gray')
                 ->url(fn () => rtrim(config('kidsworld.frontend_url'), '/').'/'.match ($this->record->content_type->value) {
-                    'worksheet' => 'worksheets', 'game' => 'games', 'story' => 'stories', default => '',
+                    'worksheet' => 'worksheets', 'game' => 'games', 'story' => 'stories', 'lesson' => 'learn', default => '',
                 }.'/'.$this->record->slug, shouldOpenInNewTab: true),
             DeleteAction::make(),
             ForceDeleteAction::make(),

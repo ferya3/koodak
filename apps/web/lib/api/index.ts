@@ -5,8 +5,9 @@
  * فردا: با تنظیم NEXT_PUBLIC_API_URL همین توابع به Laravel API وصل می‌شوند،
  * بدون اینکه حتی یک کامپوننت تغییر کند.
  */
-import type { ContentFilter, Game, Paginated, Story, Worksheet } from "@kidsworld/types";
-import { categories, ageGroups, skills } from "../data/taxonomy";
+import type { ContentFilter, Game, Lesson, Paginated, Story, Subject, Worksheet } from "@kidsworld/types";
+import { categories, ageGroups, skills, subjects } from "../data/taxonomy";
+import { lessons } from "../data/lessons";
 import { games, stories, worksheets } from "../data/content";
 import { plans } from "../data/family";
 
@@ -32,7 +33,7 @@ async function one<T>(path: string): Promise<T | null> {
   }
 }
 
-function matches<T extends Worksheet | Game | Story>(item: T, f: ContentFilter) {
+function matches<T extends Worksheet | Game | Story | Lesson>(item: T, f: ContentFilter) {
   if (f.q && !`${item.title} ${item.description}`.includes(f.q)) return false;
   if (f.age && (f.age < item.minAge || f.age > item.maxAge)) return false;
   if (f.difficulty && item.difficulty !== f.difficulty) return false;
@@ -66,6 +67,17 @@ export const api = {
 
   games: async (f: ContentFilter = {}) => (API_URL ? http<Paginated<Game>>("/games") : page(games.filter((g) => matches(g, f)))),
   game: async (slug: string) => (API_URL ? one<Game>(`/games/${slug}`) : games.find((g) => g.slug === slug) ?? null),
+
+  /** آکادمی یادگیری */
+  subjects: async (): Promise<(Subject & { lessonCount: number })[]> =>
+    API_URL
+      ? (await http<{ data: (Subject & { lessonCount: number })[] }>("/learning/subjects")).data
+      : subjects.map((s) => ({ ...s, lessonCount: lessons.filter((l) => l.subjectId === s.id).length })),
+  lessons: async (f: ContentFilter & { subject?: string } = {}) =>
+    API_URL
+      ? http<Paginated<Lesson>>(`/learning/lessons?${new URLSearchParams({ perPage: "60", ...(f as Record<string, string>) })}`)
+      : page(lessons.filter((l) => matches(l, f) && (!f.subject || l.subjectId === f.subject || subjects.find((s) => s.id === l.subjectId)?.slug === f.subject))),
+  lesson: async (slug: string) => (API_URL ? one<Lesson>(`/learning/lessons/${slug}`) : lessons.find((l) => l.slug === slug) ?? null),
 
   stories: async (f: ContentFilter = {}) => (API_URL ? http<Paginated<Story>>("/stories") : page(stories.filter((s) => matches(s, f)))),
   story: async (slug: string) => (API_URL ? one<Story>(`/stories/${slug}`) : stories.find((s) => s.slug === slug) ?? null),

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Report extends Model
 {
-    protected $fillable = ['parent_user_id', 'child_id', 'report_type', 'period_start', 'period_end', 'status', 'storage_disk', 'storage_path', 'generated_at'];
+    protected $fillable = ['parent_user_id', 'child_id', 'report_type', 'period_start', 'period_end', 'status', 'format', 'storage_disk', 'storage_path', 'generated_at'];
 
     protected function casts(): array
     {
@@ -29,6 +29,7 @@ class Report extends Model
             'periodStart' => $this->period_start->toDateString(),
             'periodEnd' => $this->period_end->toDateString(),
             'status' => $this->status,
+            'format' => $this->format,
             'generatedAt' => $this->generated_at?->toIso8601String(),
         ];
     }

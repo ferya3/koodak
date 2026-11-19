@@ -8,6 +8,7 @@ use App\Modules\Catalog\Enums\Difficulty;
 use App\Modules\Catalog\Models\Category;
 use App\Modules\Catalog\Models\Subject;
 use App\Modules\Games\Models\Game;
+use App\Modules\Learning\Models\LessonStep;
 use App\Modules\Stories\Models\Story;
 use App\Modules\Stories\Models\StoryChapter;
 use App\Modules\Worksheets\Models\Worksheet;
@@ -15,6 +16,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -122,6 +124,41 @@ class ContentForm
                     ->mutateRelationshipDataBeforeCreateUsing(fn (array $data) => self::castNumbers($data)),
             ]),
 
+            // ── درس (آکادمی یادگیری) ──
+            Section::make('درس')->relationship('lesson')->visible($is('lesson'))->schema([
+                TagsInput::make('objectives')->label('اهداف یادگیری')->placeholder('مثلاً: شناخت شکل حرف «ب»'),
+                Select::make('prerequisites')->label('پیش‌نیازها')->relationship('prerequisites', 'title',
+                    fn ($query) => $query->where('content_type', 'lesson'))->multiple()->preload(),
+                Repeater::make('steps')->label('گام‌های درس')->relationship()->orderColumn('step_order')->collapsible()
+                    ->schema([
+                        Grid::make(3)->schema([
+                            Select::make('step_type')->label('نوع گام')->options(['explain' => 'توضیح', 'quiz' => 'پرسش'])->required()->live(),
+                            TextInput::make('key')->label('شناسه')->required()->maxLength(32)->placeholder('s1'),
+                            TextInput::make('title')->label('عنوان')->required(),
+                        ]),
+                        Textarea::make('body')->label('متن (با صدای بلند خوانده می‌شود)')->rows(2),
+                        Grid::make(2)->schema([
+                            Select::make('visual.kind')->label('تصویر')->options(LessonStep::VISUAL_KINDS)->placeholder('بدون تصویر'),
+                            TextInput::make('visual.value')->label('مقدار تصویر')
+                                ->helperText('حرف: ب | عدد: 3 | صحنه: night-sky | آیکون‌ها در فیلد زیر'),
+                        ]),
+                        TagsInput::make('visual.icons')->label('آیکون‌ها')->placeholder('apple, star, circle, square, triangle, plus'),
+                        Section::make('پرسش')->visible(fn (Get $get) => $get('step_type') === 'quiz')->schema([
+                            TextInput::make('question.prompt')->label('صورت پرسش')->required(),
+                            Repeater::make('question.options')->label('گزینه‌ها')->minItems(2)->maxItems(4)->defaultItems(3)
+                                ->schema([
+                                    TextInput::make('id')->label('شناسه')->required()->maxLength(8),
+                                    TextInput::make('label')->label('متن')->required(),
+                                    TextInput::make('visual.icons.0')->label('آیکون (اختیاری)'),
+                                ])->columns(3),
+                            TextInput::make('question.answerId')->label('شناسه‌ی گزینه‌ی درست')->required(),
+                        ]),
+                    ])->itemLabel(fn (array $state) => trim(($state['key'] ?? '').' · '.($state['title'] ?? ''), ' ·'))
+                    ->mutateRelationshipDataBeforeFillUsing(fn (array $data) => self::stepToForm($data))
+                    ->mutateRelationshipDataBeforeSaveUsing(fn (array $data) => self::normalizeStep($data))
+                    ->mutateRelationshipDataBeforeCreateUsing(fn (array $data) => self::normalizeStep($data)),
+            ]),
+
             // ── قصه ──
             Section::make('قصه')->relationship('story')->visible($is('story'))->schema([
                 Select::make('story_type')->label('نوع قصه')->options(Story::TYPES)->default('short')->required(),
@@ -166,6 +203,45 @@ class ContentForm
                     ->default(['title' => '', 'description' => '']),
             ]),
         ];
+    }
+
+    /** قرارداد LessonVisual ← فیلدهای فرم (برعکس normalizeStep) */
+    private static function stepToForm(array $data): array
+    {
+        $v = $data['visual'] ?? null;
+        if (is_array($v)) {
+            $data['visual'] = match ($v['kind'] ?? null) {
+                'scene' => ['kind' => 'scene', 'value' => $v['scene'] ?? ''],
+                'number' => ['kind' => 'number', 'value' => $v['value'] ?? '', 'icons' => [$v['icon'] ?? 'star']],
+                default => $v,
+            };
+        }
+
+        return $data;
+    }
+
+    /** تصویر گام را به قرارداد LessonVisual تبدیل می‌کند و گزینه‌های بی‌تصویر را تمیز می‌کند */
+    private static function normalizeStep(array $data): array
+    {
+        $v = $data['visual'] ?? [];
+        $data['visual'] = match ($v['kind'] ?? null) {
+            'letter' => ['kind' => 'letter', 'value' => (string) ($v['value'] ?? '')],
+            'number' => ['kind' => 'number', 'value' => (int) ($v['value'] ?? 0), 'icon' => $v['icons'][0] ?? 'star'],
+            'icons' => ['kind' => 'icons', 'icons' => array_values(array_filter($v['icons'] ?? []))],
+            'scene' => ['kind' => 'scene', 'scene' => (string) ($v['value'] ?? 'night-sky')],
+            default => null,
+        };
+        if (($data['step_type'] ?? '') !== 'quiz') {
+            $data['question'] = null;
+        } elseif (isset($data['question']['options'])) {
+            $data['question']['options'] = array_values(array_map(function ($o) {
+                $icon = $o['visual']['icons'][0] ?? null;
+
+                return ['id' => (string) $o['id'], 'label' => $o['label']] + ($icon ? ['visual' => ['kind' => 'icons', 'icons' => [$icon]]] : []);
+            }, $data['question']['options']));
+        }
+
+        return $data;
     }
 
     /** KeyValue همه‌چیز را رشته ذخیره می‌کند؛ اعداد را به عدد برمی‌گردانیم */

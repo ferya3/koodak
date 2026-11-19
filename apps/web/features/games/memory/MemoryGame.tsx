@@ -87,8 +87,8 @@ export function MemoryGame({ level, runtime, seed }: GameComponentProps<MemoryCo
               {/* روی کارت */}
               <span
                 className={cn(
-                  "absolute inset-0 grid rotate-y-180 place-items-center rounded-2xl border-[3px] border-ink-900 bg-white backface-hidden",
-                  isMatched && "bg-grass-100",
+                  "absolute inset-0 grid rotate-y-180 place-items-center rounded-2xl border-[3px] border-ink-900 backface-hidden",
+                  isMatched ? "bg-grass-100" : "bg-white",
                 )}
               >
                 <PlayIcon name={card.icon} className={cn("h-3/5 w-3/5", isMatched && "animate-pop")} />

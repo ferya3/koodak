@@ -7,6 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const nav = [
+  { href: "/learn", label: "آموزش" },
   { href: "/worksheets", label: "کاربرگ‌ها" },
   { href: "/games", label: "بازی‌ها" },
   { href: "/stories", label: "قصه‌ها" },

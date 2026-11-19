@@ -10,6 +10,7 @@ x-api: &api
   depends_on:
     postgres: { condition: service_healthy }
     redis: { condition: service_healthy }
+    gotenberg: { condition: service_started }
   volumes:
     - api-storage:/var/www/html/storage/app
     - api-public:/var/www/html/public   # با nginx به اشتراک گذاشته می‌شود (assetهای Filament)
@@ -61,6 +62,11 @@ services:
       - ./infrastructure/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - api-public:/var/www/html/public:ro
     depends_on: [api, web]
+    restart: unless-stopped
+
+  # تبدیل HTML گزارش‌ها به PDF (Chromium ایزوله) – REPORTS_PDF_DRIVER=gotenberg
+  gotenberg:
+    image: gotenberg/gotenberg:8.11
     restart: unless-stopped
 
   meilisearch:

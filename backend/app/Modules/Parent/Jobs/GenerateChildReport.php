@@ -3,6 +3,7 @@
 namespace App\Modules\Parent\Jobs;
 
 use App\Modules\Parent\Models\Report;
+use App\Modules\Parent\Pdf\PdfRenderer;
 use App\Modules\Parent\Support\DashboardBuilder;
 use App\Modules\Progress\Models\ActivityAttempt;
 use Illuminate\Bus\Queueable;
@@ -15,8 +16,8 @@ use Throwable;
 
 /**
  * ساخت گزارش در صف (عملیات سنگین هرگز در درخواست HTTP انجام نمی‌شود).
- * خروجی فعلی: سند HTML آماده‌ی چاپ (راست‌به‌چپ). تبدیل به PDF با Chromium/Gotenberg
- * در همین Job قابل افزودن است بدون تغییر API.
+ * HTML راست‌به‌چپ با فونت جاسازی‌شده ساخته و با PdfRenderer به PDF تبدیل می‌شود
+ * (درایور html = ذخیره‌ی همان HTML آماده‌ی چاپ).
  */
 class GenerateChildReport implements ShouldQueue
 {
@@ -26,7 +27,9 @@ class GenerateChildReport implements ShouldQueue
 
     public function __construct(public Report $report) {}
 
-    public function handle(DashboardBuilder $builder): void
+    public int $timeout = 120;
+
+    public function handle(DashboardBuilder $builder, PdfRenderer $pdf): void
     {
         $report = $this->report->load('child.parent');
         $data = $builder->build($report->child);
@@ -34,11 +37,15 @@ class GenerateChildReport implements ShouldQueue
             ->whereBetween('started_at', [$report->period_start->copy()->startOfDay(), $report->period_end->copy()->endOfDay()])
             ->orderBy('started_at')->get();
 
-        $html = view('parent::report', ['report' => $report, 'data' => $data, 'activities' => $activities])->render();
-        $path = "reports/{$report->parent_user_id}/report-{$report->id}.html";
-        Storage::disk($report->storage_disk)->put($path, $html);
+        $font = base64_encode((string) file_get_contents(resource_path('fonts/Vazirmatn.woff2')));
+        $html = view('parent::report', ['report' => $report, 'data' => $data, 'activities' => $activities, 'font' => $font])->render();
 
-        $report->update(['status' => 'ready', 'storage_path' => $path, 'generated_at' => now()]);
+        $bytes = $pdf->render($html);
+        $format = $bytes === null ? 'html' : 'pdf';
+        $path = "reports/{$report->parent_user_id}/report-{$report->id}.{$format}";
+        Storage::disk($report->storage_disk)->put($path, $bytes ?? $html);
+
+        $report->update(['status' => 'ready', 'format' => $format, 'storage_path' => $path, 'generated_at' => now()]);
     }
 
     public function failed(?Throwable $e): void

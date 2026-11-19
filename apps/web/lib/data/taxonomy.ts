@@ -1,4 +1,4 @@
-import type { AgeGroup, Category, Skill } from "@kidsworld/types";
+import type { AgeGroup, Category, Skill, Subject } from "@kidsworld/types";
 
 /**
  * داده‌ی نمونه (Seed). در نسخه‌ی متصل به Backend این داده‌ها از
@@ -28,6 +28,15 @@ export const categories: Category[] = [
   { id: "c-music", parentId: null, slug: "music-sounds", title: "موسیقی و صدا", titleEn: "Music & Sounds", description: "پیانو، ریتم، صدای حیوانات و بازی‌های شنیداری", icon: "music", tone: "peach", sortOrder: 8 },
   { id: "c-life", parentId: null, slug: "life-skills", title: "مهارت‌های زندگی", titleEn: "Life Skills", description: "احساسات، همدلی، همکاری و مهارت‌های روزمره", icon: "life", tone: "grass", sortOrder: 9 },
   { id: "c-growth", parentId: null, slug: "growth-center", title: "مرکز رشد", titleEn: "Talent & Growth", description: "مشاهده‌ی علایق و مهارت‌های تمرین‌شده‌ی کودک", icon: "growth", tone: "mint", sortOrder: 10 },
+];
+
+/** موضوع‌های آکادمی یادگیری (Category › Subject) */
+export const subjects: Subject[] = [
+  { id: "sub-letters", categoryId: "c-learn", slug: "alphabet", title: "حروف الفبا" },
+  { id: "sub-numbers", categoryId: "c-learn", slug: "numbers", title: "اعداد و شمارش" },
+  { id: "sub-shapes", categoryId: "c-learn", slug: "shapes-colors", title: "شکل‌ها و رنگ‌ها" },
+  { id: "sub-math", categoryId: "c-learn", slug: "math", title: "ریاضی" },
+  { id: "sub-science", categoryId: "c-learn", slug: "science", title: "علوم و طبیعت" },
 ];
 
 export const skills: Skill[] = [

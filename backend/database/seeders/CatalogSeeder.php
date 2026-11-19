@@ -6,7 +6,9 @@ use App\Modules\Catalog\Models\AgeGroup;
 use App\Modules\Catalog\Models\Category;
 use App\Modules\Catalog\Models\Content;
 use App\Modules\Catalog\Models\Skill;
+use App\Modules\Catalog\Models\Subject;
 use App\Modules\Games\Models\Game;
+use App\Modules\Learning\Models\Lesson;
 use App\Modules\Stories\Models\Story;
 use App\Modules\Worksheets\Models\Worksheet;
 use Illuminate\Database\Seeder;
@@ -34,6 +36,13 @@ class CatalogSeeder extends Seeder
                 'title' => $c['title'], 'title_en' => $c['titleEn'], 'description' => $c['description'],
                 'icon' => $c['icon'], 'tone' => $c['tone'], 'sort_order' => $c['sortOrder'], 'status' => 'active',
             ])->id;
+        }
+
+        foreach ($tax['subjects'] ?? [] as $i => $s) {
+            self::$ids[$s['id']] = Subject::updateOrCreate(
+                ['category_id' => self::$ids[$s['categoryId']], 'slug' => $s['slug']],
+                ['title' => $s['title'], 'sort_order' => $i],
+            )->id;
         }
 
         foreach ($tax['skills'] as $s) {
@@ -75,12 +84,36 @@ class CatalogSeeder extends Seeder
                 }
             }
         }
+
+        $this->lessons();
+    }
+
+    /** درس‌های آکادمی (data/lessons.json) – بعد از سایر محتواها تا پیش‌نیازها حل شوند */
+    private function lessons(): void
+    {
+        $data = json_decode(file_get_contents(__DIR__.'/data/lessons.json'), true)['lessons'];
+        $models = [];
+        foreach ($data as $i => $l) {
+            $c = $this->content($l, $i);
+            $lesson = Lesson::updateOrCreate(['content_id' => $c->id], ['objectives' => $l['objectives']]);
+            foreach ($l['steps'] as $order => $step) {
+                $lesson->steps()->updateOrCreate(['key' => $step['id']], [
+                    'step_type' => $step['type'], 'title' => $step['title'], 'body' => $step['body'],
+                    'visual' => $step['visual'] ?? null, 'question' => $step['question'] ?? null, 'step_order' => $order,
+                ]);
+            }
+            $models[$l['id']] = [$lesson, $l['prerequisiteIds']];
+        }
+        foreach ($models as [$lesson, $prereqs]) {
+            $lesson->prerequisites()->sync(array_map(fn ($id) => self::$ids[$id], $prereqs));
+        }
     }
 
     private function content(array $d, int $order): Content
     {
         $c = Content::withTrashed()->updateOrCreate(['slug' => $d['slug']], [
             'category_id' => self::$ids[$d['categoryId']],
+            'subject_id' => isset($d['subjectId']) ? self::$ids[$d['subjectId']] : null,
             'content_type' => $d['type'],
             'title' => $d['title'],
             'description' => $d['description'],

@@ -140,7 +140,7 @@ export default async function HomePage() {
             {categories.map((c, i) => (
               <Link
                 key={c.id}
-                href={c.slug === "worksheets" ? "/worksheets" : c.slug === "story-world" ? "/stories" : c.slug === "brain-games" || c.slug === "fun-games" ? "/games" : "/kids"}
+                href={c.slug === "learning-academy" ? "/learn" : c.slug === "worksheets" ? "/worksheets" : c.slug === "story-world" ? "/stories" : c.slug === "brain-games" || c.slug === "fun-games" ? "/games" : "/kids"}
                 className={cn(
                   "group relative flex flex-col items-center gap-3 overflow-hidden rounded-card border-2 border-ink-900 p-5 text-center shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-lift",
                   tones[c.tone].soft,

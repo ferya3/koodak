@@ -7,9 +7,10 @@ import { Badge, PremiumBadge } from "@/components/ui/Badge";
 import { WorksheetSheet } from "@/features/worksheets/WorksheetSheet";
 import { GameCover } from "@/features/games/GameCover";
 import { StoryScene } from "@/features/stories/StoryScene";
+import { LessonVisual } from "@/features/learning/LessonVisual";
 
 const hrefFor = (c: Content) =>
-  c.type === "worksheet" ? `/worksheets/${c.slug}` : c.type === "game" ? `/games/${c.slug}` : `/stories/${c.slug}`;
+  c.type === "worksheet" ? `/worksheets/${c.slug}` : c.type === "game" ? `/games/${c.slug}` : c.type === "lesson" ? `/learn/${c.slug}` : `/stories/${c.slug}`;
 
 /** کارت محتوای مشترک برای کاربرگ، بازی و قصه (سایت عمومی) */
 export function ContentCard({ content, className }: { content: Content; className?: string }) {
@@ -28,6 +29,11 @@ export function ContentCard({ content, className }: { content: Content; classNam
         )}
         {content.type === "game" && <GameCover game={content} className="h-full w-full" />}
         {content.type === "story" && <StoryScene scene={content.chapters[0].scene} className="h-full w-full" />}
+        {content.type === "lesson" && content.steps[0]?.visual && (
+          <div className="scale-75 transition duration-300 group-hover:scale-90">
+            <LessonVisual visual={content.steps[0].visual} size="md" />
+          </div>
+        )}
         <div className="absolute right-3 top-3 flex gap-1.5">
           <Badge tone={content.tone} className="border border-ink-900/10 bg-white/90">
             {contentTypeLabel[content.type]}

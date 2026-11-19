@@ -67,6 +67,8 @@ class ParentDashboardController extends Controller
         abort_unless($report->parent_user_id === $request->user()->id, 403);
         abort_unless($report->status === 'ready' && $report->storage_path, 409, 'گزارش هنوز آماده نیست.');
 
-        return Storage::disk($report->storage_disk)->download($report->storage_path, "kidsworld-report-{$report->id}.html", ['Content-Type' => 'text/html; charset=utf-8']);
+        $type = $report->format === 'pdf' ? 'application/pdf' : 'text/html; charset=utf-8';
+
+        return Storage::disk($report->storage_disk)->download($report->storage_path, "kidsworld-report-{$report->id}.{$report->format}", ['Content-Type' => $type]);
     }
 }

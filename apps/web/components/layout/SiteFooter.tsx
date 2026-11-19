@@ -4,7 +4,7 @@ import { Wave } from "@/components/brand/Decor";
 import { Container } from "@/components/ui/Section";
 
 const cols = [
-  { title: "کاوش", links: [["کاربرگ‌ها", "/worksheets"], ["بازی‌ها", "/games"], ["قصه‌ها", "/stories"], ["دنیاها", "/#worlds"]] },
+  { title: "کاوش", links: [["آکادمی یادگیری", "/learn"], ["کاربرگ‌ها", "/worksheets"], ["بازی‌ها", "/games"], ["قصه‌ها", "/stories"], ["دنیاها", "/#worlds"]] },
   { title: "برای بزرگ‌ترها", links: [["پنل والدین", "/parent"], ["اشتراک خانواده", "/pricing"], ["مدارس و مهدها", "/pricing#school"], ["سیستم طراحی", "/design-system"]] },
   { title: "اعتماد", links: [["حریم خصوصی کودکان", "/privacy"], ["قوانین استفاده", "/privacy#terms"], ["سوالات متداول", "/#faq"], ["تماس با ما", "/privacy#contact"]] },
 ];

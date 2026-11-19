@@ -73,6 +73,7 @@ class ParentFeaturesTest extends TestCase
         parse_str(parse_url($redirect, PHP_URL_QUERY), $query);
 
         $this->getJson('/api/v1/payments/callback?'.http_build_query($query))->assertOk()->assertJsonPath('status', 'paid');
+        $this->assertSame('OK', $query['Status']);
         $this->getJson('/api/v1/subscriptions/current', $this->bearer($t))
             ->assertJsonPath('subscription.plan.slug', 'family')->assertJsonPath('entitlements.maxChildren', 4)->assertJsonPath('entitlements.premiumContent', true);
         $this->assertDatabaseHas('payments', ['user_id' => $parent->id, 'status' => 'paid', 'amount' => $plan->price_yearly]);
