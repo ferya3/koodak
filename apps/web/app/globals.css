@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════
+   KidsWorld Design Tokens  ·  v0.1
+   منبع حقیقت (Single Source of Truth) رنگ، تایپوگرافی، فاصله، گردی و سایه.
+   مستند کامل: docs/design/04-design-system.md
+   ════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Typography ── */
+  --font-display: var(--font-rd), "Vazirmatn", system-ui, sans-serif;
+  --font-sans: var(--font-base), "Vazirmatn", system-ui, sans-serif;
+
+  --text-kid-xs: 1rem;
+  --text-kid-sm: 1.125rem;
+  --text-kid-md: 1.375rem;
+  --text-kid-lg: 1.75rem;
+  --text-kid-xl: 2.25rem;
+  --text-kid-2xl: 3rem;
+
+  /* ── Neutrals: Ink (متن) و Cream (پس‌زمینه) ── */
+  --color-ink-900: #1f1a3d;
+  --color-ink-700: #3d3766;
+  --color-ink-500: #6e6893;
+  --color-ink-300: #b9b4d3;
+  --color-ink-200: #d9d6ea;
+  --color-ink-100: #eceaf6;
+  --color-ink-50: #f6f5fb;
+
+  --color-cream-50: #fffbf3;
+  --color-cream-100: #fff4e0;
+  --color-cream-200: #fce8c6;
+
+  /* ── Brand tones (هر «دنیا» یک تُن دارد) ── */
+  --color-sun-100: #fff3c4;
+  --color-sun-300: #ffe07a;
+  --color-sun-400: #ffce3d;
+  --color-sun-500: #f5b400;
+  --color-sun-700: #8a6200;
+
+  --color-coral-100: #ffe1dc;
+  --color-coral-300: #ff9f8e;
+  --color-coral-400: #ff7a66;
+  --color-coral-500: #f2553f;
+  --color-coral-700: #a62e1c;
+
+  --color-sky-100: #ddf3ff;
+  --color-sky-300: #8fd3ff;
+  --color-sky-400: #4fb8f5;
+  --color-sky-500: #1f96e0;
+  --color-sky-700: #0d5a94;
+
+  --color-grass-100: #ddf7e3;
+  --color-grass-300: #8be0a0;
+  --color-grass-400: #4fcb72;
+  --color-grass-500: #2ead55;
+  --color-grass-700: #1a6b34;
+
+  --color-grape-100: #ede5ff;
+  --color-grape-300: #bfa5ff;
+  --color-grape-400: #9b7bff;
+  --color-grape-500: #7a55f0;
+  --color-grape-700: #4c2db0;
+
+  --color-berry-100: #ffe3f1;
+  --color-berry-300: #ffa3cf;
+  --color-berry-400: #ff73b3;
+  --color-berry-500: #eb4a96;
+  --color-berry-700: #a12161;
+
+  --color-ocean-100: #d8f6f3;
+  --color-ocean-300: #7fddd3;
+  --color-ocean-400: #3fc4b6;
+  --color-ocean-500: #1fa396;
+  --color-ocean-700: #0f625a;
+
+  --color-peach-100: #ffe9d6;
+  --color-peach-300: #ffbe85;
+  --color-peach-400: #ff9f4a;
+  --color-peach-500: #f07f1f;
+  --color-peach-700: #9c4c0c;
+
+  --color-mint-100: #e0faf0;
+  --color-mint-300: #a6ecd0;
+  --color-mint-400: #6fdcb2;
+  --color-mint-500: #3cc493;
+  --color-mint-700: #19714f;
+
+  --color-lilac-100: #f6ecff;
+  --color-lilac-300: #e0c4ff;
+  --color-lilac-400: #cc9ffc;
+  --color-lilac-500: #b072f0;
+  --color-lilac-700: #6c2fa8;
+
+  /* ── Parent / Calm theme ── */
+  --color-calm-900: #0f1b2d;
+  --color-calm-700: #334155;
+  --color-calm-500: #64748b;
+  --color-calm-300: #cbd5e1;
+  --color-calm-200: #e2e8f0;
+  --color-calm-100: #f1f5f9;
+  --color-calm-50: #f8fafc;
+
+  /* ── Radius ── */
+  --radius-chip: 999px;
+  --radius-card: 1.5rem;
+  --radius-blob: 2.25rem;
+
+  /* ── Shadows ── */
+  --shadow-soft: 0 1px 2px rgb(31 26 61 / 0.06), 0 8px 24px -8px rgb(31 26 61 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(31 26 61 / 0.06), 0 18px 40px -12px rgb(31 26 61 / 0.22);
+  --shadow-calm: 0 1px 2px rgb(15 27 45 / 0.05), 0 4px 12px -4px rgb(15 27 45 / 0.08);
+
+  /* ── Motion ── */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-wiggle: wiggle 0.5s ease-in-out;
+  --animate-pop: pop 0.35s var(--ease-bounce);
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-confetti: confetti 2.6s linear forwards;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-6deg); }
+    75% { transform: rotate(6deg); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes confetti {
+    0% { transform: translateY(-20vh) rotate(0); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0.9; }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+}
+
+/* ── Base ── */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-cream-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-sky-400);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
+  ::selection { background: var(--color-sun-300); color: var(--color-ink-900); }
+}
+
+/* ── «دکمه‌ی سه‌بعدی» مخصوص محیط کودک ── */
+@utility btn-3d {
+  box-shadow: 0 6px 0 0 var(--btn-edge, rgb(0 0 0 / 0.18));
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  &:hover { filter: brightness(1.04); }
+  &:active { transform: translateY(4px); box-shadow: 0 2px 0 0 var(--btn-edge, rgb(0 0 0 / 0.18)); }
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(circle, rgb(31 26 61 / 0.07) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* احترام به کاربرانی که حرکت کمتر می‌خواهند */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── چاپ کاربرگ: فقط برگه نمایش داده شود ── */
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: absolute; inset: 0; width: 100%; box-shadow: none !important; border: 0 !important; }
+  @page { size: A4; margin: 10mm; }
+}
