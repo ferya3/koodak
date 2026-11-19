@@ -11,7 +11,12 @@ import { lessons } from "../data/lessons";
 import { games, stories, worksheets } from "../data/content";
 import { plans } from "../data/family";
 
-const API_URL = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
+/**
+ * هنگام `next build` (مثلاً داخل Docker) هنوز API بالا نیست؛ صفحات ایستا با Seed ساخته می‌شوند
+ * و با revalidate (۵ دقیقه) از API واقعی تازه می‌شوند.
+ */
+const BUILDING = process.env.NEXT_PHASE === "phase-production-build";
+const API_URL = BUILDING ? undefined : process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
 
 async function http<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}/api/v1${path}`, {
@@ -59,7 +64,8 @@ export const api = {
       category: (id: string) => cats.find((x) => x.id === id)?.title ?? "",
     };
   },
-  plans: async () => (API_URL ? (await http<{ data: typeof plans }>("/plans")).data : plans),
+  /** اگر بخش اشتراک در سرور خاموش باشد (feature flag)، فهرست خالی است */
+  plans: async () => (API_URL ? (await http<{ data: typeof plans }>("/plans").catch(() => ({ data: [] }))).data : plans),
 
   worksheets: async (f: ContentFilter = {}) =>
     API_URL ? http<Paginated<Worksheet>>(`/worksheets?${new URLSearchParams({ perPage: "60", ...(f as Record<string, string>) })}`) : page(worksheets.filter((w) => matches(w, f))),

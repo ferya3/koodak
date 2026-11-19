@@ -55,7 +55,15 @@ pnpm dev
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000 pnpm dev
 ```
 
-**با Docker:**
+**نصب روی سرور Ubuntu 24.04 (یک خط، با HTTPS خودکار):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ferya3/koodak/HEAD/infrastructure/install.sh | sudo bash -s -- --domain example.com --email you@example.com
+```
+
+جزئیات: [`docs/deploy.md`](docs/deploy.md)
+
+**با Docker (محلی):**
 
 ```bash
 cp backend/.env.docker.example backend/.env.docker

@@ -33,6 +33,10 @@ export function PricingPlans({ plans }: { plans: Plan[] }) {
     }
   };
 
+  if (plans.length === 0) {
+    return <p className="mx-auto max-w-xl rounded-2xl bg-sun-100 p-6 text-center text-lg font-bold text-sun-700">اشتراک‌ها به‌زودی فعال می‌شوند. فعلاً همه‌ی محتوا رایگان در دسترس است!</p>;
+  }
+
   return (
     <>
       <div className="mb-10 flex justify-center">

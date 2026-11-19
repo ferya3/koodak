@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/** محتوای CMS هر ۵ دقیقه از API تازه می‌شود (ISR) */
+export const revalidate = 300;
+
 export default function KidsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh bg-sky-100 bg-dots font-display">

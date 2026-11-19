@@ -2,6 +2,7 @@
 
 use App\Modules\Shared\Http\Middleware\EnsureFeatureEnabled;
 use App\Modules\Shared\Http\Middleware\SetLocaleFromRequest;
+use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,6 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // مسیرهای API توسط هر ماژول در app/Modules/*/routes.php ثبت می‌شوند (prefix: api/v1)
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // فقط پراکسی‌های داخلی (Caddy/Nginx، سرور Next) مجازند IP واقعی کاربر را در X-Forwarded-For بفرستند
+        $middleware->trustProxies(at: AppServiceProvider::INTERNAL_NETWORKS);
         $middleware->appendToGroup('api', SetLocaleFromRequest::class);
         $middleware->alias([
             'abilities' => CheckAbilities::class,

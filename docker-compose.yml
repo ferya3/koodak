@@ -13,7 +13,7 @@ x-api: &api
     gotenberg: { condition: service_started }
   volumes:
     - api-storage:/var/www/html/storage/app
-    - api-public:/var/www/html/public   # با nginx به اشتراک گذاشته می‌شود (assetهای Filament)
+    - api-public:/var/www/public-shared  # entrypoint محتوای public را اینجا کپی می‌کند تا وب‌سرور سرو کند
   restart: unless-stopped
 
 services:

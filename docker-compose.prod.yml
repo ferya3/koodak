@@ -1,0 +1,31 @@
+# KidsWorld – Production روی یک سرور (Ubuntu 24.04)
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# به‌جای Nginx از Caddy استفاده می‌شود تا گواهی HTTPS خودکار صادر و تمدید شود.
+# متغیرها از فایل .env کنار همین فایل خوانده می‌شوند (DOMAIN, ACME_EMAIL, DB_PASSWORD, ...).
+
+services:
+  nginx:
+    profiles: [local-only] # در Production غیرفعال؛ Caddy جای آن است
+
+  caddy:
+    image: caddy:2.8-alpine
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment:
+      DOMAIN: ${DOMAIN:?DOMAIN is required}
+      ACME_EMAIL: ${ACME_EMAIL:?ACME_EMAIL is required}
+    volumes:
+      - ./infrastructure/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - api-public:/var/www/html/public:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on: [api, web]
+    restart: unless-stopped
+
+  web:
+    environment:
+      API_URL: http://caddy:8080
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:

@@ -1,6 +1,9 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
+/** محتوای CMS هر ۵ دقیقه از API تازه می‌شود (ISR) */
+export const revalidate = 300;
+
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

@@ -21,9 +21,13 @@ RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-in
 FROM base AS app
 COPY --from=vendor /var/www/html/vendor ./vendor
 COPY backend/ ./
+COPY infrastructure/docker/php/entrypoint.sh /usr/local/bin/kidsworld-entrypoint
 RUN composer dump-autoload --optimize --no-dev \
  && php artisan filament:assets \
- && chown -R www-data:www-data storage bootstrap/cache
+ && mkdir -p /var/www/public-shared \
+ && chown -R www-data:www-data storage bootstrap/cache /var/www/public-shared \
+ && chmod +x /usr/local/bin/kidsworld-entrypoint
 USER www-data
 EXPOSE 9000
+ENTRYPOINT ["kidsworld-entrypoint"]
 CMD ["php-fpm"]

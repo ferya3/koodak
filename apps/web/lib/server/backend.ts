@@ -1,5 +1,5 @@
 import "server-only";
-import { cookies } from "next/headers";
+import { cookies, headers as requestHeaders } from "next/headers";
 
 /**
  * BFF (Backend-for-Frontend): توکن‌ها هرگز به جاوااسکریپت مرورگر نمی‌رسند.
@@ -27,5 +27,8 @@ export async function backendFetch(path: string, init: RequestInit & { actor?: "
   const headers = new Headers(init.headers);
   headers.set("Accept", "application/json");
   if (token) headers.set("Authorization", `Bearer ${token}`);
+  // IP واقعی کاربر (از پراکسی معکوس) برای محدودیت نرخ درخواست در Laravel
+  const fwd = (await requestHeaders()).get("x-forwarded-for");
+  if (fwd) headers.set("X-Forwarded-For", fwd.split(",")[0].trim());
   return fetch(`${API_ORIGIN}/api/v1${path}`, { ...init, headers, cache: "no-store" });
 }

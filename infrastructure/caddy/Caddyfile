@@ -1,0 +1,40 @@
+# KidsWorld · Production (HTTPS خودکار با Let's Encrypt)
+#   {$DOMAIN}       → Next.js (سایت، محیط کودک، پنل والدین)
+#   api.{$DOMAIN}   → Laravel (API v1، پنل مدیریت /admin، بازگشت درگاه پرداخت)
+#   :8080 (داخلی)   → Laravel برای سرور Next (از اینترنت در دسترس نیست)
+{
+	email {$ACME_EMAIL}
+}
+
+(security) {
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+}
+
+{$DOMAIN} {
+	import security
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+api.{$DOMAIN} {
+	import security
+	header X-Frame-Options SAMEORIGIN
+	root * /var/www/html/public
+	encode zstd gzip
+	php_fastcgi api:9000
+	file_server
+	request_body {
+		max_size 64MB
+	}
+}
+
+:8080 {
+	root * /var/www/html/public
+	php_fastcgi api:9000
+}
