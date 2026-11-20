@@ -3,7 +3,7 @@ import type { PlayIconKey } from "@/components/brand/PlayIcon";
 import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import { tones } from "@/lib/tones";
 import { seeded, shuffle } from "@/lib/utils";
-import { BODY_TOP, Icon, INK, Instruction, num, PAD, SOFT_INK, str, W } from "../kit";
+import { BODY_BOTTOM, BODY_TOP, Icon, INK, Instruction, num, PAD, SOFT_INK, str, W } from "../kit";
 
 /* قالب‌های منطق، الگو و حرکات ظریف */
 
@@ -15,11 +15,13 @@ export function PatternNext({ ws }: { ws: Worksheet }) {
   const level = Math.min(3, Math.max(1, num(ws.params.level, 1))) as 1 | 2 | 3;
   const rand = seeded(num(ws.params.seed, 31));
   const pool = theme(ws, "fruits");
-  const rowH = 96;
+  const rowsN = 8;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 24) / rowsN;
+  const ic = Math.min(40, rowH - 30);
   return (
     <g>
       <Instruction>🧩 الگو را ادامه بده: کدام تصویر بعدی است؟ آن را دور بگیر.</Instruction>
-      {Array.from({ length: 6 }, (_, r) => {
+      {Array.from({ length: rowsN }, (_, r) => {
         const tpl = PATTERNS[level][r % PATTERNS[level].length];
         const letters = [...new Set(tpl)];
         const chosen = shuffle(pool, rand).slice(0, letters.length);
@@ -27,14 +29,16 @@ export function PatternNext({ ws }: { ws: Worksheet }) {
         const seq = Array.from({ length: 6 }, (_, i) => map[tpl[i % tpl.length]]);
         const answer = map[tpl[6 % tpl.length]];
         const options = shuffle([answer, ...shuffle(pool.filter((p) => p !== answer), rand).slice(0, 2)], rand);
-        const y = BODY_TOP + 26 + r * rowH;
+        const y = BODY_TOP + 18 + r * rowH;
+        const inner = rowH - 10;
+        const iy = y + (inner - ic) / 2;
         return (
           <g key={r}>
-            <rect x={PAD} y={y} width={W - PAD * 2} height={rowH - 12} rx="18" fill="#fffbf3" stroke="#eceaf6" strokeWidth="2" />
-            {seq.map((ic, i) => <Icon key={i} name={ic} x={W - PAD - 58 - i * 46} y={y + 20} size={42} />)}
-            <rect x={W - PAD - 58 - 6 * 46} y={y + 18} width="46" height="46" rx="10" fill="#fff" stroke={INK} strokeWidth="2" strokeDasharray="5 4" />
-            <line x1={PAD + 150} y1={y + 12} x2={PAD + 150} y2={y + rowH - 24} stroke="#d9d6ea" strokeWidth="2" />
-            {options.map((ic, i) => <Icon key={`o${i}`} name={ic} x={PAD + 12 + i * 46} y={y + 22} size={38} />)}
+            <rect x={PAD} y={y} width={W - PAD * 2} height={inner} rx="14" fill="#fffbf3" stroke="#eceaf6" strokeWidth="1.5" />
+            {seq.map((it, i) => <Icon key={i} name={it} x={W - PAD - 54 - i * 48} y={iy} size={ic} />)}
+            <rect x={W - PAD - 56 - 6 * 48} y={iy - 2} width={ic + 4} height={ic + 4} rx="9" fill="#fff" stroke={INK} strokeWidth="1.6" strokeDasharray="5 4" />
+            <line x1={PAD + 150} y1={y + 10} x2={PAD + 150} y2={y + inner - 10} stroke="#d9d6ea" strokeWidth="1.5" />
+            {options.map((it, i) => <Icon key={`o${i}`} name={it} x={PAD + 12 + i * 46} y={iy} size={ic - 2} />)}
           </g>
         );
       })}

@@ -7,9 +7,10 @@ export const W = 595;
 export const H = 842;
 export const INK = "#1f1a3d";
 export const SOFT_INK = "#9a95b8";
-export const PAD = 40;
-export const BODY_TOP = 190;
-export const BODY_BOTTOM = H - 60;
+/** حاشیه‌ی کم و سربرگ جمع‌وجور تا بیشترِ برگه‌ی A4 صرف تمرین شود (به‌صرفه برای چاپ) */
+export const PAD = 28;
+export const BODY_TOP = 134;
+export const BODY_BOTTOM = H - 36;
 
 export function Icon({ name, x, y, size, outline = false }: { name: PlayIconKey; x: number; y: number; size: number; outline?: boolean }) {
   return (
@@ -25,7 +26,7 @@ export function Icon({ name, x, y, size, outline = false }: { name: PlayIconKey;
 export function Instruction({ children }: { children: React.ReactNode }) {
   // متن بلند کوچک‌تر می‌شود تا از کادر بیرون نزند (~۶۸ نویسه در اندازه‌ی ۱۶ با Vazirmatn)
   const len = typeof children === "string" ? children.length : 0;
-  const size = len > 68 ? Math.max(12, (16 * 68) / len) : 16;
+  const size = len > 76 ? Math.max(11, (14 * 76) / len) : 14;
   return (
     <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize={size} fontWeight="700" fill={INK}>
       {children}
@@ -141,6 +142,67 @@ export function TraceGlyphs({ text, x, y, size, anchor = "middle", solid = false
             strokeStarts(p.d).map(([sx, sy], k) => <circle key={`s${k}`} cx={sx} cy={sy} r={lineW * 1.25} fill="#4fcb72" />)}
         </g>
       ))}
+    </g>
+  );
+}
+
+/** سه خط راهنمای نوشتن بین x1 و x2: بالا، وسط (خط‌چین)، کرسی (رنگی) */
+export function GuideLines({ x1 = PAD, x2 = W - PAD, y, h, tone }: { x1?: number; x2?: number; y: number; h: number; tone: string }) {
+  return (
+    <g>
+      <line x1={x1} y1={y} x2={x2} y2={y} stroke="#e4e1f1" strokeWidth="1.2" />
+      <line x1={x1} y1={y + h / 2} x2={x2} y2={y + h / 2} stroke="#e4e1f1" strokeWidth="1" strokeDasharray="4 4" />
+      <line x1={x1} y1={y + h} x2={x2} y2={y + h} stroke={tone} strokeWidth="1.6" />
+    </g>
+  );
+}
+
+/** پهنای تقریبی یک متن ردگیری در اندازه‌ی داده‌شده */
+export function traceWidth(text: string, size: number) {
+  if (isLatinText(text)) {
+    const u = (size * 0.7) / 100;
+    return [...text].reduce((w, ch) => w + (ch === " " ? LATIN_SPACE : (LATIN[ch]?.w ?? 60) + LATIN_GAP), -LATIN_GAP) * u;
+  }
+  const g = PERSIAN_CENTERLINES[text];
+  return g ? (g.w * size) / 100 : text.length * size * 0.55;
+}
+
+/** اندازه‌ی فونت ردگیری برای ارتفاع خط h: لاتین = ارتفاع حرف بزرگ؛ فارسی کمی بزرگ‌تر (کرسی تا سرِ الف) */
+export const traceSize = (text: string, h: number) => (isLatinText(text) ? h / 0.7 : h * 1.22);
+
+export interface TraceRow {
+  text: string;
+  /** اولین نمونه‌ی ردیف پررنگ (الگو) باشد */
+  model?: boolean;
+  /** فقط این تعداد ردگیری؛ بقیه‌ی ردیف خالی برای نوشتن آزاد */
+  traced?: number;
+}
+
+/**
+ * ردیف‌های فشرده‌ی ردگیری: هر ردیف تا جایی که جا دارد تکرار می‌شود (حداکثر ۱۰).
+ * فارسی از راست، انگلیسی و ارقام لاتین از چپ.
+ */
+export function TraceRows({ rows, y0, rowH = 56, lineH = 36, tone, x1 = PAD, x2 = W - PAD, rtl }: { rows: TraceRow[]; y0: number; rowH?: number; lineH?: number; tone: string; x1?: number; x2?: number; rtl?: boolean }) {
+  return (
+    <g>
+      {rows.map((r, i) => {
+        const y = y0 + i * rowH;
+        const size = traceSize(r.text, lineH);
+        const fromRight = rtl ?? !isLatinText(r.text);
+        const avail = x2 - x1 - 16;
+        const gw = traceWidth(r.text, size);
+        const n = Math.max(1, Math.min(10, Math.floor(avail / (gw + 22))));
+        const step = avail / n;
+        return (
+          <g key={i}>
+            <GuideLines x1={x1} x2={x2} y={y} h={lineH} tone={tone} />
+            {Array.from({ length: Math.min(n, r.traced ?? n) }, (_, k) => {
+              const cx = fromRight ? x2 - 8 - step * k - step / 2 : x1 + 8 + step * k + step / 2;
+              return <TraceGlyphs key={k} text={r.text} x={cx} y={y + lineH} size={size} solid={!!r.model && k === 0} maxWidth={step - 6} />;
+            })}
+          </g>
+        );
+      })}
     </g>
   );
 }

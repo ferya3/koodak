@@ -4,7 +4,7 @@ import { enLetters, faLetters, iconThemes, type IconTheme } from "@/lib/data/alp
 import { PIXEL_ART } from "@/lib/data/pixelArt";
 import { tones } from "@/lib/tones";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_BOTTOM, BODY_TOP, digits, H, Icon, INK, Instruction, num, PAD, SOFT_INK, str, TraceGlyphs, W } from "../kit";
+import { AnswerBox, BODY_BOTTOM, BODY_TOP, digits, H, Icon, INK, Instruction, num, PAD, SOFT_INK, str, TraceRows, W } from "../kit";
 
 /*
  * قالب‌های تکمیلی کاربرگ:
@@ -26,30 +26,31 @@ export function Arithmetic({ ws, op }: { ws: Worksheet; op: "×" | "÷" }) {
   const max = num(ws.params.max, 10);
   const problems: [number, number][] = [];
   if (op === "×") {
-    if (table) shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rand).forEach((b) => problems.push([table, b]));
-    else for (let i = 0; i < 12; i++) problems.push([1 + Math.floor(rand() * max), 1 + Math.floor(rand() * max)]);
+    // جدول: هر ضرب دو بار با ترتیب متفاوت (۲۰ مسئله)
+    if (table) [...shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rand), ...shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rand)].forEach((b) => problems.push([table, b]));
+    else for (let i = 0; i < 20; i++) problems.push([1 + Math.floor(rand() * max), 1 + Math.floor(rand() * max)]);
   } else {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 20; i++) {
       const b = table || 2 + Math.floor(rand() * (max - 1));
       const q = 1 + Math.floor(rand() * 10);
       problems.push([b * q, b]);
     }
   }
   const half = Math.ceil(problems.length / 2);
-  const rowH = (H - BODY_TOP - 120) / half;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 30) / half;
   return (
     <g>
       <Instruction>{op === "×" ? (table ? `✖️ جدول ضرب ${digits(table)}: جواب‌ها را بنویس.` : "✖️ ضرب‌ها را حل کن.") : "➗ تقسیم‌ها را حل کن. (چند تا در آن جا می‌شود؟)"}</Instruction>
       {problems.map(([a, b], i) => {
         const col = i < half ? 0 : 1;
-        const x = col === 0 ? W - PAD - 10 : W / 2 - 20;
-        const y = BODY_TOP + 74 + (i % half) * rowH;
+        const x = col === 0 ? W - PAD - 14 : W / 2 - 24;
+        const y = BODY_TOP + 52 + (i % half) * rowH;
         return (
           <g key={i}>
-            <text x={x} y={y} textAnchor="end" direction="ltr" className="ws-t" fontSize="32" fontWeight="800" fill={INK}>
+            <text x={x} y={y} textAnchor="end" direction="ltr" className="ws-t" fontSize="24" fontWeight="800" fill={INK}>
               {`${digits(a)} ${op} ${digits(b)} =`}
             </text>
-            <AnswerBox x={x - 222} y={y - 38} w={64} />
+            <AnswerBox x={x - 196} y={y - 30} w={56} h={40} />
           </g>
         );
       })}
@@ -555,32 +556,33 @@ function Palette({ used, y }: { used: (keyof typeof TONE_FILL)[]; y: number }) {
   );
 }
 
-/* ───────────── ۹. ردگیری کلمه ───────────── */
+/* ───────────── ۹. ردگیری کلمه – هر کلمه: یک ردیف ردگیری + یک ردیف نوشتن ───────────── */
 export function WordTrace({ ws }: { ws: Worksheet }) {
   const l = lang(ws);
   const from = num(ws.params.from, 0);
   const list: { word: string; icon: PlayIconKey }[] =
     l === "en" ? enLetters.slice(from, from + 6).map((x) => ({ word: x.word, icon: x.icon as PlayIconKey })) : faLetters.slice(from, from + 6).map((x) => ({ word: x.word, icon: x.icon as PlayIconKey }));
   const t = tones[ws.tone].hex;
-  const rowH = (BODY_BOTTOM - BODY_TOP - 20) / 6;
-  const lineL = PAD + 6;
-  const lineR = W - PAD - 92;
+  const blockH = (BODY_BOTTOM - BODY_TOP - 22) / 6;
+  const iconW = 58;
   return (
     <g>
-      <Instruction>✏️ کلمه را از روی خط‌چین بنویس، بعد یک بار خودت بنویس.</Instruction>
+      <Instruction>✏️ کلمه را روی نقطه‌چین بنویس، بعد در خط پایین خودت بنویس.</Instruction>
       {list.map(({ word, icon }, r) => {
-        const y = BODY_TOP + 20 + r * rowH;
-        const base = y + rowH - 26;
-        const size = l === "en" ? 40 : 54;
-        const mid = (lineL + lineR) / 2;
+        const y = BODY_TOP + 18 + r * blockH;
+        const iconX = l === "en" ? PAD : W - PAD - iconW + 6;
         return (
           <g key={word}>
-            <Icon name={icon} x={W - PAD - 80} y={y + rowH / 2 - 38} size={72} />
-            <line x1={lineL} y1={base - size * 0.95} x2={lineR} y2={base - size * 0.95} stroke="#eceaf6" strokeWidth="2" />
-            <line x1={lineL} y1={base - size * 0.45} x2={lineR} y2={base - size * 0.45} stroke="#eceaf6" strokeWidth="1.5" strokeDasharray="6 6" />
-            <line x1={lineL} y1={base} x2={lineR} y2={base} stroke={t.mid} strokeWidth="2.5" />
-            <line x1={mid} y1={base - size} x2={mid} y2={base + 6} stroke="#eceaf6" strokeWidth="2" />
-            <TraceGlyphs text={word} x={(mid + lineR) / 2} y={base} size={l === "en" ? size * 1.25 : size} maxWidth={lineR - mid - 16} />
+            <Icon name={icon} x={iconX} y={y + 14} size={iconW - 10} />
+            <TraceRows
+              rows={[{ text: word, model: true }, { text: word, traced: 0 }]}
+              y0={y + 4}
+              rowH={blockH / 2}
+              lineH={30}
+              tone={t.mid}
+              x1={l === "en" ? PAD + iconW : PAD}
+              x2={l === "en" ? W - PAD : W - PAD - iconW}
+            />
           </g>
         );
       })}

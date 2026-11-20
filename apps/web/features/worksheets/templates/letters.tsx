@@ -5,7 +5,7 @@ import { tones } from "@/lib/tones";
 import { PERSIAN_CENTERLINES } from "@/lib/handwriting/persian";
 import { LATIN } from "@/lib/handwriting/latin";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_TOP, Icon, INK, Instruction, num, PAD, str, TraceGlyphs, W, WritingLines } from "../kit";
+import { AnswerBox, BODY_TOP, Icon, INK, Instruction, num, PAD, str, TraceRows, W, type TraceRow } from "../kit";
 
 /* قالب‌های حروف الفبا – هر دو الفبای فارسی (راست‌به‌چپ) و انگلیسی (چپ‌به‌راست) */
 
@@ -16,63 +16,42 @@ const letterOf = (a: Alpha, i: number) => (a === "fa" ? faLetters[i].char : enLe
 const leftward = (a: Alpha) => (a === "fa" ? "start" : "end");
 const count = (a: Alpha) => (a === "fa" ? faLetters.length : enLetters.length);
 
-/* ── ۱. ردگیری حرف با شکل‌ها و کلمه‌ی نمونه ── */
+/* ── ۱. ردگیری حرف با شکل‌ها و کلمه‌ی نمونه (فشرده برای چاپ به‌صرفه) ── */
 export function LetterTrace({ ws }: { ws: Worksheet }) {
   const a = alpha(ws);
   const i = num(ws.params.index, 0);
   const t = tones[ws.tone].hex;
-  const top = BODY_TOP + 10;
+  const top = BODY_TOP - 10;
   const fa = a === "fa" ? faLetters[i] : null;
   const en = a === "en" ? enLetters[i] : null;
   const icon = (fa?.icon ?? en?.icon)!;
   const word = fa?.word ?? en?.word ?? "";
-  const rows: { glyph: string; ltr: boolean }[] = fa
-    ? (faForms(fa).length === 4 ? faForms(fa) : [...faForms(fa), ...faForms(fa)]).map((g) => ({ glyph: g, ltr: false }))
-    : [en!.upper, en!.upper, en!.lower, en!.lower].map((g) => ({ glyph: g, ltr: true }));
+  // ۸ ردیف حرف: هر شکل دو بار (حروف دوشکلی هر شکل چهار بار؛ انگلیسی: بزرگ ×۴، کوچک ×۴)
+  const forms = fa ? faForms(fa) : [en!.upper, en!.lower];
+  const per = 8 / forms.length;
+  const glyphRows: TraceRow[] = forms.flatMap((g) => Array.from({ length: per }, (_, k) => ({ text: g, model: k === 0 })));
+  const y0 = top + 76;
+  const rowH = 56;
+  const wordRows: TraceRow[] = [{ text: word }, { text: word, traced: 1 }];
 
   return (
     <g>
-      {/* کارت معرفی */}
-      <rect x={PAD} y={top - 20} width={W - PAD * 2} height="120" rx="22" fill={t.soft} stroke={INK} strokeWidth="2" />
-      <text x={W - PAD - (en ? 70 : 64)} y={top + 72} textAnchor="middle" className="ws-t" fontSize={en ? 62 : 96} fontWeight="900" fill={INK} direction={en ? "ltr" : undefined}>
+      {/* کارت معرفی کوچک */}
+      <rect x={PAD} y={top} width={W - PAD * 2} height="60" rx="16" fill={t.soft} stroke={INK} strokeWidth="1.4" />
+      <text x={W - PAD - 44} y={top + 46} textAnchor="middle" className="ws-t" fontSize={en ? 40 : 50} fontWeight="900" fill={INK} direction={en ? "ltr" : undefined}>
         {fa ? fa.char : `${en!.upper}${en!.lower}`}
       </text>
-      <Icon name={icon} x={W / 2 - 30} y={top - 8} size={88} />
-      <text x={W / 2 - 46} y={top + 50} textAnchor={leftward(a)} className="ws-t" fontSize="30" fontWeight="800" fill={INK} direction={en ? "ltr" : undefined}>
+      <Icon name={icon} x={W / 2 + 20} y={top + 6} size={48} />
+      <text x={W / 2 + 6} y={top + 38} textAnchor={leftward(a)} className="ws-t" fontSize="20" fontWeight="800" fill={INK} direction={en ? "ltr" : undefined}>
         {word}
       </text>
       {fa && (
-        <text x={PAD + 20} y={top + 88} textAnchor="start" direction="ltr" className="ws-t" fontSize="20" fontWeight="700" fill="#6e6893">
+        <text x={PAD + 14} y={top + 38} textAnchor="start" direction="ltr" className="ws-t" fontSize="15" fontWeight="700" fill="#6e6893">
           {faForms(fa).slice().reverse().join("   ")}
         </text>
       )}
-
-      {/* ردیف‌های ردگیری */}
-      {rows.map((r, ri) => {
-        const y = top + 122 + ri * 92;
-        // تعداد تکرار در هر ردیف بر اساس پهنای واقعی حرف (ص و ـصـ پهن‌اند و نباید روی هم بیفتند)
-        const gw = r.ltr ? (LATIN[r.glyph]?.w ?? 70) * 0.7 : ((PERSIAN_CENTERLINES[r.glyph]?.w ?? 60) * 84) / 100;
-        const n = Math.max(3, Math.min(6, Math.floor((W - PAD * 2 - 40) / (gw + 26))));
-        const step = (W - PAD * 2 - 40) / n;
-        return (
-          <g key={ri}>
-            <WritingLines y={y} height={70} tone={t.mid} />
-            {Array.from({ length: n }, (_, k) => {
-              const x = r.ltr ? PAD + 30 + step * k + step / 2 : W - PAD - 30 - step * k - step / 2;
-              return (
-                <TraceGlyphs key={k} text={r.glyph} x={x} y={y + 70} size={r.ltr ? 100 : 84} solid={k === 0} />
-              );
-            })}
-          </g>
-        );
-      })}
-
-      {/* کلمه */}
-      <g>
-        <WritingLines y={top + 122 + rows.length * 92} height={70} tone={t.mid} />
-        <Icon name={icon} x={en ? PAD + 6 : W - PAD - 70} y={top + 122 + rows.length * 92 + 6} size={60} />
-        <TraceGlyphs text={word} x={W / 2} y={top + 122 + rows.length * 92 + 70} size={en ? 100 : 72} maxWidth={W - PAD * 2 - 170} />
-      </g>
+      <TraceRows rows={glyphRows} y0={y0} rowH={rowH} lineH={36} tone={t.mid} />
+      <TraceRows rows={wordRows} y0={y0 + glyphRows.length * rowH} rowH={rowH} lineH={36} tone={t.mid} />
     </g>
   );
 }

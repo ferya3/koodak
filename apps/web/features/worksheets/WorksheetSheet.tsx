@@ -16,7 +16,7 @@ import { fa, seeded, shuffle } from "@/lib/utils";
  * در Backend همین قرارداد با یک Job صف‌شده به PDF تبدیل می‌شود.
  */
 
-import { BODY_TOP, H, INK, PAD, TraceGlyphs, W } from "./kit";
+import { BODY_BOTTOM, BODY_TOP, H, INK, PAD, TraceRows, W, type TraceRow } from "./kit";
 
 /** توضیح بلند در سربرگ بریده می‌شود تا از کادر بیرون نزند */
 const clip = (s: string, n = 64) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
@@ -29,38 +29,38 @@ export function WorksheetSheet({ worksheet, className, id }: { worksheet: Worksh
     <svg id={id} viewBox={`0 0 ${W} ${H}`} className={className} xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`پیش‌نمایش کاربرگ ${worksheet.title}`} direction="rtl">
       <style>{`.ws-outline *{fill:#fff !important}.ws-t{font-family:Vazirmatn,Tahoma,sans-serif}`}</style>
       <rect width={W} height={H} fill="#fff" />
-      {/* حاشیه‌ی تزئینی */}
-      <rect x="14" y="14" width={W - 28} height={H - 28} rx="28" fill="none" stroke={t.mid} strokeWidth="6" strokeDasharray="2 14" strokeLinecap="round" />
+      {/* حاشیه‌ی تزئینی (باریک) */}
+      <rect x="10" y="10" width={W - 20} height={H - 20} rx="22" fill="none" stroke={t.mid} strokeWidth="4" strokeDasharray="1.5 11" strokeLinecap="round" />
 
-      {/* سربرگ */}
-      <rect x={PAD} y={PAD} width={W - PAD * 2} height="86" rx="22" fill={t.soft} stroke={INK} strokeWidth="2.5" />
-      <text x={W - PAD - 24} y={PAD + 40} textAnchor="start" className="ws-t" fontSize="26" fontWeight="900" fill={INK}>
-        {clip(worksheet.title, 30)}
+      {/* سربرگ جمع‌وجور */}
+      <rect x={PAD} y={PAD} width={W - PAD * 2} height="56" rx="16" fill={t.soft} stroke={INK} strokeWidth="1.6" />
+      <text x={W - PAD - 16} y={PAD + 25} textAnchor="start" className="ws-t" fontSize="19" fontWeight="900" fill={INK}>
+        {clip(worksheet.title, 40)}
       </text>
-      <text x={W - PAD - 24} y={PAD + 68} textAnchor="start" className="ws-t" fontSize="14" fontWeight="500" fill="#3d3766">
-        {clip(worksheet.description)}
+      <text x={W - PAD - 16} y={PAD + 44} textAnchor="start" className="ws-t" fontSize="11" fontWeight="500" fill="#3d3766">
+        {clip(worksheet.description, 84)}
       </text>
-      <g transform={`translate(${PAD + 18} ${PAD + 16})`}>
-        <circle cx="27" cy="27" r="25" fill={t.solid} stroke={INK} strokeWidth="2.5" />
-        <circle cx="19" cy="25" r="3" fill={INK} />
-        <circle cx="35" cy="25" r="3" fill={INK} />
-        <path d="M19 33 Q 27 40 35 33" stroke={INK} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <g transform={`translate(${PAD + 12} ${PAD + 10})`}>
+        <circle cx="18" cy="18" r="17" fill={t.solid} stroke={INK} strokeWidth="1.6" />
+        <circle cx="12.5" cy="16.5" r="2" fill={INK} />
+        <circle cx="23.5" cy="16.5" r="2" fill={INK} />
+        <path d="M12.5 22 Q 18 27 23.5 22" stroke={INK} strokeWidth="1.8" fill="none" strokeLinecap="round" />
       </g>
 
       {/* نام و تاریخ */}
-      <text x={W - PAD} y={PAD + 122} className="ws-t" fontSize="15" fontWeight="700" fill={INK}>
+      <text x={W - PAD} y={PAD + 80} className="ws-t" fontSize="12" fontWeight="700" fill={INK}>
         نام:
       </text>
-      <line x1={W - PAD - 40} y1={PAD + 124} x2={W / 2 + 20} y2={PAD + 124} stroke="#b9b4d3" strokeWidth="2" strokeDasharray="4 4" />
-      <text x={W / 2 - 10} y={PAD + 122} className="ws-t" fontSize="15" fontWeight="700" fill={INK}>
+      <line x1={W - PAD - 30} y1={PAD + 82} x2={W / 2 + 20} y2={PAD + 82} stroke="#b9b4d3" strokeWidth="1.2" strokeDasharray="3 3" />
+      <text x={W / 2 - 10} y={PAD + 80} className="ws-t" fontSize="12" fontWeight="700" fill={INK}>
         تاریخ:
       </text>
-      <line x1={W / 2 - 60} y1={PAD + 124} x2={PAD} y2={PAD + 124} stroke="#b9b4d3" strokeWidth="2" strokeDasharray="4 4" />
+      <line x1={W / 2 - 52} y1={PAD + 82} x2={PAD} y2={PAD + 82} stroke="#b9b4d3" strokeWidth="1.2" strokeDasharray="3 3" />
 
       <Body ws={worksheet} />
 
       {/* پاورقی */}
-      <text x={W / 2} y={H - 30} textAnchor="middle" className="ws-t" fontSize="11" fill="#6e6893">
+      <text x={W / 2} y={H - 18} textAnchor="middle" className="ws-t" fontSize="8.5" fill="#8a85ab">
         KidsWorld · {`${fa(worksheet.minAge)} تا ${fa(worksheet.maxAge)} سال`} · kidsworld.example
       </text>
     </svg>
@@ -150,50 +150,22 @@ function Icon({ name, x, y, size, outline = false }: { name: PlayIconKey; x: num
   );
 }
 
-/* ── ردگیری ── */
+/* ── ردگیری (کاربرگ‌های دستی) – فشرده ── */
 function Tracing({ ws }: { ws: Worksheet }) {
   const letter = String(ws.params.letter);
   const word = String(ws.params.word ?? "");
-  const rows = Number(ws.params.rows ?? 4);
-  const isSequence = letter.length > 1;
-  const rowH = 118;
   const t = tones[ws.tone].hex;
+  // دنباله (مثل «۱۲۳۴۵») به‌صورت ردیف‌های جدا برای هر رقم؛ حرف تکی ۹ ردیف
+  const glyphs = letter.length > 1 ? Array.from(letter) : [letter];
+  const perGlyph = Math.max(1, Math.floor((word ? 8 : 10) / glyphs.length));
+  const rows: TraceRow[] = glyphs.flatMap((g) => Array.from({ length: perGlyph }, (_, k) => ({ text: g, model: k === 0 })));
+  if (word) rows.push({ text: word }, { text: word, traced: 1 });
   return (
     <g>
-      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
-        ✏️ با مداد روی خط‌چین‌ها بکش. از نقطه‌ی سبز شروع کن.
+      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="14" fontWeight="700" fill={INK}>
+        ✏️ با مداد روی نقطه‌چین‌ها بکش؛ ردیف آخر را خودت بنویس.
       </text>
-      {Array.from({ length: rows }, (_, r) => {
-        const y = BODY_TOP + 30 + r * rowH;
-        const glyphs = isSequence ? letter.split("") : Array.from({ length: 5 }, () => letter);
-        return (
-          <g key={r}>
-            <line x1={PAD} y1={y + 20} x2={W - PAD} y2={y + 20} stroke="#eceaf6" strokeWidth="2" />
-            <line x1={PAD} y1={y + 92} x2={W - PAD} y2={y + 92} stroke={t.mid} strokeWidth="2.5" />
-            <line x1={PAD} y1={y + 56} x2={W - PAD} y2={y + 56} stroke="#eceaf6" strokeWidth="1.5" strokeDasharray="6 6" />
-            {glyphs.map((g, i) => {
-              const x = W - PAD - 50 - i * ((W - PAD * 2 - 40) / glyphs.length);
-              const solid = r === 0 && i === 0;
-              return (
-                <g key={i}>
-                  <TraceGlyphs text={g} x={x} y={y + 92} size={78} solid={solid} />
-                  {!solid && i === 0 && <circle cx={x + 18} cy={y + 30} r="5" fill="#4fcb72" />}
-                </g>
-              );
-            })}
-          </g>
-        );
-      })}
-      {word && (
-        <g>
-          <text x={W - PAD} y={BODY_TOP + 30 + rows * rowH + 10} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
-            حالا کلمه را ردگیری کن:
-          </text>
-          <text x={W / 2} y={BODY_TOP + 30 + rows * rowH + 90} textAnchor="middle" className="ws-t" fontSize="68" fontWeight="800" fill="none" stroke="#9a95b8" strokeWidth="2.2" strokeDasharray="5 5">
-            {word}
-          </text>
-        </g>
-      )}
+      <TraceRows rows={rows} y0={BODY_TOP + 22} rowH={Math.min(64, (BODY_BOTTOM - BODY_TOP - 30) / rows.length)} lineH={38} tone={t.mid} />
     </g>
   );
 }
@@ -202,35 +174,40 @@ function Tracing({ ws }: { ws: Worksheet }) {
 function Counting({ ws }: { ws: Worksheet }) {
   const rand = seeded(Number(ws.params.seed ?? 1));
   const max = Number(ws.params.max ?? 5);
-  const rows = Number(ws.params.rows ?? 5);
+  // حداقل ۸ ردیف در هر برگه (به‌صرفه برای چاپ)
+  const rows = Math.max(8, Number(ws.params.rows ?? 8));
   const pool: PlayIconKey[] = ws.params.theme
     ? ((iconThemes[String(ws.params.theme) as IconTheme] ?? iconThemes.fruits).icons as PlayIconKey[])
     : ["apple", "star", "fish", "flower", "heart", "ball", "mushroom", "leaf"];
-  const rowH = 112;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 22) / rows;
+  const values = (() => {
+    // اعداد متنوع؛ وقتی ردیف‌ها از max بیشترند، دور دوم با ترتیب تازه
+    const out: number[] = [];
+    while (out.length < rows) out.push(...shuffle(Array.from({ length: max }, (_, i) => i + 1), rand));
+    return out.slice(0, rows);
+  })();
   return (
     <g>
-      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
+      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="14" fontWeight="700" fill={INK}>
         🔢 بشمار و عدد را داخل مربع بنویس.
       </text>
-      {(() => {
-        // اعداد متنوع و بدون تکرار پشت‌سرهم
-        const values = shuffle(Array.from({ length: max }, (_, i) => i + 1), rand);
-        return Array.from({ length: rows }, (_, r) => values[r % values.length]);
-      })().map((n, r) => {
+      {values.map((n, r) => {
         const icon = pool[r % pool.length];
-        const y = BODY_TOP + 24 + r * rowH;
-        const size = n > 6 ? 38 : 50;
-        const perRow = n > 6 ? Math.ceil(n / 2) : n;
+        const y = BODY_TOP + 16 + r * rowH;
+        const inner = rowH - 10;
+        const twoLines = n > 7;
+        const size = twoLines ? Math.min(30, inner / 2 - 2) : Math.min(42, inner - 12);
+        const perRow = twoLines ? Math.ceil(n / 2) : n;
         return (
           <g key={r}>
-            <rect x={PAD} y={y} width={W - PAD * 2} height={rowH - 14} rx="18" fill="#fffbf3" stroke="#eceaf6" strokeWidth="2" />
+            <rect x={PAD} y={y} width={W - PAD * 2} height={inner} rx="14" fill="#fffbf3" stroke="#eceaf6" strokeWidth="1.5" />
             {Array.from({ length: n }, (_, i) => {
               const row = Math.floor(i / perRow);
               const col = i % perRow;
-              const yy = n > 6 ? y + 6 + row * 44 : y + 22;
-              return <Icon key={i} name={icon} x={W - PAD - 20 - size - col * (size + 8)} y={yy} size={size} />;
+              const yy = twoLines ? y + 3 + row * (size + 2) : y + (inner - size) / 2;
+              return <Icon key={i} name={icon} x={W - PAD - 14 - size - col * (size + 6)} y={yy} size={size} />;
             })}
-            <rect x={PAD + 20} y={y + 18} width="62" height="62" rx="14" fill="#fff" stroke={INK} strokeWidth="2.5" />
+            <rect x={PAD + 14} y={y + (inner - 44) / 2} width="48" height="44" rx="10" fill="#fff" stroke={INK} strokeWidth="1.8" />
           </g>
         );
       })}
@@ -422,12 +399,13 @@ function Coloring() {
 function Addition({ ws }: { ws: Worksheet }) {
   const rand = seeded(Number(ws.params.seed ?? 1));
   const max = Number(ws.params.max ?? 10);
-  const count = Number(ws.params.count ?? 8);
+  // حداقل ۱۶ مسئله در هر برگه (به‌صرفه برای چاپ)
+  const count = Math.max(16, Number(ws.params.count ?? 16));
   const half = Math.ceil(count / 2);
-  const rowH = (H - BODY_TOP - 120) / half;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 30) / half;
   return (
     <g>
-      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
+      <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="14" fontWeight="700" fill={INK}>
         ➕ جمع‌ها را حل کن. می‌توانی از نقطه‌ها برای شمردن کمک بگیری.
       </text>
       {Array.from({ length: count }, (_, i) => {
@@ -436,16 +414,16 @@ function Addition({ ws }: { ws: Worksheet }) {
         const col = i < half ? 0 : 1;
         const row = i % half;
         const x = col === 0 ? W - PAD - 10 : W / 2 - 20;
-        const y = BODY_TOP + 70 + row * rowH;
+        const y = BODY_TOP + 46 + row * rowH;
         return (
           <g key={i} direction="ltr">
-            <text x={x} y={y} textAnchor="end" className="ws-t" fontSize="34" fontWeight="800" fill={INK} direction="ltr">
+            <text x={x} y={y} textAnchor="end" className="ws-t" fontSize="26" fontWeight="800" fill={INK} direction="ltr">
               {`${fa(a)} + ${fa(b)} =`}
             </text>
-            <rect x={x - 205} y={y - 38} width="58" height="52" rx="12" fill="#fff" stroke={INK} strokeWidth="2.5" />
+            <rect x={x - 186} y={y - 30} width="52" height="40" rx="10" fill="#fff" stroke={INK} strokeWidth="1.8" />
             <g>
               {Array.from({ length: Math.min(a + b, 20) }, (_, d) => (
-                <circle key={d} cx={x - 8 - (d % 10) * 13} cy={y + 24 + Math.floor(d / 10) * 13} r="4.5" fill={d < a ? "#ff9f8e" : "#8fd3ff"} />
+                <circle key={d} cx={x - 6 - (d % 10) * 10} cy={y + 16 + Math.floor(d / 10) * 10} r="3.5" fill={d < a ? "#ff9f8e" : "#8fd3ff"} />
               ))}
             </g>
           </g>

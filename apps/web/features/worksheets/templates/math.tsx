@@ -3,7 +3,7 @@ import type { PlayIconKey } from "@/components/brand/PlayIcon";
 import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import { tones } from "@/lib/tones";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_TOP, digits, Icon, INK, Instruction, num, PAD, str, TraceGlyphs, W, WritingLines } from "../kit";
+import { AnswerBox, BODY_BOTTOM, BODY_TOP, digits, Icon, INK, Instruction, num, PAD, str, TraceRows, W, type TraceRow } from "../kit";
 
 /* قالب‌های اعداد و ریاضی */
 
@@ -12,48 +12,35 @@ const EN_NAMES = ["zero", "one", "two", "three", "four", "five", "six", "seven",
 const script = (ws: Worksheet) => (str(ws.params.script, "fa") === "en" ? "en" : "fa");
 const themeIcons = (ws: Worksheet, fallback: IconTheme = "fruits") => (iconThemes[str(ws.params.theme, fallback) as IconTheme] ?? iconThemes[fallback]).icons as PlayIconKey[];
 
-/* ── ۱. ردگیری عدد (۰ تا ۱۰) ── */
+/* ── ۱. ردگیری عدد (۰ تا ۱۰) – فشرده: ۱۰ ردیف ── */
 export function NumberTrace({ ws }: { ws: Worksheet }) {
   const n = num(ws.params.digit, 1);
   const sc = script(ws);
   const t = tones[ws.tone].hex;
-  const icon = themeIcons(ws)[n % themeIcons(ws).length];
-  const top = BODY_TOP + 10;
+  const icons = themeIcons(ws);
+  const icon = icons[n % icons.length];
+  const top = BODY_TOP - 10;
   const glyph = digits(n, sc);
+  const rows: TraceRow[] = Array.from({ length: 10 }, (_, k) => ({ text: glyph, model: k % 5 === 0 }));
   return (
     <g>
-      <rect x={PAD} y={top - 20} width={W - PAD * 2} height="150" rx="22" fill={t.soft} stroke={INK} strokeWidth="2" />
-      <text x={W - PAD - 70} y={top + 92} textAnchor="middle" direction="ltr" className="ws-t" fontSize="120" fontWeight="900" fill={INK}>
+      <rect x={PAD} y={top} width={W - PAD * 2} height="70" rx="16" fill={t.soft} stroke={INK} strokeWidth="1.4" />
+      <text x={W - PAD - 46} y={top + 52} textAnchor="middle" direction="ltr" className="ws-t" fontSize="54" fontWeight="900" fill={INK}>
         {glyph}
       </text>
-      <text x={W - PAD - 70} y={top + 122} textAnchor="middle" direction={sc === "en" ? "ltr" : undefined} className="ws-t" fontSize="20" fontWeight="800" fill="#6e6893">
+      <text x={W - PAD - 104} y={top + 42} textAnchor="middle" direction={sc === "en" ? "ltr" : undefined} className="ws-t" fontSize="16" fontWeight="800" fill="#6e6893">
         {sc === "en" ? EN_NAMES[n] : FA_NAMES[n]}
       </text>
       {/* n شیء برای شمردن */}
-      {Array.from({ length: n }, (_, k) => {
-        const perRow = 5;
-        const x = W - PAD - 170 - (k % perRow) * 62;
-        const y = top - 6 + Math.floor(k / perRow) * 64;
-        return <Icon key={k} name={icon} x={x - 54} y={y} size={54} />;
-      })}
+      {Array.from({ length: n }, (_, k) => (
+        <Icon key={k} name={icon} x={W - PAD - 170 - (k % 10) * 32} y={top + 19} size={30} />
+      ))}
       {n === 0 && (
-        <text x={W / 2 - 40} y={top + 70} textAnchor="middle" className="ws-t" fontSize="18" fontWeight="700" fill="#6e6893">
+        <text x={W / 2 - 40} y={top + 42} textAnchor="middle" className="ws-t" fontSize="15" fontWeight="700" fill="#6e6893">
           هیچ‌چیز! سبد خالی است.
         </text>
       )}
-      {Array.from({ length: 4 }, (_, ri) => {
-        const y = top + 170 + ri * 100;
-        const per = 7;
-        const step = (W - PAD * 2 - 40) / per;
-        return (
-          <g key={ri}>
-            <WritingLines y={y} height={72} tone={t.mid} />
-            {Array.from({ length: per }, (_, k) => (
-              <TraceGlyphs key={k} text={glyph} x={sc === "fa" ? W - PAD - 30 - step * k - step / 2 : PAD + 30 + step * k + step / 2} y={y + 72} size={sc === "fa" ? 90 : 100} solid={ri === 0 && k === 0} />
-            ))}
-          </g>
-        );
-      })}
+      <TraceRows rows={rows} y0={top + 86} rowH={56} lineH={38} tone={t.mid} rtl={sc === "fa"} />
     </g>
   );
 }
@@ -64,8 +51,9 @@ export function MissingNumber({ ws }: { ws: Worksheet }) {
   const max = num(ws.params.max, 20);
   const step = num(ws.params.step, 1);
   const rand = seeded(num(ws.params.seed, 9));
-  const rowsN = 7;
-  const len = 6;
+  const rowsN = 10;
+  const len = 7;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 24) / rowsN;
   const cell = (W - PAD * 2 - 20) / len;
   return (
     <g>
@@ -73,17 +61,17 @@ export function MissingNumber({ ws }: { ws: Worksheet }) {
       {Array.from({ length: rowsN }, (_, r) => {
         const maxStart = Math.max(0, Math.floor((max - step * (len - 1)) / step));
         const start = step * (step === 1 ? 1 + Math.floor(rand() * Math.max(1, max - len)) : Math.floor(rand() * (maxStart + 1)));
-        const blanks = new Set(shuffle([1, 2, 3, 4, 5], rand).slice(0, 2));
-        const y = BODY_TOP + 30 + r * 82;
+        const blanks = new Set(shuffle([1, 2, 3, 4, 5, 6], rand).slice(0, 3));
+        const y = BODY_TOP + 20 + r * rowH;
         return (
           <g key={r}>
             {Array.from({ length: len }, (_, k) => {
               const x = sc === "fa" ? W - PAD - 10 - cell * (k + 1) + 6 : PAD + 10 + cell * k + 6;
               return (
                 <g key={k}>
-                  <rect x={x} y={y} width={cell - 12} height="62" rx="31" fill={blanks.has(k) ? "#fff" : "#ddf7e3"} stroke={INK} strokeWidth={blanks.has(k) ? 2.5 : 1.5} strokeDasharray={blanks.has(k) ? "6 5" : undefined} />
+                  <rect x={x} y={y} width={cell - 12} height={rowH - 16} rx={(rowH - 16) / 2} fill={blanks.has(k) ? "#fff" : "#ddf7e3"} stroke={INK} strokeWidth={blanks.has(k) ? 1.8 : 1.2} strokeDasharray={blanks.has(k) ? "5 4" : undefined} />
                   {!blanks.has(k) && (
-                    <text x={x + (cell - 12) / 2} y={y + 44} textAnchor="middle" direction="ltr" className="ws-t" fontSize="30" fontWeight="800" fill={INK}>
+                    <text x={x + (cell - 12) / 2} y={y + (rowH - 16) / 2 + 8} textAnchor="middle" direction="ltr" className="ws-t" fontSize="22" fontWeight="800" fill={INK}>
                       {digits(start + step * k, sc)}
                     </text>
                   )}
@@ -103,28 +91,28 @@ export function Subtraction({ ws }: { ws: Worksheet }) {
   const rand = seeded(num(ws.params.seed, 13));
   const sc = script(ws);
   const icons = themeIcons(ws);
-  const rowsN = 6;
-  const rowH = 96;
+  const rowsN = 8;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 24) / rowsN;
   return (
     <g>
       <Instruction>➖ تفریق کن. می‌توانی تصویرهایی را که کم می‌شوند خط بزنی.</Instruction>
       {Array.from({ length: rowsN }, (_, r) => {
         const a = 2 + Math.floor(rand() * (max - 1));
         const b = 1 + Math.floor(rand() * (a - 1));
-        const y = BODY_TOP + 30 + r * rowH;
+        const y = BODY_TOP + 18 + r * rowH;
         const icon = icons[r % icons.length];
-        const size = a > 8 ? 26 : 32;
+        const size = 24;
         return (
           <g key={r}>
             <rect x={PAD} y={y} width={W - PAD * 2} height={rowH - 12} rx="18" fill="#fffbf3" stroke="#eceaf6" strokeWidth="2" />
             {a <= 12 &&
               Array.from({ length: a }, (_, k) => (
-                <Icon key={k} name={icon} x={W - PAD - 16 - size - (k % 6) * (size + 4)} y={y + 6 + Math.floor(k / 6) * (size + 4)} size={size} />
+                <Icon key={k} name={icon} x={W - PAD - 12 - size - (k % 6) * (size + 3)} y={y + 6 + Math.floor(k / 6) * (size + 3)} size={size} />
               ))}
-            <text x={PAD + 250} y={y + 54} textAnchor="end" direction="ltr" className="ws-t" fontSize="34" fontWeight="800" fill={INK}>
+            <text x={PAD + 210} y={y + rowH / 2 + 4} textAnchor="end" direction="ltr" className="ws-t" fontSize="26" fontWeight="800" fill={INK}>
               {`${digits(a, sc)} − ${digits(b, sc)} =`}
             </text>
-            <AnswerBox x={PAD + 14} y={y + 16} />
+            <AnswerBox x={PAD + 12} y={y + rowH / 2 - 26} w={50} h={40} />
           </g>
         );
       })}
@@ -139,8 +127,8 @@ export function Compare({ ws }: { ws: Worksheet }) {
   const rand = seeded(num(ws.params.seed, 17));
   const sc = script(ws);
   const icons = themeIcons(ws, "animals");
-  const rowsN = 7;
-  const rowH = 82;
+  const rowsN = groups ? 9 : 11;
+  const rowH = (BODY_BOTTOM - BODY_TOP - 30) / rowsN;
   return (
     <g>
       <Instruction>{groups ? "⚖️ کدام طرف بیشتر است؟ علامت > یا < یا = را در دایره بنویس." : "⚖️ علامت > یا < یا = را در دایره بنویس."}</Instruction>
@@ -155,7 +143,7 @@ export function Compare({ ws }: { ws: Worksheet }) {
           a = Math.min(a, 8);
           b = Math.min(b, 8);
         }
-        const y = BODY_TOP + 40 + r * rowH;
+        const y = BODY_TOP + 26 + r * rowH;
         const icon = icons[r % icons.length];
         // چپ و راست در SVG: «a» سمت چپ، «b» سمت راست تا علامت ریاضی به همان ترتیب خوانده شود
         return (
@@ -163,16 +151,16 @@ export function Compare({ ws }: { ws: Worksheet }) {
             <rect x={PAD} y={y} width={W - PAD * 2} height={rowH - 12} rx="18" fill="#fffbf3" stroke="#eceaf6" strokeWidth="2" />
             {groups ? (
               <>
-                {Array.from({ length: a }, (_, k) => <Icon key={`a${k}`} name={icon} x={PAD + 12 + (k % 4) * 30} y={y + 4 + Math.floor(k / 4) * 30} size={28} />)}
-                {Array.from({ length: b }, (_, k) => <Icon key={`b${k}`} name={icon} x={W - PAD - 40 - (k % 4) * 30} y={y + 4 + Math.floor(k / 4) * 30} size={28} />)}
+                {Array.from({ length: a }, (_, k) => <Icon key={`a${k}`} name={icon} x={PAD + 12 + (k % 4) * 27} y={y + 4 + Math.floor(k / 4) * 27} size={25} />)}
+                {Array.from({ length: b }, (_, k) => <Icon key={`b${k}`} name={icon} x={W - PAD - 37 - (k % 4) * 27} y={y + 4 + Math.floor(k / 4) * 27} size={25} />)}
               </>
             ) : (
               <>
-                <text x={W / 2 - 110} y={y + 50} textAnchor="middle" direction="ltr" className="ws-t" fontSize="40" fontWeight="900" fill={INK}>{digits(a, sc)}</text>
-                <text x={W / 2 + 110} y={y + 50} textAnchor="middle" direction="ltr" className="ws-t" fontSize="40" fontWeight="900" fill={INK}>{digits(b, sc)}</text>
+                <text x={W / 2 - 100} y={y + (rowH - 12) / 2 + 10} textAnchor="middle" direction="ltr" className="ws-t" fontSize="28" fontWeight="900" fill={INK}>{digits(a, sc)}</text>
+                <text x={W / 2 + 100} y={y + (rowH - 12) / 2 + 10} textAnchor="middle" direction="ltr" className="ws-t" fontSize="28" fontWeight="900" fill={INK}>{digits(b, sc)}</text>
               </>
             )}
-            <circle cx={W / 2} cy={y + 35} r="26" fill="#fff" stroke={INK} strokeWidth="2.5" />
+            <circle cx={W / 2} cy={y + (rowH - 12) / 2} r={Math.min(20, (rowH - 16) / 2)} fill="#fff" stroke={INK} strokeWidth="1.8" />
           </g>
         );
       })}
@@ -186,16 +174,16 @@ export function ClockFaces({ ws }: { ws: Worksheet }) {
   const rand = seeded(num(ws.params.seed, 23));
   const sc = script(ws);
   const minutesPool = mode === "hour" ? [0] : mode === "half" ? [0, 30] : [0, 15, 30, 45];
-  const times = Array.from({ length: 6 }, () => ({ h: 1 + Math.floor(rand() * 12), m: minutesPool[Math.floor(rand() * minutesPool.length)] }));
-  const r = 56;
+  const times = Array.from({ length: 9 }, () => ({ h: 1 + Math.floor(rand() * 12), m: minutesPool[Math.floor(rand() * minutesPool.length)] }));
+  const r = 50;
   return (
     <g>
       <Instruction>🕒 ساعت چند است؟ زمان را زیر هر ساعت بنویس.</Instruction>
       {times.map(({ h, m }, k) => {
-        const col = k % 2;
-        const row = Math.floor(k / 2);
-        const cx = col === 0 ? W - PAD - 125 : PAD + 125;
-        const cy = BODY_TOP + 90 + row * 192;
+        const col = k % 3;
+        const row = Math.floor(k / 3);
+        const cx = W - PAD - (W - PAD * 2) / 6 - col * ((W - PAD * 2) / 3);
+        const cy = BODY_TOP + 80 + row * ((BODY_BOTTOM - BODY_TOP - 40) / 3);
         const ha = ((h % 12) + m / 60) * 30 * (Math.PI / 180);
         const ma = m * 6 * (Math.PI / 180);
         return (
@@ -213,8 +201,8 @@ export function ClockFaces({ ws }: { ws: Worksheet }) {
             <line x1={cx} y1={cy} x2={cx + Math.sin(ha) * (r * 0.5)} y2={cy - Math.cos(ha) * (r * 0.5)} stroke="#ff7a66" strokeWidth="6" strokeLinecap="round" />
             <line x1={cx} y1={cy} x2={cx + Math.sin(ma) * (r * 0.78)} y2={cy - Math.cos(ma) * (r * 0.78)} stroke={INK} strokeWidth="4" strokeLinecap="round" />
             <circle cx={cx} cy={cy} r="5" fill={INK} />
-            <rect x={cx - 56} y={cy + r + 18} width="112" height="40" rx="12" fill="#fff" stroke={INK} strokeWidth="2" />
-            <text x={cx} y={cy + r + 45} textAnchor="middle" className="ws-t" fontSize="22" fontWeight="800" fill="#d9d6ea">
+            <rect x={cx - 48} y={cy + r + 16} width="96" height="34" rx="10" fill="#fff" stroke={INK} strokeWidth="1.6" />
+            <text x={cx} y={cy + r + 40} textAnchor="middle" className="ws-t" fontSize="20" fontWeight="800" fill="#d9d6ea">
               :
             </text>
           </g>
