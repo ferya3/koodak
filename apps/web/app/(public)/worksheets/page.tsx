@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/Section";
 import { WorldIcon } from "@/components/brand/WorldIcon";
 import { WorksheetLibrary } from "@/features/worksheets/WorksheetLibrary";
 import { fa } from "@/lib/utils";
+import { templateLabel } from "@/features/worksheets/labels";
+import type { WorksheetTemplate } from "@kidsworld/types";
 
 export const metadata: Metadata = {
   title: "کتابخانه‌ی کاربرگ‌های قابل چاپ",
@@ -11,8 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/worksheets" },
 };
 
-export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string; subject?: string }> }) {
-  const { age, subject } = await searchParams;
+export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string; subject?: string; type?: string }> }) {
+  const { age, subject, type } = await searchParams;
   const [{ data }, shelves] = await Promise.all([api.worksheets(), api.worksheetSubjects()]);
   const initialAge = age && /^\d+$/.test(age) ? Number(age) : undefined;
   return (
@@ -35,7 +37,7 @@ export default async function WorksheetsPage({ searchParams }: { searchParams: P
         </Container>
       </section>
       <Container className="py-10">
-        <WorksheetLibrary items={data} shelves={shelves} initialAge={initialAge} initialShelf={shelves.find((x) => x.slug === subject)?.id} />
+        <WorksheetLibrary key={`${age}-${subject}-${type}`} initialTemplate={type && type in templateLabel ? (type as WorksheetTemplate) : undefined} items={data} shelves={shelves} initialAge={initialAge} initialShelf={shelves.find((x) => x.slug === subject)?.id} />
       </Container>
     </>
   );

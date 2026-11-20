@@ -31,11 +31,11 @@ const norm = (t: string) => t.replace(/ي/g, "ی").replace(/ك/g, "ک").replace(
 /** عبارت‌های یک‌حرفی (مثل «ب» یا «A») فقط با کلمه‌ی کامل جور می‌شوند، وگرنه داخل همه‌ی کلمه‌ها پیدا می‌شوند */
 const hit = (hay: string, t: string) => (t.length > 1 ? hay.includes(t) : ` ${hay.replace(/[«»"(),.:؛،]/g, " ")} `.includes(` ${t} `));
 
-export function WorksheetLibrary({ items, shelves, initialAge, initialShelf }: { items: Worksheet[]; shelves: Subject[]; initialAge?: number; initialShelf?: string }) {
+export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, initialTemplate }: { items: Worksheet[]; shelves: Subject[]; initialAge?: number; initialShelf?: string; initialTemplate?: WorksheetTemplate }) {
   const [q, setQ] = useState("");
   const [age, setAge] = useState<number | undefined>(initialAge);
   const [shelf, setShelf] = useState<string | undefined>(initialShelf);
-  const [template, setTemplate] = useState<WorksheetTemplate | undefined>();
+  const [template, setTemplate] = useState<WorksheetTemplate | undefined>(initialTemplate);
   const [difficulty, setDifficulty] = useState<Difficulty | undefined>();
   const [freeOnly, setFreeOnly] = useState(false);
   const [limit, setLimit] = useState(PAGE);
@@ -48,8 +48,10 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf }: {
     else url.searchParams.delete("age");
     if (slug) url.searchParams.set("subject", slug);
     else url.searchParams.delete("subject");
+    if (template) url.searchParams.set("type", template);
+    else url.searchParams.delete("type");
     window.history.replaceState(null, "", url);
-  }, [age, shelf, shelves]);
+  }, [age, shelf, template, shelves]);
 
   // با هر تغییر فیلتر، صفحه‌بندی از اول
   useEffect(() => setLimit(PAGE), [q, age, shelf, template, difficulty, freeOnly]);
