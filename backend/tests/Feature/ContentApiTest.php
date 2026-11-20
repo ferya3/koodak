@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Modules\Catalog\Enums\ContentStatus;
 use App\Modules\Catalog\Models\Content;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
@@ -13,6 +14,23 @@ class ContentApiTest extends TestCase
     {
         $this->getJson('/api/v1/categories')->assertOk()->assertJsonCount(10, 'data')
             ->assertJsonPath('data.0.slug', 'learning-academy')->assertJsonPath('data.0.tone', 'sky');
+    }
+
+    /**
+     * پاسخ دوم از کش خوانده می‌شود. با cache.serializable_classes = false، کش کردن مدل/Resource
+     * باعث __PHP_Incomplete_Class و خطای ۵۰۰ می‌شد (فقط در production که کش واقعی دارد).
+     */
+    public function test_categories_are_served_identically_from_a_serializing_cache(): void
+    {
+        config(['cache.default' => 'file']);
+        Cache::flush();
+
+        $fresh = $this->getJson('/api/v1/categories')->assertOk()->json();
+        $cached = $this->getJson('/api/v1/categories')->assertOk()->json();
+        $this->assertSame($fresh, $cached);
+        $sheets = collect($cached['data'])->firstWhere('slug', 'worksheets');
+        $this->assertCount(9, $sheets['subjects']);
+        Cache::flush();
     }
 
     public function test_worksheets_list_matches_frontend_contract_and_filters(): void

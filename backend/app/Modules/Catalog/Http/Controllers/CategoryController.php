@@ -10,17 +10,23 @@ use App\Modules\Catalog\Models\Content;
 use App\Modules\Shared\Http\Paginated;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
-    public function index(): AnonymousResourceCollection
+    /**
+     * فقط آرایه‌ی ساده کش می‌شود، نه مدل Eloquent: با cache.serializable_classes = false
+     * (پیش‌فرض امن Laravel) شیءها از کش به‌صورت __PHP_Incomplete_Class برمی‌گشتند و
+     * از درخواست دوم به بعد خطای ۵۰۰ می‌دادند.
+     */
+    public function index(Request $request): JsonResponse
     {
-        $categories = Cache::remember('catalog:categories:'.app()->getLocale(), 600, fn () => Category::active()
-            ->whereNull('parent_id')->with(['children', 'subjects'])->orderBy('sort_order')->get());
+        // رفت‌وبرگشت JSON تا لایه‌های تو در تو (children، subjects) هم آرایه‌ی خالص شوند
+        $data = Cache::remember('catalog:categories:v3:'.app()->getLocale(), 600, fn () => json_decode(json_encode(CategoryResource::collection(
+            Category::active()->whereNull('parent_id')->with(['children', 'subjects'])->orderBy('sort_order')->get()
+        )->resolve($request)), true));
 
-        return CategoryResource::collection($categories);
+        return response()->json(['data' => $data]);
     }
 
     public function show(Category $category): CategoryResource

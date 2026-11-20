@@ -83,9 +83,15 @@ export const api = {
   /** قفسه‌های کتابخانه‌ی کاربرگ (موضوع‌های زیر دسته‌ی کاربرگ‌ها) */
   worksheetSubjects: async (): Promise<Subject[]> => {
     if (!API_URL) return subjects.filter((s) => s.categoryId === "c-sheets");
-    const cats = (await http<{ data: { id: string; slug: string; subjects?: Subject[] }[] }>("/categories")).data;
-    const c = cats.find((x) => x.slug === "worksheets");
-    return (c?.subjects ?? []).map((s) => ({ ...s, categoryId: c!.id }));
+    // قفسه‌ها تزئینی‌اند: اگر API دسته‌ها خطا داد، کتابخانه بدون قفسه نمایش داده شود، نه صفحه‌ی خطا
+    try {
+      const cats = (await http<{ data: { id: string; slug: string; subjects?: Subject[] }[] }>("/categories")).data;
+      const c = cats.find((x) => x.slug === "worksheets");
+      return (c?.subjects ?? []).map((s) => ({ ...s, categoryId: c!.id }));
+    } catch (e) {
+      console.error("worksheetSubjects failed:", e);
+      return [];
+    }
   },
   worksheets: async (f: ContentFilter = {}) =>
     API_URL ? httpAll<Worksheet>("/worksheets", f as Record<string, string>) : page(worksheets.filter((w) => matches(w, f))),
