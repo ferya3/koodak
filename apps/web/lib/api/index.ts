@@ -38,6 +38,19 @@ async function one<T>(path: string): Promise<T | null> {
   }
 }
 
+/**
+ * سرور حداکثر ۶۰ مورد در هر صفحه می‌دهد؛ کتابخانه‌ها (صدها کاربرگ و درس) همه را لازم دارند.
+ * صفحه‌ی اول تعداد کل را می‌گوید و بقیه موازی گرفته می‌شوند.
+ */
+async function httpAll<T>(path: string, params: Record<string, string> = {}): Promise<Paginated<T>> {
+  const q = (p: number) => `${path}?${new URLSearchParams({ ...params, perPage: "60", page: String(p) })}`;
+  const first = await http<Paginated<T>>(q(1));
+  const pages = Math.min(Math.ceil(first.meta.total / 60), 20);
+  const rest = await Promise.all(Array.from({ length: Math.max(pages - 1, 0) }, (_, i) => http<Paginated<T>>(q(i + 2))));
+  const data = [first, ...rest].flatMap((r) => r.data);
+  return { data, meta: { page: 1, perPage: data.length, total: first.meta.total } };
+}
+
 function matches<T extends Worksheet | Game | Story | Lesson>(item: T, f: ContentFilter) {
   if (f.q && !`${item.title} ${item.description}`.includes(f.q)) return false;
   if (f.age && (f.age < item.minAge || f.age > item.maxAge)) return false;
@@ -67,11 +80,18 @@ export const api = {
   /** اگر بخش اشتراک در سرور خاموش باشد (feature flag)، فهرست خالی است */
   plans: async () => (API_URL ? (await http<{ data: typeof plans }>("/plans").catch(() => ({ data: [] }))).data : plans),
 
+  /** قفسه‌های کتابخانه‌ی کاربرگ (موضوع‌های زیر دسته‌ی کاربرگ‌ها) */
+  worksheetSubjects: async (): Promise<Subject[]> => {
+    if (!API_URL) return subjects.filter((s) => s.categoryId === "c-sheets");
+    const cats = (await http<{ data: { id: string; slug: string; subjects?: Subject[] }[] }>("/categories")).data;
+    const c = cats.find((x) => x.slug === "worksheets");
+    return (c?.subjects ?? []).map((s) => ({ ...s, categoryId: c!.id }));
+  },
   worksheets: async (f: ContentFilter = {}) =>
-    API_URL ? http<Paginated<Worksheet>>(`/worksheets?${new URLSearchParams({ perPage: "60", ...(f as Record<string, string>) })}`) : page(worksheets.filter((w) => matches(w, f))),
+    API_URL ? httpAll<Worksheet>("/worksheets", f as Record<string, string>) : page(worksheets.filter((w) => matches(w, f))),
   worksheet: async (slug: string) => (API_URL ? one<Worksheet>(`/worksheets/${slug}`) : worksheets.find((w) => w.slug === slug) ?? null),
 
-  games: async (f: ContentFilter = {}) => (API_URL ? http<Paginated<Game>>("/games") : page(games.filter((g) => matches(g, f)))),
+  games: async (f: ContentFilter = {}) => (API_URL ? httpAll<Game>("/games", f as Record<string, string>) : page(games.filter((g) => matches(g, f)))),
   game: async (slug: string) => (API_URL ? one<Game>(`/games/${slug}`) : games.find((g) => g.slug === slug) ?? null),
 
   /** آکادمی یادگیری */
@@ -81,10 +101,10 @@ export const api = {
       : subjects.map((s) => ({ ...s, lessonCount: lessons.filter((l) => l.subjectId === s.id).length })),
   lessons: async (f: ContentFilter & { subject?: string } = {}) =>
     API_URL
-      ? http<Paginated<Lesson>>(`/learning/lessons?${new URLSearchParams({ perPage: "60", ...(f as Record<string, string>) })}`)
+      ? httpAll<Lesson>("/learning/lessons", f as Record<string, string>)
       : page(lessons.filter((l) => matches(l, f) && (!f.subject || l.subjectId === f.subject || subjects.find((s) => s.id === l.subjectId)?.slug === f.subject))),
   lesson: async (slug: string) => (API_URL ? one<Lesson>(`/learning/lessons/${slug}`) : lessons.find((l) => l.slug === slug) ?? null),
 
-  stories: async (f: ContentFilter = {}) => (API_URL ? http<Paginated<Story>>("/stories") : page(stories.filter((s) => matches(s, f)))),
+  stories: async (f: ContentFilter = {}) => (API_URL ? httpAll<Story>("/stories", f as Record<string, string>) : page(stories.filter((s) => matches(s, f)))),
   story: async (slug: string) => (API_URL ? one<Story>(`/stories/${slug}`) : stories.find((s) => s.slug === slug) ?? null),
 };

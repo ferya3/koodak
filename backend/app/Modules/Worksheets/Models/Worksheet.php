@@ -12,7 +12,12 @@ class Worksheet extends Model
 {
     public const TEMPLATES = [
         'tracing' => 'ردگیری و نوشتن', 'counting' => 'شمارش', 'maze' => 'ماز', 'dot-to-dot' => 'نقطه به نقطه',
-        'matching' => 'تطبیق', 'coloring' => 'رنگ‌آمیزی', 'addition' => 'جمع و تفریق',
+        'matching' => 'تطبیق', 'coloring' => 'رنگ‌آمیزی', 'addition' => 'جمع',
+        'subtraction' => 'تفریق', 'letter-trace' => 'ردگیری حرف', 'find-letter' => 'پیدا کردن حرف',
+        'beginning-sound' => 'صدای اول', 'missing-letter' => 'حرف جاافتاده', 'letter-match' => 'وصل کردن حرف',
+        'word-search' => 'جدول کلمات', 'number-trace' => 'ردگیری عدد', 'missing-number' => 'عدد جاافتاده',
+        'compare' => 'مقایسه', 'clock' => 'ساعت', 'pattern' => 'الگو', 'sudoku' => 'سودوکوی تصویری',
+        'odd-one-out' => 'کدام فرق دارد؟', 'shapes' => 'شکل‌ها',
     ];
 
     protected $fillable = ['content_id', 'template', 'params', 'file_asset_id', 'page_count', 'paper_size', 'orientation', 'printable', 'download_count'];

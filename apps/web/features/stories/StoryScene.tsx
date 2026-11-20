@@ -50,6 +50,64 @@ const nightBg = (
 );
 
 const scenes: Record<string, React.ReactNode> = {
+  sea: (
+    <>
+      <defs>
+        <linearGradient id="kw-sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#8fd3ff" />
+          <stop offset="1" stopColor="#1f96e0" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="260" fill="url(#kw-sea)" />
+      <path d="M0 40 C 60 30, 120 50, 200 40 C 280 30, 340 50, 400 40" stroke="#fff" strokeWidth="5" fill="none" opacity="0.6" />
+      <path d="M0 260 L 0 220 C 60 205, 140 230, 220 215 C 300 200, 360 225, 400 215 L 400 260 Z" fill="#fce8c6" />
+      <g stroke={INK} strokeWidth="4" strokeLinejoin="round">
+        <path d="M60 225 C 50 190, 70 170, 60 150 M60 190 C 75 180, 80 170, 78 160 M60 205 C 45 195, 40 185, 42 175" stroke="#ff73b3" strokeWidth="8" fill="none" strokeLinecap="round" />
+        <path d="M330 220 C 325 190, 340 175, 335 155" stroke="#4fcb72" strokeWidth="8" fill="none" strokeLinecap="round" />
+        <path d="M160 130 C 175 110, 210 108, 225 125 L 245 112 L 242 138 L 245 162 L 225 148 C 210 165, 175 163, 160 140 Z" fill="#ffce3d" />
+        <circle cx="180" cy="130" r="4" fill={INK} stroke="none" />
+      </g>
+      <g fill="#fff" stroke={INK} strokeWidth="2">
+        <circle cx="150" cy="100" r="5" />
+        <circle cx="140" cy="80" r="7" />
+      </g>
+    </>
+  ),
+  meadow: (
+    <>
+      <rect width="400" height="260" fill="#ddf3ff" />
+      <circle cx="340" cy="55" r="30" fill="#ffce3d" stroke={INK} strokeWidth="4" />
+      <path d="M0 160 C 80 130, 160 150, 240 140 C 320 130, 360 150, 400 140 L 400 260 L 0 260 Z" fill="#8be0a0" stroke={INK} strokeWidth="4" />
+      <path d="M0 200 C 100 185, 200 210, 300 195 C 350 188, 380 195, 400 192 L 400 260 L 0 260 Z" fill="#4fcb72" />
+      {[[60, 190, "#ff73b3"], [120, 215, "#ffce3d"], [300, 205, "#9b7bff"], [350, 225, "#ff7a66"]].map(([x, y, c], i) => (
+        <g key={i} stroke={INK} strokeWidth="2.5">
+          <path d={`M${x} ${Number(y) + 6} L ${x} ${Number(y) + 30}`} stroke="#2ead55" strokeWidth="4" />
+          <circle cx={Number(x)} cy={Number(y)} r="9" fill={String(c)} />
+          <circle cx={Number(x)} cy={Number(y)} r="3.5" fill="#fff3c4" />
+        </g>
+      ))}
+      <g stroke={INK} strokeWidth="4" strokeLinejoin="round">
+        <path d="M190 120 C 186 100, 188 90, 194 90 C 200 90, 200 102, 198 120 Z M210 120 C 214 100, 212 90, 206 90 C 200 90, 200 102, 202 120 Z" fill="#fff" />
+        <ellipse cx="200" cy="138" rx="22" ry="20" fill="#fff" />
+        <circle cx="193" cy="134" r="3" fill={INK} stroke="none" />
+        <circle cx="207" cy="134" r="3" fill={INK} stroke="none" />
+      </g>
+    </>
+  ),
+  space: (
+    <>
+      <rect width="400" height="260" fill="#1f1a3d" />
+      <Stars pts={[[40, 40, 6], [120, 30, 4], [300, 40, 5], [360, 120, 4], [60, 200, 5], [200, 230, 3], [330, 220, 6]]} />
+      <circle cx="320" cy="70" r="34" fill="#ff9f4a" stroke="#fff" strokeWidth="3" />
+      <ellipse cx="320" cy="70" rx="56" ry="12" fill="none" stroke="#ffce3d" strokeWidth="4" />
+      <g transform="translate(150 70) rotate(30)" stroke="#fff" strokeWidth="3" strokeLinejoin="round">
+        <path d="M30 0 C 52 20, 54 60, 44 90 L 16 90 C 6 60, 8 20, 30 0 Z" fill="#fff" stroke={INK} strokeWidth="4" />
+        <circle cx="30" cy="40" r="10" fill="#4fb8f5" stroke={INK} strokeWidth="3" />
+        <path d="M16 70 L 0 95 L 16 92 Z M44 70 L 60 95 L 44 92 Z" fill="#ff7a66" stroke={INK} strokeWidth="3" />
+        <path d="M20 92 C 22 108, 30 120, 30 120 C 30 120, 38 108, 40 92 Z" fill="#ffce3d" stroke={INK} strokeWidth="3" />
+      </g>
+    </>
+  ),
   "night-sky": (
     <>
       {nightBg}

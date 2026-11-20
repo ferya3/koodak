@@ -1,4 +1,6 @@
 import type { Game, Story, Worksheet, Difficulty, ToneKey, AccessLevel, WorksheetTemplate } from "@kidsworld/types";
+import { generatedWorksheets } from "./catalog";
+import { moreStories } from "./storiesMore";
 
 const ag = (min: number, max: number) =>
   Array.from({ length: max - min }, (_, i) => `ag-${min + i}`);
@@ -37,7 +39,7 @@ function ws(
   };
 }
 
-export const worksheets: Worksheet[] = [
+const handmadeWorksheets: Worksheet[] = [
   ws("trace-alef", "ردگیری حرف «آ»", "با دنبال کردن خط‌چین‌ها، شکل حرف «آ» را یاد بگیر.", "tracing", { letter: "آ", word: "آب", rows: 4 }, { min: 4, max: 6, difficulty: "beginner", tone: "sky", skills: ["s-letters", "s-motor"], downloads: 4820 }),
   ws("trace-be", "ردگیری حرف «ب»", "تمرین نوشتن حرف «ب» در چهار ردیف.", "tracing", { letter: "ب", word: "بادکنک", rows: 4 }, { min: 4, max: 6, difficulty: "easy", tone: "sky", skills: ["s-letters", "s-motor"], downloads: 3110 }),
   ws("trace-numbers", "ردگیری اعداد ۱ تا ۵", "اعداد را با مداد دنبال کن و بلند بشمار.", "tracing", { letter: "۱۲۳۴۵", word: "", rows: 4 }, { min: 3, max: 5, difficulty: "beginner", tone: "peach", skills: ["s-number", "s-motor"], downloads: 5240 }),
@@ -54,7 +56,17 @@ export const worksheets: Worksheet[] = [
   ws("add-within-20", "جمع تا ۲۰", "جمع‌های دو رقمی برای نوآموزان کلاس اول و دوم.", "addition", { max: 20, count: 12, seed: 18 }, { min: 7, max: 9, difficulty: "intermediate", tone: "ocean", access: "premium", skills: ["s-number", "s-attention"] }),
 ];
 
-export const games: Game[] = [
+/** موضوع کتابخانه برای کاربرگ‌های دست‌ساز */
+const SUBJECT_BY_TEMPLATE: Partial<Record<WorksheetTemplate, string>> = {
+  tracing: "ws-fa", counting: "ws-numbers", maze: "ws-motor", "dot-to-dot": "ws-motor", matching: "ws-logic", coloring: "ws-coloring", addition: "ws-math",
+};
+
+export const worksheets: Worksheet[] = [
+  ...handmadeWorksheets.map((w) => ({ ...w, subjectId: w.slug === "trace-numbers" ? "ws-numbers" : SUBJECT_BY_TEMPLATE[w.template] })),
+  ...generatedWorksheets,
+];
+
+const handmadeGames: Game[] = [
   {
     id: "g-memory-animals",
     slug: "memory-garden",
@@ -132,6 +144,80 @@ export const games: Game[] = [
   },
 ];
 
+/* ── بازی‌های بیشتر (همان موتور، پیکربندی متفاوت) ── */
+function game(slug: string, title: string, description: string, gameType: Game["gameType"], o: { categoryId: string; min: number; max: number; difficulty: Difficulty; tone: ToneKey; skills: string[]; minutes?: number; premium?: boolean }, levels: Game["levels"]): Game {
+  return {
+    id: `g-${slug}`, slug, type: "game", title, description, categoryId: o.categoryId, ageGroupIds: ag(o.min, o.max), minAge: o.min, maxAge: o.max,
+    difficulty: o.difficulty, estimatedMinutes: o.minutes ?? 5, access: o.premium ? "premium" : "free", status: "published",
+    skills: o.skills.map((skillId, i) => ({ skillId, weight: i === 0 ? 1 : 0.5 })), tone: o.tone, publishedAt: "2026-11-15", gameType, engine: "react-svg", levels,
+  };
+}
+
+export const moreGames: Game[] = [
+  game("letter-sounds-fa", "صدای اول حروف فارسی", "تصویر را ببین و حرف اولش را پیدا کن. از الف تا ی، مرحله به مرحله.", "letter-sound",
+    { categoryId: "c-learn", min: 4, max: 8, difficulty: "easy", tone: "sky", skills: ["s-letters", "s-listening"] },
+    [
+      { levelNumber: 1, difficulty: "beginner", configuration: { alphabet: "fa", from: 0, to: 8, rounds: 5 } },
+      { levelNumber: 2, difficulty: "easy", configuration: { alphabet: "fa", from: 8, to: 16, rounds: 6 } },
+      { levelNumber: 3, difficulty: "easy", configuration: { alphabet: "fa", from: 16, to: 24, rounds: 6 } },
+      { levelNumber: 4, difficulty: "intermediate", configuration: { alphabet: "fa", from: 24, to: 32, rounds: 6 } },
+      { levelNumber: 5, difficulty: "advanced", configuration: { alphabet: "fa", from: 0, to: 32, rounds: 10 } },
+    ]),
+  game("letter-sounds-en", "Beginning sounds: حروف انگلیسی", "Apple, Ball, Cat… تصویر را ببین و حرف اول انگلیسی‌اش را انتخاب کن.", "letter-sound",
+    { categoryId: "c-learn", min: 5, max: 9, difficulty: "easy", tone: "coral", skills: ["s-letters", "s-listening"] },
+    [
+      { levelNumber: 1, difficulty: "beginner", configuration: { alphabet: "en", from: 0, to: 9, rounds: 5 } },
+      { levelNumber: 2, difficulty: "easy", configuration: { alphabet: "en", from: 9, to: 18, rounds: 6 } },
+      { levelNumber: 3, difficulty: "intermediate", configuration: { alphabet: "en", from: 18, to: 26, rounds: 6 } },
+      { levelNumber: 4, difficulty: "advanced", configuration: { alphabet: "en", from: 0, to: 26, rounds: 10 } },
+    ]),
+  game("letter-hunt-fa", "شکار حرف", "همه‌ی نمونه‌های یک حرف فارسی را در جدول پیدا کن.", "letter-hunt",
+    { categoryId: "c-brain", min: 5, max: 9, difficulty: "intermediate", tone: "grape", skills: ["s-letters", "s-attention"] },
+    [
+      { levelNumber: 1, difficulty: "easy", configuration: { alphabet: "fa", rounds: 3, cells: 9 } },
+      { levelNumber: 2, difficulty: "intermediate", configuration: { alphabet: "fa", rounds: 4, cells: 16 } },
+      { levelNumber: 3, difficulty: "advanced", configuration: { alphabet: "fa", rounds: 5, cells: 25 } },
+    ]),
+  game("letter-hunt-en", "Letter hunt: شکار حرف انگلیسی", "حرف‌های انگلیسی را در جدول پیدا کن.", "letter-hunt",
+    { categoryId: "c-brain", min: 6, max: 10, difficulty: "intermediate", tone: "peach", skills: ["s-letters", "s-attention"], premium: true },
+    [
+      { levelNumber: 1, difficulty: "easy", configuration: { alphabet: "en", rounds: 3, cells: 9 } },
+      { levelNumber: 2, difficulty: "intermediate", configuration: { alphabet: "en", rounds: 4, cells: 16 } },
+      { levelNumber: 3, difficulty: "advanced", configuration: { alphabet: "en", rounds: 5, cells: 25 } },
+    ]),
+  game("odd-one-out", "کدام فرق دارد؟", "از بین چهار تصویر، آن یکی را که به گروه بقیه تعلق ندارد پیدا کن.", "odd-one-out",
+    { categoryId: "c-brain", min: 4, max: 8, difficulty: "easy", tone: "mint", skills: ["s-pattern", "s-attention"] },
+    [
+      { levelNumber: 1, difficulty: "beginner", configuration: { rounds: 5, size: 3 } },
+      { levelNumber: 2, difficulty: "easy", configuration: { rounds: 6, size: 4 } },
+      { levelNumber: 3, difficulty: "intermediate", configuration: { rounds: 8, size: 4 } },
+    ]),
+  game("number-bubbles", "حباب‌های عدد", "حباب‌ها را به ترتیب از یک بترکان!", "number-order",
+    { categoryId: "c-learn", min: 3, max: 8, difficulty: "easy", tone: "ocean", skills: ["s-number", "s-attention"] },
+    [
+      { levelNumber: 1, difficulty: "beginner", configuration: { max: 5, rounds: 3 } },
+      { levelNumber: 2, difficulty: "easy", configuration: { max: 10, rounds: 3 } },
+      { levelNumber: 3, difficulty: "intermediate", configuration: { max: 15, rounds: 3 } },
+      { levelNumber: 4, difficulty: "advanced", configuration: { max: 20, rounds: 2 } },
+    ]),
+  game("more-or-less", "بیشتر یا کمتر؟", "دو گروه را مقایسه کن و گروهی را که بیشتر (یا کمتر) است انتخاب کن.", "more-less",
+    { categoryId: "c-learn", min: 3, max: 6, difficulty: "beginner", tone: "peach", skills: ["s-number", "s-pattern"] },
+    [
+      { levelNumber: 1, difficulty: "beginner", configuration: { max: 4, rounds: 5 } },
+      { levelNumber: 2, difficulty: "easy", configuration: { max: 7, rounds: 6 } },
+      { levelNumber: 3, difficulty: "intermediate", configuration: { max: 10, rounds: 8 } },
+    ]),
+  ...([["animals", "حافظه‌ی حیوانات", "cat"], ["fruits", "حافظه‌ی میوه‌ها", "strawberry"], ["sky", "حافظه‌ی آسمان", "rocket"]] as const).map(([theme, title], i) =>
+    game(`memory-${theme}`, title, "کارت‌ها را برگردان و جفت‌ها را پیدا کن.", "memory",
+      { categoryId: "c-brain", min: 3, max: 8, difficulty: "easy", tone: (["grape", "berry", "sky"] as const)[i], skills: ["s-memory", "s-attention"], premium: i === 2 },
+      [
+        { levelNumber: 1, difficulty: "beginner", configuration: { pairs: 3, cols: 3, theme } },
+        { levelNumber: 2, difficulty: "easy", configuration: { pairs: 5, cols: 5, theme } },
+        { levelNumber: 3, difficulty: "intermediate", configuration: { pairs: theme === "sky" ? 7 : 6, cols: 4, theme } },
+      ]),
+  ),
+];
+
 /** بازی‌هایی که در نقشه‌ی راه هستند (در UI به شکل «به‌زودی» نمایش داده می‌شوند) */
 export const upcomingGames = [
   { slug: "space-puzzle", title: "پازل فضایی", tone: "grape" as ToneKey, icon: "rocket" },
@@ -140,7 +226,7 @@ export const upcomingGames = [
   { slug: "dino-dig", title: "حفاری دایناسور", tone: "grass" as ToneKey, icon: "dino" },
 ];
 
-export const stories: Story[] = [
+const handmadeStories: Story[] = [
   {
     id: "st-moon",
     slug: "little-cloud",
@@ -192,6 +278,10 @@ export const stories: Story[] = [
   },
 ];
 
+export const stories: Story[] = [...handmadeStories, ...moreStories];
+
 export const findWorksheet = (slug: string) => worksheets.find((w) => w.slug === slug);
+export const games: Game[] = [...handmadeGames, ...moreGames];
+
 export const findGame = (slug: string) => games.find((g) => g.slug === slug);
 export const findStory = (slug: string) => stories.find((s) => s.slug === slug);

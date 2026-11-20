@@ -53,6 +53,16 @@ export function LessonVisual({ visual, size = "lg", className }: { visual: Visua
           ))}
         </div>
       );
+    case "forms":
+      return (
+        <div className={cn("flex flex-wrap items-center justify-center gap-3", className)} dir={visual.ltr ? "ltr" : "rtl"}>
+          {visual.forms.map((f, i) => (
+            <span key={i} className={cn("grid place-items-center rounded-2xl border-[3px] border-ink-900 bg-white font-display font-black leading-none", size === "lg" ? "h-24 min-w-24 px-3 text-6xl" : "h-14 min-w-14 px-2 text-3xl")}>
+              {f}
+            </span>
+          ))}
+        </div>
+      );
     case "scene":
       return <StoryScene scene={visual.scene} className={cn("w-full rounded-3xl", size === "lg" ? "aspect-[16/9] max-w-xl" : "aspect-[4/3]", className)} />;
   }

@@ -140,7 +140,7 @@ class ContentForm
                         Grid::make(2)->schema([
                             Select::make('visual.kind')->label('تصویر')->options(LessonStep::VISUAL_KINDS)->placeholder('بدون تصویر'),
                             TextInput::make('visual.value')->label('مقدار تصویر')
-                                ->helperText('حرف: ب | عدد: 3 | صحنه: night-sky | آیکون‌ها در فیلد زیر'),
+                                ->helperText('حرف: ب | عدد: 3 | صحنه: night-sky | آیکون‌ها و شکل‌های حرف در فیلد زیر'),
                         ]),
                         TagsInput::make('visual.icons')->label('آیکون‌ها')->placeholder('apple, star, circle, square, triangle, plus'),
                         Section::make('پرسش')->visible(fn (Get $get) => $get('step_type') === 'quiz')->schema([
@@ -213,6 +213,7 @@ class ContentForm
             $data['visual'] = match ($v['kind'] ?? null) {
                 'scene' => ['kind' => 'scene', 'value' => $v['scene'] ?? ''],
                 'number' => ['kind' => 'number', 'value' => $v['value'] ?? '', 'icons' => [$v['icon'] ?? 'star']],
+                'forms' => ['kind' => 'forms', 'icons' => $v['forms'] ?? []],
                 default => $v,
             };
         }
@@ -229,6 +230,7 @@ class ContentForm
             'number' => ['kind' => 'number', 'value' => (int) ($v['value'] ?? 0), 'icon' => $v['icons'][0] ?? 'star'],
             'icons' => ['kind' => 'icons', 'icons' => array_values(array_filter($v['icons'] ?? []))],
             'scene' => ['kind' => 'scene', 'scene' => (string) ($v['value'] ?? 'night-sky')],
+            'forms' => ['kind' => 'forms', 'forms' => array_values(array_filter($v['icons'] ?? []))],
             default => null,
         };
         if (($data['step_type'] ?? '') !== 'quiz') {

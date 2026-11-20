@@ -1,5 +1,9 @@
 import type { Worksheet } from "@kidsworld/types";
 import { art, playIconKeys, type PlayIconKey } from "@/components/brand/PlayIcon";
+import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
+import { BeginningSound, FindLetter, LetterMatch, LetterTrace, MissingLetter, WordSearch } from "./templates/letters";
+import { ClockFaces, Compare, MissingNumber, NumberTrace, Subtraction } from "./templates/math";
+import { ColoringTheme, OddOneOut, PatternNext, PictureSudoku, ShapeTrace } from "./templates/logic";
 import { tones } from "@/lib/tones";
 import { fa, seeded, shuffle } from "@/lib/utils";
 
@@ -10,11 +14,10 @@ import { fa, seeded, shuffle } from "@/lib/utils";
  * در Backend همین قرارداد با یک Job صف‌شده به PDF تبدیل می‌شود.
  */
 
-const W = 595;
-const H = 842;
-const INK = "#1f1a3d";
-const PAD = 40;
-const BODY_TOP = 190;
+import { BODY_TOP, H, INK, PAD, W } from "./kit";
+
+/** توضیح بلند در سربرگ بریده می‌شود تا از کادر بیرون نزند */
+const clip = (s: string, n = 64) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
 export function WorksheetSheet({ worksheet, className, id }: { worksheet: Worksheet; className?: string; id?: string }) {
   const t = tones[worksheet.tone].hex;
@@ -28,10 +31,10 @@ export function WorksheetSheet({ worksheet, className, id }: { worksheet: Worksh
       {/* سربرگ */}
       <rect x={PAD} y={PAD} width={W - PAD * 2} height="86" rx="22" fill={t.soft} stroke={INK} strokeWidth="2.5" />
       <text x={W - PAD - 24} y={PAD + 40} textAnchor="start" className="ws-t" fontSize="26" fontWeight="900" fill={INK}>
-        {worksheet.title}
+        {clip(worksheet.title, 30)}
       </text>
       <text x={W - PAD - 24} y={PAD + 68} textAnchor="start" className="ws-t" fontSize="14" fontWeight="500" fill="#3d3766">
-        {worksheet.description}
+        {clip(worksheet.description)}
       </text>
       <g transform={`translate(${PAD + 18} ${PAD + 16})`}>
         <circle cx="27" cy="27" r="25" fill={t.solid} stroke={INK} strokeWidth="2.5" />
@@ -73,9 +76,41 @@ function Body({ ws }: { ws: Worksheet }) {
     case "matching":
       return <Matching ws={ws} />;
     case "coloring":
-      return <Coloring />;
+      return ws.params.theme ? <ColoringTheme ws={ws} /> : <Coloring />;
     case "addition":
       return <Addition ws={ws} />;
+    case "letter-trace":
+      return <LetterTrace ws={ws} />;
+    case "find-letter":
+      return <FindLetter ws={ws} />;
+    case "beginning-sound":
+      return <BeginningSound ws={ws} />;
+    case "missing-letter":
+      return <MissingLetter ws={ws} />;
+    case "letter-match":
+      return <LetterMatch ws={ws} />;
+    case "word-search":
+      return <WordSearch ws={ws} />;
+    case "number-trace":
+      return <NumberTrace ws={ws} />;
+    case "missing-number":
+      return <MissingNumber ws={ws} />;
+    case "subtraction":
+      return <Subtraction ws={ws} />;
+    case "compare":
+      return <Compare ws={ws} />;
+    case "clock":
+      return <ClockFaces ws={ws} />;
+    case "pattern":
+      return <PatternNext ws={ws} />;
+    case "sudoku":
+      return <PictureSudoku ws={ws} />;
+    case "odd-one-out":
+      return <OddOneOut ws={ws} />;
+    case "shapes":
+      return <ShapeTrace ws={ws} />;
+    default:
+      return null;
   }
 }
 
@@ -155,7 +190,9 @@ function Counting({ ws }: { ws: Worksheet }) {
   const rand = seeded(Number(ws.params.seed ?? 1));
   const max = Number(ws.params.max ?? 5);
   const rows = Number(ws.params.rows ?? 5);
-  const pool: PlayIconKey[] = ["apple", "star", "fish", "flower", "heart", "ball", "mushroom", "leaf"];
+  const pool: PlayIconKey[] = ws.params.theme
+    ? ((iconThemes[String(ws.params.theme) as IconTheme] ?? iconThemes.fruits).icons as PlayIconKey[])
+    : ["apple", "star", "fish", "flower", "heart", "ball", "mushroom", "leaf"];
   const rowH = 112;
   return (
     <g>
@@ -230,6 +267,8 @@ function Maze({ ws }: { ws: Worksheet }) {
   const ox = (W - size) / 2;
   const oy = BODY_TOP + 60;
   const t = tones[ws.tone].hex;
+  const start = (String(ws.params.start ?? "rabbit")) as PlayIconKey;
+  const goal = (String(ws.params.goal ?? "house")) as PlayIconKey;
   const lines: string[] = [];
   walls.forEach((row, y) =>
     row.forEach(([top, right, bottom, left], x) => {
@@ -244,19 +283,12 @@ function Maze({ ws }: { ws: Worksheet }) {
   return (
     <g>
       <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
-        🐰 از بالا شروع کن و راه رسیدن به خانه را پیدا کن.
+        🧭 از بالا شروع کن و راه رسیدن {String(ws.params.hint ?? "به خانه")} را پیدا کن.
       </text>
       <rect x={ox - 12} y={oy - 12} width={size + 24} height={size + 24} rx="20" fill={t.soft} />
       <path d={lines.join("")} stroke={INK} strokeWidth={n > 12 ? 3 : 4} strokeLinecap="round" fill="none" />
-      <Icon name="heart" x={ox + cell / 2 - 18} y={oy - 52} size={36} />
-      <text x={ox + cell / 2} y={oy - 58} textAnchor="middle" className="ws-t" fontSize="13" fontWeight="800" fill={INK}>
-        شروع
-      </text>
-      {/* خانه */}
-      <g transform={`translate(${ox + size - cell / 2 - 26} ${oy + size + 14})`}>
-        <path d="M4 22 L 26 4 L 48 22 L 48 50 L 4 50 Z" fill="#ff9f8e" stroke={INK} strokeWidth="3" strokeLinejoin="round" />
-        <rect x="19" y="30" width="14" height="20" fill="#ffce3d" stroke={INK} strokeWidth="2.5" />
-      </g>
+      <Icon name={start} x={ox + cell / 2 - 22} y={oy - 58} size={44} />
+      <Icon name={goal} x={ox + size - cell / 2 - 28} y={oy + size + 10} size={56} />
     </g>
   );
 }
@@ -271,6 +303,19 @@ const DOT_SHAPES: Record<string, [number, number][]> = {
   house: [
     [-0.8, 0.9], [-0.8, -0.1], [-1, -0.1], [0, -0.95], [1, -0.1], [0.8, -0.1], [0.8, 0.9], [0.2, 0.9], [0.2, 0.4], [-0.2, 0.4], [-0.2, 0.9],
   ],
+  heart: Array.from({ length: 16 }, (_, i) => {
+    const t = (Math.PI * 2 * i) / 16 + Math.PI;
+    const x = 16 * Math.sin(t) ** 3;
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    return [x / 17, y / 17] as [number, number];
+  }),
+  diamond: [[0, -1], [0.45, -0.45], [0.75, 0], [0.4, 0.5], [0, 1], [-0.4, 0.5], [-0.75, 0], [-0.45, -0.45]],
+  fish: [[-1, 0], [-0.6, -0.45], [-0.1, -0.55], [0.35, -0.35], [0.6, -0.05], [0.95, -0.45], [0.9, 0], [0.95, 0.45], [0.6, 0.05], [0.35, 0.35], [-0.1, 0.55], [-0.6, 0.45]],
+  boat: [[-0.95, 0.2], [0.95, 0.2], [0.65, 0.65], [-0.65, 0.65], [-0.95, 0.2], [-0.05, 0.2], [-0.05, -0.95], [0.7, 0.05], [0.05, 0.05]],
+  kite: [[0, -1], [0.6, -0.25], [0, 0.6], [-0.6, -0.25]],
+  tree: [[0, -1], [0.45, -0.45], [0.25, -0.45], [0.7, 0.05], [0.4, 0.05], [0.85, 0.55], [0.12, 0.55], [0.12, 0.95], [-0.12, 0.95], [-0.12, 0.55], [-0.85, 0.55], [-0.4, 0.05], [-0.7, 0.05], [-0.25, -0.45], [-0.45, -0.45]],
+  crown: [[-0.9, 0.6], [-0.9, -0.5], [-0.45, 0], [0, -0.75], [0.45, 0], [0.9, -0.5], [0.9, 0.6]],
+  rocket: [[0, -1], [0.3, -0.6], [0.3, 0.35], [0.6, 0.75], [0.25, 0.65], [0, 0.95], [-0.25, 0.65], [-0.6, 0.75], [-0.3, 0.35], [-0.3, -0.6]],
 };
 
 function Dots({ ws }: { ws: Worksheet }) {
@@ -283,6 +328,7 @@ function Dots({ ws }: { ws: Worksheet }) {
       <text x={W - PAD} y={BODY_TOP} className="ws-t" fontSize="16" fontWeight="700" fill={INK}>
         ✨ نقطه‌ها را به ترتیب عدد به هم وصل کن. بعد رنگش کن!
       </text>
+      <path d={pts.map(([x, y], i) => `${i ? "L" : "M"}${cx + x * R} ${cy + y * R}`).join(" ")} fill="none" stroke="#eceaf6" strokeWidth="2" strokeDasharray={ws.params.hint ? "3 7" : "0 1000"} />
       {pts.map(([x, y], i) => {
         const px = cx + x * R;
         const py = cy + y * R;
@@ -304,7 +350,9 @@ function Dots({ ws }: { ws: Worksheet }) {
 /* ── تطبیق ── */
 function Matching({ ws }: { ws: Worksheet }) {
   const rand = seeded(Number(ws.params.seed ?? 1));
-  const items: PlayIconKey[] = ["star", "heart", "moon", "fish", "apple"];
+  const items: PlayIconKey[] = ws.params.theme
+    ? shuffle((iconThemes[String(ws.params.theme) as IconTheme] ?? iconThemes.animals).icons as PlayIconKey[], rand).slice(0, 5)
+    : ["star", "heart", "moon", "fish", "apple"];
   const right = shuffle(items, rand);
   const rowH = 112;
   return (

@@ -2,6 +2,11 @@ import type { GameDefinition, SessionStats } from "./types";
 import { MemoryGame } from "../memory/MemoryGame";
 import { PatternGame } from "../pattern/PatternGame";
 import { CountingGame } from "../counting/CountingGame";
+import { LetterSoundGame } from "../letters/LetterSoundGame";
+import { LetterHuntGame } from "../letters/LetterHuntGame";
+import { OddOneOutGame } from "../logic/OddOneOutGame";
+import { NumberOrderGame } from "../numbers/NumberOrderGame";
+import { MoreLessGame } from "../numbers/MoreLessGame";
 
 /** قاعده‌ی پیش‌فرض بازی‌های راندی: اشتباه کمتر = ستاره‌ی بیشتر */
 const roundStars = (s: SessionStats) => (s.mistakes === 0 ? 3 : s.mistakes <= 2 ? 2 : 1);
@@ -33,4 +38,9 @@ export const gameRegistry: Record<string, GameDefinition> = {
     stars: roundStars,
     score: baseScore,
   },
+  "letter-sound": { gameType: "letter-sound", component: LetterSoundGame, howTo: "به تصویر نگاه کن و بگو با کدام حرف شروع می‌شود!", stars: roundStars, score: baseScore },
+  "letter-hunt": { gameType: "letter-hunt", component: LetterHuntGame, howTo: "همه‌ی نمونه‌های حرف را در جدول پیدا کن و رویشان بزن.", stars: roundStars, score: baseScore },
+  "odd-one-out": { gameType: "odd-one-out", component: OddOneOutGame, howTo: "در هر دور یکی با بقیه فرق دارد. پیدایش کن!", stars: roundStars, score: baseScore },
+  "number-order": { gameType: "number-order", component: NumberOrderGame, howTo: "حباب‌ها را به ترتیب از یک بزن: یک، دو، سه…", stars: roundStars, score: baseScore },
+  "more-less": { gameType: "more-less", component: MoreLessGame, howTo: "گروه‌ها را نگاه کن: کدام بیشتر است؟ کدام کمتر؟", stars: roundStars, score: baseScore },
 };

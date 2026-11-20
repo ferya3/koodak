@@ -9,13 +9,18 @@ class LearningTest extends TestCase
 {
     public function test_subjects_and_lessons_follow_the_shared_contract(): void
     {
-        $this->getJson('/api/v1/learning/subjects')->assertOk()->assertJsonCount(5, 'data')->assertJsonPath('data.0.slug', 'alphabet');
+        $this->getJson('/api/v1/learning/subjects')->assertOk()->assertJsonCount(6, 'data')->assertJsonPath('data.0.slug', 'alphabet');
 
         $lesson = $this->getJson('/api/v1/learning/lessons/letter-be')->assertOk()->json('data');
         $this->assertSame('lesson', $lesson['type']);
-        $this->assertSame(['s1', 's2', 's3', 's4'], array_column($lesson['steps'], 'id'));
-        $this->assertEquals(['kind' => 'letter', 'value' => 'ب', 'word' => 'برگ'], $lesson['steps'][0]['visual']); // jsonb ترتیب کلیدها را حفظ نمی‌کند
-        $this->assertSame('a', $lesson['steps'][2]['question']['answerId']);
+        $this->assertSame(['s1', 's2', 's3', 's4', 's5'], array_column($lesson['steps'], 'id'));
+        $this->assertEquals(['kind' => 'letter', 'value' => 'ب', 'word' => 'بادکنک'], $lesson['steps'][0]['visual']); // jsonb ترتیب کلیدها را حفظ نمی‌کند
+        $this->assertEquals(['kind' => 'forms', 'forms' => ['ب', 'بـ', 'ـبـ', 'ـب']], $lesson['steps'][1]['visual']);
+        $this->assertSame('a', $lesson['steps'][3]['question']['answerId']);
+
+        // ۳۲ حرف فارسی و ۲۶ حرف انگلیسی، هر کدام یک درس
+        $this->getJson('/api/v1/learning/lessons?subject=alphabet')->assertJsonPath('meta.total', 32);
+        $this->getJson('/api/v1/learning/lessons?subject=english-alphabet')->assertJsonPath('meta.total', 26);
 
         $math = $this->getJson('/api/v1/learning/lessons?subject=math')->assertJsonPath('meta.total', 1)->json('data.0');
         $this->assertSame([(string) Content::where('slug', 'count-to-five')->value('id')], $math['prerequisiteIds']);
@@ -28,7 +33,7 @@ class LearningTest extends TestCase
         $ct = $this->postJson("/api/v1/children/{$child->id}/session", [], $this->bearer($this->parentToken($parent)))->json('token');
 
         $res = $this->postJson('/api/v1/learning/lessons/letter-be/complete', [
-            'childId' => $child->id, 'answers' => ['s3' => 'a', 's4' => 'c'], 'durationSeconds' => 180,
+            'childId' => $child->id, 'answers' => ['s4' => 'a', 's5' => 'c'], 'durationSeconds' => 180,
         ], $this->bearer($ct))->assertOk();
 
         $res->assertJsonPath('result.correct', 1)->assertJsonPath('result.total', 2)->assertJsonPath('result.score', 50)->assertJsonPath('result.stars', 2);

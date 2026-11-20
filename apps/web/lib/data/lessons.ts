@@ -1,4 +1,5 @@
 import type { Difficulty, Lesson, LessonStep, ToneKey } from "@kidsworld/types";
+import { generatedLessons } from "./lessonsGen";
 
 /**
  * درس‌های نمونه‌ی آکادمی یادگیری.
@@ -39,20 +40,7 @@ function lesson(
   };
 }
 
-export const lessons: Lesson[] = [
-  lesson(
-    "letter-be",
-    "حرف «ب» مثل برگ",
-    "با حرف «ب» آشنا شو، صدایش را بشنو و کلمه‌هایی که با آن شروع می‌شوند را پیدا کن.",
-    "sub-letters",
-    { min: 4, max: 6, difficulty: "beginner", tone: "sky", skills: ["s-letters", "s-listening"], minutes: 5, objectives: ["شناخت شکل حرف «ب»", "تشخیص صدای «ب» در اول کلمه"] },
-    [
-      { id: "s1", type: "explain", title: "سلام حرف «ب»!", body: "این حرف «ب» است. یک کاسه‌ی کوچک با یک نقطه زیرش. بگو: بَ… بَ… ب!", visual: { kind: "letter", value: "ب", word: "برگ" } },
-      { id: "s2", type: "explain", title: "«ب» مثل برگ", body: "برگ با صدای «ب» شروع می‌شود. بَ‌… رگ. تو هم بگو: برگ!", visual: { kind: "icons", icons: ["leaf"] } },
-      { id: "s3", type: "quiz", title: "پیدایش کن!", body: "", question: { prompt: "کدام حرف «ب» است؟", answerId: "a", options: [{ id: "a", label: "ب", visual: { kind: "letter", value: "ب" } }, { id: "b", label: "پ", visual: { kind: "letter", value: "پ" } }, { id: "c", label: "ت", visual: { kind: "letter", value: "ت" } }] } },
-      { id: "s4", type: "quiz", title: "گوش کن و انتخاب کن", body: "", question: { prompt: "کدام کلمه با صدای «ب» شروع می‌شود؟", answerId: "a", options: [{ id: "a", label: "برگ", visual: { kind: "icons", icons: ["leaf"] } }, { id: "b", label: "ماهی", visual: { kind: "icons", icons: ["fish"] } }, { id: "c", label: "سیب", visual: { kind: "icons", icons: ["apple"] } }] } },
-    ],
-  ),
+const handmadeLessons: Lesson[] = [
   lesson(
     "count-to-five",
     "شمارش تا ۵",
@@ -107,5 +95,8 @@ export const lessons: Lesson[] = [
     ],
   ),
 ];
+
+/** درس‌های دست‌نویس (ریاضی، شکل‌ها، علوم) + درس‌های تولیدی حروف و اعداد */
+export const lessons: Lesson[] = [...generatedLessons, ...handmadeLessons];
 
 export const findLesson = (slug: string) => lessons.find((l) => l.slug === slug);

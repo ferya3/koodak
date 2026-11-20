@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Game extends Model
 {
-    public const TYPES = ['memory' => 'حافظه', 'pattern' => 'الگو', 'counting' => 'شمارش', 'maze' => 'ماز', 'sorting' => 'دسته‌بندی', 'puzzle' => 'پازل'];
+    public const TYPES = ['memory' => 'حافظه', 'pattern' => 'الگو', 'counting' => 'شمارش', 'maze' => 'ماز', 'sorting' => 'دسته‌بندی', 'puzzle' => 'پازل',
+        'letter-sound' => 'صدای حرف', 'letter-hunt' => 'شکار حرف', 'odd-one-out' => 'کدام فرق دارد؟', 'number-order' => 'ترتیب اعداد', 'more-less' => 'بیشتر/کمتر'];
 
     protected $fillable = ['content_id', 'game_type', 'engine', 'configuration', 'settings', 'status'];
 

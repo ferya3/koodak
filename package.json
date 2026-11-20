@@ -7,6 +7,9 @@
     "build": "pnpm --filter @kidsworld/web build",
     "start": "pnpm --filter @kidsworld/web start",
     "typecheck": "pnpm -r typecheck",
-    "seed:export": "node scripts/export-seed-data.mjs"
+    "seed:export": "tsx --tsconfig apps/web/tsconfig.json scripts/export-seed-data.mjs"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
   }
 }

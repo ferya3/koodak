@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LessonStep extends Model
 {
-    public const VISUAL_KINDS = ['letter' => 'حرف', 'number' => 'عدد + آیکون', 'icons' => 'آیکون‌ها', 'scene' => 'صحنه'];
+    public const VISUAL_KINDS = ['letter' => 'حرف', 'number' => 'عدد + آیکون', 'icons' => 'آیکون‌ها', 'scene' => 'صحنه', 'forms' => 'شکل‌های حرف'];
 
     protected $fillable = ['lesson_id', 'key', 'step_type', 'title', 'body', 'visual', 'question', 'audio_asset_id', 'step_order'];
 

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { extraArt, extraIconNames, type ExtraIconKey } from "./icons/extra";
 
 /**
  * آیکون‌های «اشیای بازی» – در بازی حافظه، شمارش و کاربرگ‌ها مشترکاً استفاده می‌شوند.
@@ -7,14 +8,24 @@ import { cn } from "@/lib/utils";
 const INK = "#1f1a3d";
 const S = { stroke: INK, strokeWidth: 3, strokeLinejoin: "round" as const, strokeLinecap: "round" as const };
 
-export type PlayIconKey = "apple" | "star" | "heart" | "moon" | "sun" | "flower" | "fish" | "mushroom" | "cloud" | "leaf" | "ball" | "car";
+type BaseIconKey = "apple" | "star" | "heart" | "moon" | "sun" | "flower" | "fish" | "mushroom" | "cloud" | "leaf" | "ball" | "car";
+export type PlayIconKey = BaseIconKey | ExtraIconKey;
 
-export const playIconNames: Record<PlayIconKey, string> = {
-  apple: "سیب", star: "ستاره", heart: "قلب", moon: "ماه", sun: "خورشید", flower: "گل",
-  fish: "ماهی", mushroom: "قارچ", cloud: "ابر", leaf: "برگ", ball: "توپ", car: "ماشین",
+const baseNames: Record<BaseIconKey, readonly [string, string]> = {
+  apple: ["سیب", "apple"], star: ["ستاره", "star"], heart: ["قلب", "heart"], moon: ["ماه", "moon"], sun: ["خورشید", "sun"],
+  flower: ["گل", "flower"], fish: ["ماهی", "fish"], mushroom: ["قارچ", "mushroom"], cloud: ["ابر", "cloud"], leaf: ["برگ", "leaf"],
+  ball: ["توپ", "ball"], car: ["ماشین", "car"],
 };
 
-export const playIconKeys = Object.keys(playIconNames) as PlayIconKey[];
+const allNames = { ...baseNames, ...extraIconNames } as Record<PlayIconKey, readonly [string, string]>;
+
+/** نام فارسی هر شیء */
+export const playIconNames = Object.fromEntries(Object.entries(allNames).map(([k, v]) => [k, v[0]])) as Record<PlayIconKey, string>;
+/** نام انگلیسی هر شیء */
+export const playIconNamesEn = Object.fromEntries(Object.entries(allNames).map(([k, v]) => [k, v[1]])) as Record<PlayIconKey, string>;
+
+export const playIconKeys = Object.keys(allNames) as PlayIconKey[];
+export const isPlayIcon = (k: string): k is PlayIconKey => k in allNames;
 
 export function PlayIcon({ name, className }: { name: PlayIconKey; className?: string }) {
   return (
@@ -26,7 +37,7 @@ export function PlayIcon({ name, className }: { name: PlayIconKey; className?: s
   );
 }
 
-export const art: Record<PlayIconKey, React.ReactNode> = {
+const baseArt: Record<BaseIconKey, React.ReactNode> = {
   apple: (
     <>
       <path d="M32 20 C 22 12, 8 16, 8 32 C 8 46, 18 58, 26 58 C 29 58, 30 56, 32 56 C 34 56, 35 58, 38 58 C 46 58, 56 46, 56 32 C 56 16, 42 12, 32 20 Z" fill="#ff7a66" />
@@ -106,3 +117,5 @@ export const art: Record<PlayIconKey, React.ReactNode> = {
     </>
   ),
 };
+
+export const art: Record<PlayIconKey, React.ReactNode> = { ...baseArt, ...extraArt };

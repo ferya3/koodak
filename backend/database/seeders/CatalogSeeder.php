@@ -102,6 +102,8 @@ class CatalogSeeder extends Seeder
                     'visual' => $step['visual'] ?? null, 'question' => $step['question'] ?? null, 'step_order' => $order,
                 ]);
             }
+            // گام‌هایی که دیگر در داده نیستند (مثلاً بعد از بازنویسی درس) حذف می‌شوند
+            $lesson->steps()->whereNotIn('key', array_column($l['steps'], 'id'))->delete();
             $models[$l['id']] = [$lesson, $l['prerequisiteIds']];
         }
         foreach ($models as [$lesson, $prereqs]) {

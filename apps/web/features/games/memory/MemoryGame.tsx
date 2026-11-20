@@ -2,21 +2,26 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PlayIcon, playIconKeys, type PlayIconKey } from "@/components/brand/PlayIcon";
 import { cn, seeded, shuffle } from "@/lib/utils";
+import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import type { GameComponentProps } from "../engine/types";
 
 interface MemoryConfig {
   pairs: number;
   cols: number;
+  /** موضوع کارت‌ها (اختیاری): animals | fruits | sky | ... */
+  theme?: IconTheme;
 }
 
 /** بازی حافظه‌ی تصویری – Brain Games › Memory › Visual Memory */
 export function MemoryGame({ level, runtime, seed }: GameComponentProps<MemoryConfig>) {
-  const { pairs, cols } = level.configuration;
+  const { pairs, cols, theme } = level.configuration;
+  const pool = (theme && iconThemes[theme] ? iconThemes[theme].icons : playIconKeys) as PlayIconKey[];
   const deck = useMemo(() => {
     const rand = seeded(seed);
-    const picks = shuffle(playIconKeys, rand).slice(0, pairs);
+    const picks = shuffle(pool.length >= pairs ? pool : playIconKeys, rand).slice(0, pairs);
     return shuffle([...picks, ...picks], rand).map((icon, i) => ({ id: i, icon }));
-  }, [pairs, seed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pairs, seed, theme]);
 
   const [open, setOpen] = useState<number[]>([]);
   const [matched, setMatched] = useState<Set<PlayIconKey>>(new Set());

@@ -85,7 +85,11 @@ export interface ContentBase {
   publishedAt: string;
 }
 
-export type WorksheetTemplate = "tracing" | "counting" | "maze" | "dot-to-dot" | "matching" | "coloring" | "addition";
+export type WorksheetTemplate =
+  | "tracing" | "counting" | "maze" | "dot-to-dot" | "matching" | "coloring" | "addition"
+  | "letter-trace" | "find-letter" | "beginning-sound" | "missing-letter" | "letter-match" | "word-search"
+  | "number-trace" | "missing-number" | "subtraction" | "compare" | "clock"
+  | "pattern" | "sudoku" | "odd-one-out" | "shapes";
 
 export interface Worksheet extends ContentBase {
   type: "worksheet";
@@ -98,7 +102,7 @@ export interface Worksheet extends ContentBase {
   downloadCount: number;
 }
 
-export type GameType = "memory" | "pattern" | "counting" | "maze" | "sorting" | "puzzle";
+export type GameType = "memory" | "pattern" | "counting" | "maze" | "sorting" | "puzzle" | "letter-sound" | "letter-hunt" | "odd-one-out" | "number-order" | "more-less";
 export type GameEngineKind = "react-svg" | "phaser";
 
 export interface GameLevel {
@@ -143,7 +147,9 @@ export type LessonVisual =
   | { kind: "letter"; value: string; word?: string }
   | { kind: "number"; value: number; icon?: string }
   | { kind: "icons"; icons: string[] }
-  | { kind: "scene"; scene: string };
+  | { kind: "scene"; scene: string }
+  /** شکل‌های نوشتاری یک حرف (جدا، اول، وسط، آخر) یا حرف بزرگ/کوچک */
+  | { kind: "forms"; forms: string[]; ltr?: boolean };
 
 export interface LessonOption {
   id: string;

@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/worksheets" },
 };
 
-export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string }> }) {
-  const { age } = await searchParams;
-  const { data } = await api.worksheets();
+export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string; subject?: string }> }) {
+  const { age, subject } = await searchParams;
+  const [{ data }, shelves] = await Promise.all([api.worksheets(), api.worksheetSubjects()]);
   const initialAge = age && /^\d+$/.test(age) ? Number(age) : undefined;
   return (
     <>
@@ -25,7 +25,7 @@ export default async function WorksheetsPage({ searchParams }: { searchParams: P
             </nav>
             <h1 className="text-4xl font-black sm:text-5xl">کتابخانه‌ی کاربرگ‌ها</h1>
             <p className="mt-3 max-w-xl text-lg leading-8 text-ink-700">
-              بیش از {fa(data.length)} قالب کاربرگ آماده‌ی چاپ؛ هر کدام با گروه سنی، سطح دشواری و مهارت هدف مشخص.
+              {fa(data.length)} کاربرگ آماده‌ی چاپ در {fa(shelves.length)} قفسه: الفبای فارسی و انگلیسی، اعداد، ریاضی، منطق، ماز و رنگ‌آمیزی؛ هر کدام با گروه سنی، سطح دشواری و مهارت هدف مشخص.
             </p>
           </div>
           <div className="flex gap-3">
@@ -35,7 +35,7 @@ export default async function WorksheetsPage({ searchParams }: { searchParams: P
         </Container>
       </section>
       <Container className="py-10">
-        <WorksheetLibrary items={data} initialAge={initialAge} />
+        <WorksheetLibrary items={data} shelves={shelves} initialAge={initialAge} initialShelf={shelves.find((x) => x.slug === subject)?.id} />
       </Container>
     </>
   );

@@ -21,13 +21,22 @@ const faqs = [
 ];
 
 export default async function HomePage() {
-  const [categories, { data: worksheets }, { data: games }, { data: stories }] = await Promise.all([
+  const [categories, { data: worksheets }, { data: games }, { data: stories }, { data: lessons }] = await Promise.all([
     api.categories(),
     api.worksheets(),
     api.games(),
     api.stories(),
+    api.lessons(),
   ]);
-  const featured = [games[0], worksheets[5], stories[0], worksheets[0]];
+  // انتخاب با slug (نه جایگاه در فهرست) تا با بزرگ شدن کاتالوگ یا ترتیب API جابه‌جا نشود
+  const pick = <T extends { slug: string }>(list: T[], slug: string, i = 0) => list.find((x) => x.slug === slug) ?? list[i];
+  const featured = [pick(games, "letter-sounds-fa"), pick(worksheets, "maze-medium", 1), pick(stories, "little-fish-sea"), pick(worksheets, "fa-trace-be")].filter(Boolean);
+  const stats = [
+    { n: worksheets.length, t: "کاربرگ قابل چاپ", href: "/worksheets" },
+    { n: lessons.length, t: "درس تعاملی", href: "/learn" },
+    { n: games.length, t: "بازی آموزشی", href: "/games" },
+    { n: stories.length, t: "قصه‌ی مصور", href: "/stories" },
+  ];
 
   return (
     <>
@@ -66,7 +75,17 @@ export default async function HomePage() {
                 ساخت حساب والدین
               </ButtonLink>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold text-ink-700">
+            <ul className="mt-8 grid max-w-xl grid-cols-4 gap-2" aria-label="محتوای دنیای کودک">
+              {stats.map((s) => (
+                <li key={s.href}>
+                  <a href={s.href} className="block rounded-2xl border-2 border-ink-900/10 bg-white/80 px-2 py-2 text-center transition hover:border-ink-900">
+                    <span className="block font-display text-2xl font-black text-ink-900">{fa(s.n)}</span>
+                    <span className="block text-xs font-bold leading-5 text-ink-500">{s.t}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold text-ink-700">
               {["بدون تبلیغات", "بدون چت عمومی", "کنترل کامل والدین", "فارسی و انگلیسی"].map((t) => (
                 <li key={t} className="flex items-center gap-1.5">
                   <svg viewBox="0 0 20 20" className="h-5 w-5" aria-hidden="true">

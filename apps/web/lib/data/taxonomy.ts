@@ -32,11 +32,22 @@ export const categories: Category[] = [
 
 /** موضوع‌های آکادمی یادگیری (Category › Subject) */
 export const subjects: Subject[] = [
-  { id: "sub-letters", categoryId: "c-learn", slug: "alphabet", title: "حروف الفبا" },
+  { id: "sub-letters", categoryId: "c-learn", slug: "alphabet", title: "الفبای فارسی" },
+  { id: "sub-english", categoryId: "c-learn", slug: "english-alphabet", title: "الفبای انگلیسی" },
   { id: "sub-numbers", categoryId: "c-learn", slug: "numbers", title: "اعداد و شمارش" },
   { id: "sub-shapes", categoryId: "c-learn", slug: "shapes-colors", title: "شکل‌ها و رنگ‌ها" },
   { id: "sub-math", categoryId: "c-learn", slug: "math", title: "ریاضی" },
   { id: "sub-science", categoryId: "c-learn", slug: "science", title: "علوم و طبیعت" },
+
+  // موضوع‌های کتابخانه‌ی کاربرگ
+  { id: "ws-fa", categoryId: "c-sheets", slug: "persian-letters", title: "الفبای فارسی" },
+  { id: "ws-en", categoryId: "c-sheets", slug: "english-letters", title: "الفبای انگلیسی" },
+  { id: "ws-numbers", categoryId: "c-sheets", slug: "numbers", title: "اعداد و شمارش" },
+  { id: "ws-math", categoryId: "c-sheets", slug: "math", title: "ریاضی و ساعت" },
+  { id: "ws-logic", categoryId: "c-sheets", slug: "logic", title: "منطق و الگو" },
+  { id: "ws-motor", categoryId: "c-sheets", slug: "mazes-tracing", title: "ماز، نقطه‌به‌نقطه و شکل‌ها" },
+  { id: "ws-coloring", categoryId: "c-sheets", slug: "coloring", title: "رنگ‌آمیزی" },
+  { id: "ws-vocab", categoryId: "c-sheets", slug: "word-puzzles", title: "جدول و واژه" },
 ];
 
 export const skills: Skill[] = [

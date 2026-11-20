@@ -5,6 +5,7 @@ import { ContentCard } from "@/features/content/ContentCard";
 import { Mascot } from "@/components/brand/Mascot";
 import { WorldIcon } from "@/components/brand/WorldIcon";
 import { fa } from "@/lib/utils";
+import { LessonTiles } from "@/features/learning/LessonTiles";
 
 export const metadata: Metadata = {
   title: "آکادمی یادگیری: الفبا، اعداد، ریاضی و علوم",
@@ -45,11 +46,24 @@ export default async function LearnPage() {
         {bySubject.map(({ subject, items }) => (
           <section key={subject.id} id={subject.slug} className="mb-12 scroll-mt-24">
             <SectionHeading title={subject.title} />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {items.map((l) => (
-                <ContentCard key={l.id} content={l} />
-              ))}
-            </div>
+            {items.length > 9 ? (
+              <>
+                {/* موضوع پرتعداد: سه درس اول به‌صورت کارت، بقیه به‌صورت کاشی‌های فشرده‌ی حرف/عدد */}
+                <div className="mb-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.slice(0, 3).map((l) => (
+                    <ContentCard key={l.id} content={l} />
+                  ))}
+                </div>
+                <p className="mb-3 font-bold text-ink-500">همه‌ی {fa(items.length)} درس:</p>
+                <LessonTiles lessons={items} />
+              </>
+            ) : (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {items.map((l) => (
+                  <ContentCard key={l.id} content={l} />
+                ))}
+              </div>
+            )}
           </section>
         ))}
       </Container>

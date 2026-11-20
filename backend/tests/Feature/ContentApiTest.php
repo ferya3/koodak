@@ -18,19 +18,25 @@ class ContentApiTest extends TestCase
     public function test_worksheets_list_matches_frontend_contract_and_filters(): void
     {
         $res = $this->getJson('/api/v1/worksheets?age=5&template=maze')->assertOk();
-        $res->assertJsonPath('meta.total', 1)->assertJsonPath('data.0.slug', 'maze-easy')
+        $res->assertJsonPath('meta.total', 9)->assertJsonPath('data.0.slug', 'maze-easy')
             ->assertJsonStructure(['data' => [['id', 'slug', 'type', 'title', 'categoryId', 'ageGroupIds', 'minAge', 'maxAge', 'difficulty',
                 'estimatedMinutes', 'access', 'skills' => [['skillId', 'weight']], 'tone', 'template', 'params', 'pageCount', 'paperSize']], 'meta' => ['page', 'perPage', 'total']]);
 
-        $this->getJson('/api/v1/worksheets?q=ماز')->assertJsonPath('meta.total', 3);
-        $this->getJson('/api/v1/worksheets?access=premium')->assertJsonPath('meta.total', 2);
+        $this->getJson('/api/v1/worksheets?q=ماز')->assertJsonPath('meta.total', 27);
+        $this->getJson('/api/v1/worksheets?access=premium')->assertJsonPath('meta.total', 53);
+
+        // کتابخانه‌ی بزرگ: فرانت همه‌ی صفحه‌ها را (۶۰تایی) می‌گیرد؛ کاربرگ‌های تولیدی قفسه (subject) دارند
+        $all = $this->getJson('/api/v1/worksheets?perPage=60&page=2')->assertOk()->assertJsonPath('meta.page', 2);
+        $this->assertGreaterThan(300, $all->json('meta.total'));
+        $this->assertNotNull($this->getJson('/api/v1/worksheets/fa-trace-be')->json('data.subjectId'));
+        $this->getJson('/api/v1/worksheets?perPage=61')->assertUnprocessable();
     }
 
     public function test_unpublished_content_is_hidden(): void
     {
         Content::where('slug', 'maze-easy')->update(['status' => 'draft']);
         $this->getJson('/api/v1/worksheets/maze-easy')->assertNotFound();
-        $this->getJson('/api/v1/worksheets?template=maze&age=5')->assertJsonPath('meta.total', 0);
+        $this->getJson('/api/v1/worksheets?template=maze&age=5')->assertJsonPath('meta.total', 8);
     }
 
     public function test_premium_worksheet_download_requires_subscription(): void
