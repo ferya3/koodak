@@ -247,8 +247,28 @@
 
 /* ── چاپ کاربرگ: فقط برگه نمایش داده شود ── */
 @media print {
+  /*
+   * چاپ کاربرگ: برگه کل صفحه‌ی A4 را پر می‌کند و فقط «یک» صفحه چاپ می‌شود.
+   * (قبلاً محدودیت عرض صفحه‌ی سایت روی چاپ هم اعمال می‌شد و بقیه‌ی صفحه چند برگه‌ی سفید اضافه می‌ساخت.)
+   */
+  @page { size: A4; margin: 5mm; }
+  html, body { height: 100% !important; overflow: hidden !important; background: #fff !important; }
+  /* هر چیزی که نه برگه است و نه برگه را در بر دارد، کلاً از چیدمان چاپ حذف می‌شود (بدون صفحه‌ی سفید اضافه) */
+  body *:not(:has(.print-area)):not(.print-area):not(.print-area *) { display: none !important; }
+  body *:has(.print-area) { padding: 0 !important; margin: 0 !important; min-height: 0 !important; height: auto !important; box-shadow: none !important; background: none !important; }
   body * { visibility: hidden; }
   .print-area, .print-area * { visibility: visible; }
-  .print-area { position: absolute; inset: 0; width: 100%; box-shadow: none !important; border: 0 !important; }
-  @page { size: A4; margin: 6mm; }
+  .print-area {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    transform: none !important;
+  }
+  img.print-area { object-fit: contain !important; }
 }
