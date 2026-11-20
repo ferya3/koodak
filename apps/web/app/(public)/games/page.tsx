@@ -18,7 +18,7 @@ export default async function GamesPage() {
   const { data } = await api.games();
   return (
     <>
-      <section className="border-b-2 border-ink-900/5 bg-grape-100">
+      <section className="mesh relative -mt-19 overflow-hidden pt-19 [--hero:var(--color-grape-300)]">
         <Container className="flex flex-wrap items-center justify-between gap-6 py-10">
           <div>
             <h1 className="text-4xl font-black sm:text-5xl">بازی‌ها</h1>

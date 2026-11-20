@@ -21,7 +21,7 @@ export default async function LearnPage() {
 
   return (
     <>
-      <section className="border-b-2 border-ink-900/5 bg-sky-100">
+      <section className="mesh relative -mt-19 overflow-hidden pt-19 [--hero:var(--color-sky-300)]">
         <Container className="flex flex-wrap items-center justify-between gap-6 py-10">
           <div>
             <h1 className="text-4xl font-black sm:text-5xl">آکادمی یادگیری</h1>
@@ -38,7 +38,7 @@ export default async function LearnPage() {
       <Container className="py-10">
         <nav className="mb-10 flex flex-wrap gap-2" aria-label="موضوع‌ها">
           {bySubject.map(({ subject, items }) => (
-            <a key={subject.id} href={`#${subject.slug}`} className="rounded-full border-2 border-ink-200 bg-white px-4 py-2 text-sm font-bold hover:border-ink-900">
+            <a key={subject.id} href={`#${subject.slug}`} className="rounded-full bg-white shadow-soft ring-1 ring-ink-900/10 px-4 py-2 text-sm font-bold hover:ring-ink-900/30">
               {subject.title} <span className="text-ink-300">· {fa(items.length)}</span>
             </a>
           ))}

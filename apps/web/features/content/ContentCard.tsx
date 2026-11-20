@@ -19,11 +19,14 @@ export function ContentCard({ content, className }: { content: Content; classNam
     <Link
       href={hrefFor(content)}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-card border-2 border-ink-900 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group flex flex-col rounded-[1.75rem] bg-white p-2 shadow-soft ring-1 ring-ink-900/[0.06] transition duration-300 hover:-translate-y-1 hover:shadow-lift",
         className,
       )}
     >
-      <div className={cn("relative grid aspect-[4/3] place-items-center overflow-hidden border-b-2 border-ink-900", t.soft)}>
+      <div
+        className="relative grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.35rem]"
+        style={{ background: `linear-gradient(150deg, ${t.hex.soft} 0%, #fff 55%, ${t.hex.soft} 100%)` }}
+      >
         {content.type === "worksheet" && (
           <WorksheetSheet worksheet={content} className="w-[62%] translate-y-6 rotate-[-3deg] rounded-md shadow-lift transition duration-300 group-hover:rotate-0" />
         )}
@@ -35,19 +38,19 @@ export function ContentCard({ content, className }: { content: Content; classNam
           </div>
         )}
         <div className="absolute right-3 top-3 flex gap-1.5">
-          <Badge tone={content.tone} className="border border-ink-900/10 bg-white/90">
+          <Badge tone={content.tone} className="bg-white/85 shadow-soft backdrop-blur">
             {contentTypeLabel[content.type]}
           </Badge>
           {content.access === "premium" && <PremiumBadge />}
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <h3 className="text-lg font-extrabold leading-snug text-ink-900">{content.title}</h3>
+      <div className="flex flex-1 flex-col gap-2 px-3 pb-3 pt-4">
+        <h3 className="text-lg font-extrabold leading-snug text-ink-900 transition group-hover:text-coral-500">{content.title}</h3>
         <p className="line-clamp-2 text-sm leading-6 text-ink-500">{content.description}</p>
         <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-2 text-xs font-bold text-ink-500">
-          <span className="rounded-full bg-ink-50 px-2 py-1">{ageRangeLabel(content.minAge, content.maxAge)}</span>
-          <span className="rounded-full bg-ink-50 px-2 py-1">{difficultyLabel[content.difficulty]}</span>
-          <span className="rounded-full bg-ink-50 px-2 py-1">{fa(content.estimatedMinutes)} دقیقه</span>
+          <span className="rounded-full bg-ink-50 px-2.5 py-1">{ageRangeLabel(content.minAge, content.maxAge)}</span>
+          <span className="rounded-full bg-ink-50 px-2.5 py-1">{difficultyLabel[content.difficulty]}</span>
+          <span className="ms-auto rounded-full bg-ink-50 px-2.5 py-1">⏱ {fa(content.estimatedMinutes)} دقیقه</span>
         </div>
       </div>
     </Link>

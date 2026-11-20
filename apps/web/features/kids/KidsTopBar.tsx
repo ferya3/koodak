@@ -17,7 +17,7 @@ export function KidsTopBar() {
 
   return (
     <header className="sticky top-0 z-30 px-3 pt-3 sm:px-5">
-      <div className="mx-auto flex h-20 max-w-6xl items-center gap-3 rounded-[1.75rem] border-[3px] border-ink-900 bg-white px-3 shadow-soft sm:px-4">
+      <div className="mx-auto flex h-20 max-w-6xl items-center gap-3 rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white px-3 shadow-soft sm:px-4">
         <Link href={onPicker ? "/kids" : "/kids/home"} aria-label="خانه‌ی من" className="grid h-14 w-14 place-items-center rounded-2xl bg-sun-100">
           <LogoMark className="h-11 w-11" />
         </Link>
@@ -45,7 +45,7 @@ export function KidsTopBar() {
         <div className="ms-auto flex items-center gap-2">
           {child && progress && (
             <>
-              <span className="flex h-12 items-center gap-1.5 rounded-2xl border-[3px] border-ink-900 bg-sun-300 px-3 font-display text-xl font-black" aria-label={`${progress.stars} ستاره`}>
+              <span className="flex h-12 items-center gap-1.5 rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-300 px-3 font-display text-xl font-black" aria-label={`${progress.stars} ستاره`}>
                 <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
                   <path d="M12 2.5 L 14.8 8.6 L 21.5 9.3 L 16.5 13.8 L 17.9 20.4 L 12 17 L 6.1 20.4 L 7.5 13.8 L 2.5 9.3 L 9.2 8.6 Z" fill="#fff" stroke="#1f1a3d" strokeWidth="2" strokeLinejoin="round" />
                 </svg>

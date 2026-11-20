@@ -47,7 +47,7 @@ export function MoreLessGame({ level, runtime, seed }: GameComponentProps<Config
       type="button"
       onClick={() => choose(side)}
       className={cn(
-        "flex min-h-48 flex-1 flex-wrap content-center items-center justify-center gap-2 rounded-[2rem] border-[3px] border-ink-900 p-4 btn-3d [--btn-edge:var(--color-ink-900)]",
+        "flex min-h-48 flex-1 flex-wrap content-center items-center justify-center gap-2 rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] p-4 btn-3d [--btn-edge:var(--color-ink-200)]",
         picked?.side === side ? (picked.ok ? "bg-grass-300" : "animate-shake bg-coral-100") : "bg-white",
       )}
       aria-label={`گروه ${n} تایی`}

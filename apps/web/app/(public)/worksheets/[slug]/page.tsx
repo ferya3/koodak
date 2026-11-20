@@ -51,7 +51,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
         </nav>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
-          <div className={cn("rounded-[2rem] border-2 border-ink-900 p-4 sm:p-10", t.soft)}>
+          <div className="rounded-[2rem] p-4 shadow-soft ring-1 ring-ink-900/5 sm:p-10" style={{ background: `linear-gradient(150deg, ${t.hex.soft}, #fff 60%, ${t.hex.soft})` }}>
             {upload && isPdf(w) && w.access === "free" && !w.hasPreview ? (
               <iframe src={uploadUrls(w.slug).inline} title={`کاربرگ ${w.title}`} className="mx-auto block aspect-[595/842] w-full max-w-[620px] rounded-xl bg-white shadow-lift" />
             ) : (
@@ -76,7 +76,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
                 ["زمان تقریبی", `${fa(w.estimatedMinutes)} دقیقه`],
                 ["قطع کاغذ", <>{fa(w.pageCount)} صفحه · <span dir="ltr">{w.paperSize}</span></>],
               ] as [string, React.ReactNode][]).map(([k, v]) => (
-                <div key={k} className="rounded-2xl border-2 border-ink-900/10 bg-white p-3">
+                <div key={k} className="surface rounded-2xl p-3">
                   <dt className="text-xs font-bold text-ink-500">{k}</dt>
                   <dd className="mt-0.5 font-display text-lg font-extrabold">{v}</dd>
                 </div>
@@ -87,7 +87,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
               <h2 className="mb-2 font-display font-extrabold">مهارت‌هایی که تمرین می‌شود</h2>
               <div className="flex flex-wrap gap-2">
                 {w.skills.map((s) => (
-                  <span key={s.skillId} className="rounded-full border-2 border-ink-900 bg-white px-3 py-1 text-sm font-bold">
+                  <span key={s.skillId} className="rounded-full bg-white px-3 py-1 text-sm font-bold shadow-soft ring-1 ring-ink-900/10">
                     {names.skill(s.skillId)}
                   </span>
                 ))}
@@ -95,7 +95,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
             </div>
 
             {w.access === "premium" && (
-              <div className="rounded-3xl border-2 border-ink-900 bg-ink-900 p-5 text-white">
+              <div className="rounded-3xl bg-gradient-to-b from-ink-900 to-[#2c2566] p-5 text-white shadow-lift">
                 <p className="font-display text-lg font-black">این کاربرگ مخصوص اشتراک خانواده است</p>
                 <p className="mt-1 text-sm text-ink-200">پیش‌نمایش رایگان است؛ برای چاپ و دانلود نامحدود اشتراک بگیرید.</p>
                 <ButtonLink href="/pricing" variant="kid" tone="sun" className="mt-4 w-full">مشاهده‌ی اشتراک‌ها</ButtonLink>

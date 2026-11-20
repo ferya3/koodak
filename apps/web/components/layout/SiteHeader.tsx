@@ -36,8 +36,8 @@ function Chevron({ open }: { open: boolean }) {
 /** پنل مگامنو: ستون‌های دسته‌بندی + میان‌بُرهای سنی + لینک «همه» */
 function MegaPanel({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="rounded-card border-2 border-ink-900 bg-white p-6 shadow-[0_6px_0_#1f1a3d]">
+    <div className="mx-auto max-w-7xl pt-3">
+      <div className="animate-pop rounded-[2rem] bg-white/95 p-7 shadow-float ring-1 ring-ink-900/5 backdrop-blur-xl">
         <div className={cn("grid gap-x-6 gap-y-6", item.columns!.length > 4 ? "grid-cols-5" : "grid-cols-4")}>
           {item.columns!.map((c) => (
             <div key={c.title}>
@@ -56,12 +56,12 @@ function MegaPanel({ item, onNavigate }: { item: NavItem; onNavigate: () => void
             </div>
           ))}
         </div>
-        <div className="mt-6 flex flex-wrap items-center gap-2 border-t-2 border-ink-900/5 pt-4">
+        <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-ink-900/5 pt-4">
           {item.extra && (
             <>
               <span className="me-1 font-display text-sm font-extrabold">{item.extra.title}:</span>
               {item.extra.links.map((l) => (
-                <Link key={l.href} href={l.href} onClick={onNavigate} className="rounded-full border-2 border-ink-200 px-3 py-1 text-sm font-bold hover:border-ink-900">
+                <Link key={l.href} href={l.href} onClick={onNavigate} className="rounded-full bg-ink-50 px-3 py-1 text-sm font-bold text-ink-700 transition hover:bg-sun-100 hover:text-ink-900">
                   {l.label}
                 </Link>
               ))}
@@ -106,8 +106,8 @@ function HeaderInner() {
   const active = nav.find((n) => n.href === menu && n.columns);
 
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-ink-900/5 bg-cream-50/85 backdrop-blur-md" onMouseLeave={leave}>
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5" onMouseLeave={leave}>
+      <div className="glass mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 rounded-full ps-5 pe-2.5">
         <Link href="/" aria-label="KidsWorld – صفحه‌ی اصلی" className="shrink-0">
           <Logo />
         </Link>
@@ -116,8 +116,8 @@ function HeaderInner() {
           {nav.map((n) => {
             const current = pathname.startsWith(n.href) && n.href !== "/#worlds";
             const cls = cn(
-              "inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-[0.95rem] font-bold text-ink-700 transition hover:bg-white hover:text-ink-900",
-              (current || menu === n.href) && "bg-white text-ink-900 shadow-soft",
+              "inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-[0.95rem] font-bold text-ink-500 transition hover:text-ink-900",
+              (current || menu === n.href) && "bg-ink-900/[0.06] text-ink-900",
             );
             return n.columns ? (
               <button
@@ -144,14 +144,14 @@ function HeaderInner() {
           <ButtonLink href="/parent" variant="ghost" size="sm">
             ورود والدین
           </ButtonLink>
-          <ButtonLink href="/kids" variant="kid" tone="grass" size="md" className="rounded-2xl">
+          <ButtonLink href="/kids" variant="primary" size="md" className="from-grass-400 via-grass-500 to-ocean-500 shadow-[0_12px_28px_-10px_rgb(46_173_85/0.6)]">
             ورود بچه‌ها
           </ButtonLink>
         </div>
 
         <button
           type="button"
-          className="grid h-11 w-11 place-items-center rounded-2xl border-2 border-ink-900 bg-white lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-full bg-white shadow-soft ring-1 ring-ink-900/10 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "بستن منو" : "باز کردن منو"}
@@ -168,13 +168,13 @@ function HeaderInner() {
       </div>
 
       {active && (
-        <div id="mega-menu" className="absolute inset-x-0 top-full hidden lg:block" onMouseEnter={() => enter(active.href)}>
+        <div id="mega-menu" className="absolute inset-x-0 top-full hidden px-3 sm:px-5 lg:block" onMouseEnter={() => enter(active.href)}>
           <MegaPanel item={active} onNavigate={() => setMenu(null)} />
         </div>
       )}
 
       {open && (
-        <nav id="mobile-nav" className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t-2 border-ink-900/5 bg-cream-50 px-4 pb-5 pt-2 lg:hidden" aria-label="ناوبری موبایل">
+        <nav id="mobile-nav" className="glass mx-auto mt-2 max-h-[calc(100dvh-6rem)] max-w-7xl overflow-y-auto rounded-[2rem] px-3 pb-4 pt-2 lg:hidden" aria-label="ناوبری موبایل">
           <ul className="flex flex-col gap-1">
             {nav.map((n) => (
               <li key={n.href}>
@@ -198,7 +198,7 @@ function HeaderInner() {
                             </Link>
                             <div className="mt-1 flex flex-wrap gap-1.5">
                               {c.links.map((l) => (
-                                <Link key={l.href} href={l.href} className="rounded-full border-2 border-ink-200 px-3 py-1 text-sm font-bold">
+                                <Link key={l.href} href={l.href} className="rounded-full bg-ink-50 px-3 py-1 text-sm font-bold text-ink-700">
                                   {l.label}
                                 </Link>
                               ))}
@@ -210,7 +210,7 @@ function HeaderInner() {
                             <p className="font-display font-extrabold">{n.extra.title}</p>
                             <div className="mt-1 flex flex-wrap gap-1.5">
                               {n.extra.links.map((l) => (
-                                <Link key={l.href} href={l.href} className="rounded-full border-2 border-ink-200 px-3 py-1 text-sm font-bold">
+                                <Link key={l.href} href={l.href} className="rounded-full bg-ink-50 px-3 py-1 text-sm font-bold text-ink-700">
                                   {l.label}
                                 </Link>
                               ))}
@@ -233,7 +233,7 @@ function HeaderInner() {
           </ul>
           <div className="mt-3 grid grid-cols-2 gap-2">
             <ButtonLink href="/parent" variant="secondary" size="md">ورود والدین</ButtonLink>
-            <ButtonLink href="/kids" variant="kid" tone="grass" size="md" className="rounded-2xl">ورود بچه‌ها</ButtonLink>
+            <ButtonLink href="/kids" variant="primary" size="md" className="from-grass-400 via-grass-500 to-ocean-500">ورود بچه‌ها</ButtonLink>
           </div>
         </nav>
       )}
@@ -244,7 +244,7 @@ function HeaderInner() {
 /** useSearchParams در صفحه‌های ایستا به Suspense نیاز دارد */
 export function SiteHeader() {
   return (
-    <Suspense fallback={<div className="h-18 border-b-2 border-ink-900/5 bg-cream-50" />}>
+    <Suspense fallback={<div className="h-19" />}>
       <HeaderInner />
     </Suspense>
   );

@@ -57,7 +57,7 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
 
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      <div className="relative aspect-[4/3] w-full max-w-xl overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-gradient-to-b from-sky-100 to-sky-300" key={round}>
+      <div className="relative aspect-[4/3] w-full max-w-xl overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-gradient-to-b from-sky-100 to-sky-300" key={round}>
         <svg viewBox="0 0 400 300" className="absolute inset-0 h-full w-full" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0 30 C 100 10, 300 50, 400 24" stroke="#fff" strokeWidth="6" fill="none" opacity="0.6" />
           <path d="M0 300 L 0 270 C 60 250, 140 280, 200 264 C 270 246, 340 276, 400 260 L 400 300 Z" fill="#fce8c6" />
@@ -80,7 +80,7 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
               <PlayIcon name="fish" className="w-full animate-float" />
             </span>
             {tapped.has(i) && (
-              <span className="absolute -top-2 left-1/2 grid h-7 w-7 -translate-x-1/2 animate-pop place-items-center rounded-full border-2 border-ink-900 bg-sun-400 font-display text-sm font-black">
+              <span className="absolute -top-2 left-1/2 grid h-7 w-7 -translate-x-1/2 animate-pop place-items-center rounded-full border-2 border-ink-900/10 bg-sun-400 font-display text-sm font-black">
                 {fa([...tapped].indexOf(i) + 1)}
               </span>
             )}
@@ -95,7 +95,7 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
             type="button"
             onClick={() => choose(i)}
             className={cn(
-              "grid h-20 w-20 place-items-center rounded-3xl border-[3px] border-ink-900 font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-900)] sm:h-24 sm:w-24 sm:text-5xl",
+              "grid h-20 w-20 place-items-center rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-200)] sm:h-24 sm:w-24 sm:text-5xl",
               result?.i === i ? (result.ok ? "bg-grass-300" : "animate-shake bg-coral-100") : "bg-white",
             )}
           >

@@ -86,18 +86,18 @@ export function StoryReader({ story }: { story: Story }) {
   const textSize = ["text-lg leading-9", "text-xl leading-10 sm:text-2xl sm:leading-[3rem]", "text-2xl leading-[3rem] sm:text-3xl sm:leading-[3.5rem]"][size];
 
   return (
-    <article className="overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-white shadow-lift">
+    <article className="overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white shadow-lift">
       <div className="relative">
         <StoryScene scene={ch.scene} className="aspect-[16/9] w-full sm:aspect-[21/9]" />
         <div className="absolute inset-x-0 bottom-0 flex justify-center gap-1.5 pb-3">
           {story.chapters.map((c) => (
-            <span key={c.id} className={cn("h-2.5 rounded-full border-2 border-ink-900 transition-all", c.id === chapterId ? "w-8 bg-sun-400" : path.includes(c.id) ? "w-2.5 bg-white" : "w-2.5 bg-white/40")} />
+            <span key={c.id} className={cn("h-2.5 rounded-full border-2 border-ink-900/10 transition-all", c.id === chapterId ? "w-8 bg-sun-400" : path.includes(c.id) ? "w-2.5 bg-white" : "w-2.5 bg-white/40")} />
           ))}
         </div>
       </div>
 
       {/* نوار ابزار */}
-      <div className={cn("flex flex-wrap items-center gap-2 border-y-[3px] border-ink-900 px-4 py-3", t.soft)}>
+      <div className={cn("flex flex-wrap items-center gap-2 border-y border-ink-900/5 px-4 py-3", t.soft)}>
         <Button variant="kid" tone={speaking ? "coral" : "grass"} size="md" onClick={speak} aria-pressed={speaking}>
           {speaking ? "■ توقف" : "▶ برام بخون"}
         </Button>
@@ -151,7 +151,7 @@ export function StoryReader({ story }: { story: Story }) {
         )}
 
         {ch.isEnding && (
-          <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl border-[3px] border-ink-900 bg-sun-100 p-5">
+          <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-100 p-5">
             <Mascot mood="sleepy" className="h-20 w-20" />
             <div className="flex-1">
               <p className="font-display text-2xl font-black">پایان قصه 🌙</p>

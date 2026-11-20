@@ -15,7 +15,7 @@ export default async function StoriesPage() {
   const { data } = await api.stories();
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2c2566] to-[#5b47b8] text-white">
+      <section className="relative -mt-19 overflow-hidden bg-gradient-to-b from-[#2c2566] to-[#5b47b8] pt-19 text-white">
         <Sparkle className="absolute right-[20%] top-8 w-6" />
         <Sparkle className="absolute left-[30%] top-20 w-4" />
         <Cloud className="absolute -left-6 bottom-4 w-40 opacity-20" />

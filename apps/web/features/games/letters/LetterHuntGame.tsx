@@ -56,7 +56,7 @@ export function LetterHuntGame({ level, runtime, seed }: GameComponentProps<Conf
   return (
     <div className="flex w-full flex-col items-center gap-5" key={round}>
       <p className="font-display text-2xl font-black">
-        همه‌ی <span className="mx-1 inline-grid h-14 w-14 place-items-center rounded-2xl border-[3px] border-ink-900 bg-sun-300 align-middle text-4xl">{r.target}</span> ها را پیدا کن!
+        همه‌ی <span className="mx-1 inline-grid h-14 w-14 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-300 align-middle text-4xl">{r.target}</span> ها را پیدا کن!
         <span className="ms-3 text-lg text-ink-500">({fa(found.size)} از {fa(r.hits)})</span>
       </p>
       <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }} dir={alphabet === "en" ? "ltr" : "rtl"}>
@@ -66,7 +66,7 @@ export function LetterHuntGame({ level, runtime, seed }: GameComponentProps<Conf
             type="button"
             onClick={() => tap(i)}
             className={cn(
-              "grid h-16 w-16 place-items-center rounded-2xl border-[3px] border-ink-900 font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-900)] sm:h-20 sm:w-20",
+              "grid h-16 w-16 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] font-display text-4xl font-black btn-3d [--btn-edge:var(--color-ink-200)] sm:h-20 sm:w-20",
               found.has(i) ? "bg-grass-300" : wrong === i ? "animate-shake bg-coral-100" : "bg-white",
             )}
           >

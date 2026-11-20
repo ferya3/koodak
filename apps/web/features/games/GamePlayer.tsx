@@ -153,10 +153,10 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
   const kids = variant === "kids";
 
   return (
-    <div className={cn("relative overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-white shadow-lift", kids && "min-h-[calc(100dvh-7rem)]")}>
+    <div className={cn("relative overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white shadow-lift", kids && "min-h-[calc(100dvh-7rem)]")}>
       {/* ── HUD ── */}
-      <div className={cn("flex items-center gap-3 border-b-[3px] border-ink-900 px-3 py-3 sm:px-5", t.soft)}>
-        <Link href={exitHref} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]" aria-label="خروج از بازی">
+      <div className={cn("flex items-center gap-3 border-b border-ink-900/5 px-3 py-3 sm:px-5", t.soft)}>
+        <Link href={exitHref} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white btn-3d [--btn-edge:var(--color-ink-200)]" aria-label="خروج از بازی">
           <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
             <path d="M6 6 L18 18 M18 6 L6 18" stroke="#1f1a3d" strokeWidth="3" strokeLinecap="round" />
           </svg>
@@ -171,7 +171,7 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
             </div>
           )}
         </div>
-        <button type="button" onClick={toggleSound} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]" aria-pressed={sound} aria-label={sound ? "قطع صدا" : "پخش صدا"}>
+        <button type="button" onClick={toggleSound} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white btn-3d [--btn-edge:var(--color-ink-200)]" aria-pressed={sound} aria-label={sound ? "قطع صدا" : "پخش صدا"}>
           <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
             <path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill="#ffce3d" stroke="#1f1a3d" strokeWidth="2" strokeLinejoin="round" />
             {sound ? <path d="M16 9 C 17.5 10.5, 17.5 13.5, 16 15 M18.5 6.5 C 21.5 9.5, 21.5 14.5, 18.5 17.5" stroke="#1f1a3d" strokeWidth="2" fill="none" strokeLinecap="round" /> : <path d="M16 9 L 21 15 M21 9 L 16 15" stroke="#1f1a3d" strokeWidth="2" strokeLinecap="round" />}
@@ -182,13 +182,13 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
       {/* ── INTRO ── */}
       {phase === "intro" && (
         <div className="grid gap-8 p-5 sm:p-10 lg:grid-cols-2 lg:items-center">
-          <div className="overflow-hidden rounded-3xl border-[3px] border-ink-900">
+          <div className="overflow-hidden rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)]">
             <GameCover game={game} className="aspect-[4/3] w-full" />
           </div>
           <div>
             <div className="flex items-start gap-3">
               <Mascot mood="happy" className="h-20 w-20 shrink-0" />
-              <p className="relative rounded-3xl rounded-tr-md border-[3px] border-ink-900 bg-sun-100 px-5 py-4 font-display text-xl font-bold leading-9">{def.howTo}</p>
+              <p className="relative rounded-3xl rounded-tr-md border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-100 px-5 py-4 font-display text-xl font-bold leading-9">{def.howTo}</p>
             </div>
             <h2 className="mt-6 font-display text-lg font-black text-ink-500">یک مرحله انتخاب کن</h2>
             <div className="mt-3 grid grid-cols-3 gap-3">
@@ -202,7 +202,7 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
                     disabled={locked}
                     onClick={() => start(i)}
                     className={cn(
-                      "flex flex-col items-center gap-1 rounded-3xl border-[3px] border-ink-900 p-3 btn-3d [--btn-edge:var(--color-ink-900)] disabled:opacity-50",
+                      "flex flex-col items-center gap-1 rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] p-3 btn-3d [--btn-edge:var(--color-ink-200)] disabled:opacity-50",
                       locked ? "bg-ink-100" : t.soft,
                     )}
                     aria-label={`مرحله ${l.levelNumber}${locked ? "، قفل" : ""}`}
@@ -228,7 +228,7 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
           {feedback && (
             <div className="pointer-events-none absolute bottom-4 left-4 flex animate-pop items-center gap-2" aria-live="polite">
               <Mascot mood={feedback === "correct" ? "cheer" : "think"} className="h-16 w-16" />
-              <span className={cn("rounded-2xl border-2 border-ink-900 px-3 py-1.5 font-display font-black", feedback === "correct" ? "bg-grass-300" : "bg-sun-300")}>
+              <span className={cn("rounded-2xl border-2 border-ink-900/10 px-3 py-1.5 font-display font-black", feedback === "correct" ? "bg-grass-300" : "bg-sun-300")}>
                 {feedback === "correct" ? "آفرین!" : "دوباره امتحان کن"}
               </span>
             </div>
@@ -251,7 +251,7 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
           {awards && awards.achievements.length > 0 && (
             <div className="mt-6 flex animate-pop flex-wrap justify-center gap-2" aria-live="polite">
               {awards.achievements.map((a) => (
-                <span key={a.id} className="rounded-2xl border-2 border-ink-900 bg-sun-300 px-4 py-2 font-display font-black">🏅 مدال جدید: {a.title}</span>
+                <span key={a.id} className="rounded-2xl border-2 border-ink-900/10 bg-sun-300 px-4 py-2 font-display font-black">🏅 مدال جدید: {a.title}</span>
               ))}
             </div>
           )}

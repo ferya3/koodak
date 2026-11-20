@@ -118,11 +118,12 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
               type="button"
               aria-pressed={active}
               onClick={() => (active ? setShelf(undefined) : openShelf(s.id))}
-              className={`group flex items-center gap-2 rounded-card sm:gap-3 border-2 p-3 text-start transition hover:-translate-y-0.5 ${active ? "border-ink-900 shadow-[0_4px_0_#1f1a3d]" : "border-ink-900/10 hover:border-ink-900/40"} ${tones[l.tone].soft}`}
+              className={`group flex items-center gap-2 rounded-card p-3 text-start transition hover:-translate-y-0.5 hover:shadow-lift sm:gap-3 ${active ? "shadow-lift ring-2 ring-ink-900" : "shadow-soft ring-1 ring-ink-900/5"}`}
+              style={{ background: `linear-gradient(150deg, #fff 15%, ${tones[l.tone].hex.soft} 70%, ${tones[l.tone].hex.mid} 150%)` }}
             >
               <span
                 dir={l.ltr ? "ltr" : "rtl"}
-                className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl border-2 border-ink-900 font-display text-sm font-black leading-none sm:h-14 sm:w-14 sm:text-lg ${tones[l.tone].solid}`}
+                className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl font-display text-sm font-black leading-none text-ink-900 shadow-soft ring-1 ring-white/60 sm:h-14 sm:w-14 sm:text-lg ${tones[l.tone].solid}`}
                 aria-hidden="true"
               >
                 {l.glyph}
@@ -137,7 +138,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
       </nav>
 
       <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
-        <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start" aria-label="فیلترها">
+        <aside className="surface space-y-6 self-start p-5 lg:sticky lg:top-24" aria-label="فیلترها">
           <div>
             <label htmlFor="ws-q" className="mb-2 block font-display font-extrabold">
               جستجو
@@ -149,7 +150,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="مثلاً: حرف ب، ماز، ساعت، A…"
-                className="h-12 w-full rounded-2xl border-2 border-ink-900 bg-white pe-4 ps-11 font-bold placeholder:font-normal placeholder:text-ink-300 focus:outline-none focus:ring-4 focus:ring-sky-300"
+                className="h-12 w-full rounded-full bg-white pe-4 ps-11 shadow-soft ring-1 ring-ink-900/10 font-bold placeholder:font-normal placeholder:text-ink-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
               <svg viewBox="0 0 24 24" className="pointer-events-none absolute start-3.5 top-1/2 h-5 w-5 -translate-y-1/2" aria-hidden="true">
                 <circle cx="10.5" cy="10.5" r="6.5" stroke="#1f1a3d" strokeWidth="2.4" fill="none" />
@@ -167,7 +168,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
                   type="button"
                   aria-pressed={age === a}
                   onClick={() => setAge(age === a ? undefined : a)}
-                  className={`grid h-11 w-11 place-items-center rounded-xl border-2 font-display text-lg font-black transition ${age === a ? "border-ink-900 bg-sun-400" : "border-ink-200 bg-white hover:border-ink-500"}`}
+                  className={`grid h-11 w-11 place-items-center rounded-xl border-2 font-display text-lg font-black transition ${age === a ? "border-transparent bg-ink-900 text-white shadow-soft" : "border-transparent bg-white shadow-soft ring-1 ring-ink-900/10 hover:ring-ink-900/25"}`}
                 >
                   {fa(a)}
                 </button>
@@ -197,7 +198,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
             </div>
           </fieldset>
 
-          <label className="flex cursor-pointer items-center justify-between rounded-2xl border-2 border-ink-200 bg-white p-3 font-bold">
+          <label className="flex cursor-pointer items-center justify-between rounded-2xl bg-white p-3 font-bold shadow-soft ring-1 ring-ink-900/10">
             فقط رایگان‌ها
             <input type="checkbox" checked={freeOnly} onChange={(e) => setFreeOnly(e.target.checked)} className="h-5 w-5 accent-grass-500" />
           </label>
@@ -268,7 +269,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
                   <button
                     type="button"
                     onClick={() => setLimit((n) => n + PAGE)}
-                    className="h-12 rounded-full border-2 border-ink-900 bg-sun-400 px-8 font-display font-extrabold shadow-[0_4px_0_#1f1a3d] transition hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none"
+                    className="h-12 rounded-full bg-white px-8 font-display font-extrabold shadow-soft ring-1 ring-ink-900/10 transition hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0"
                   >
                     نمایش کاربرگ‌های بیشتر
                   </button>
@@ -279,7 +280,7 @@ export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, ini
               )}
             </>
           ) : (
-            <div className="flex flex-col items-center rounded-card border-2 border-dashed border-ink-300 bg-white px-6 py-14 text-center">
+            <div className="surface flex flex-col items-center px-6 py-14 text-center">
               <Mascot mood="think" className="h-32 w-32" />
               <h3 className="mt-4 text-xl font-black">چیزی پیدا نکردیم!</h3>
               <p className="mt-1 text-ink-500">فیلترها را کمتر کنید یا کلمه‌ی دیگری جستجو کنید.</p>

@@ -7,7 +7,7 @@ export function ChoiceTile({ state, className, children, ...props }: { state?: "
     <button
       type="button"
       className={cn(
-        "grid place-items-center rounded-3xl border-[3px] border-ink-900 font-display font-black btn-3d [--btn-edge:var(--color-ink-900)] transition",
+        "grid place-items-center rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] font-display font-black btn-3d [--btn-edge:var(--color-ink-200)] transition",
         state === "right" ? "bg-grass-300" : state === "wrong" ? "animate-shake bg-coral-100" : state === "dim" ? "bg-white opacity-40" : "bg-white",
         className,
       )}

@@ -14,7 +14,7 @@ export default async function KidsStory({ params }: { params: Promise<{ slug: st
   if (!story) notFound();
   return (
     <div className="space-y-4">
-      <Link href="/kids/home" className="inline-flex h-12 items-center gap-2 rounded-2xl border-[3px] border-ink-900 bg-white px-4 text-lg font-black btn-3d [--btn-edge:var(--color-ink-900)]">
+      <Link href="/kids/home" className="inline-flex h-12 items-center gap-2 rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white px-4 text-lg font-black btn-3d [--btn-edge:var(--color-ink-200)]">
         → برگشت
       </Link>
       <StoryReader story={story} />

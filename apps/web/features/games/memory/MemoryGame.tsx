@@ -81,7 +81,7 @@ export function MemoryGame({ level, runtime, seed }: GameComponentProps<MemoryCo
           >
             <span className={cn("relative block h-full w-full transition-transform duration-500 transform-3d", isOpen && "rotate-y-180")}>
               {/* پشت کارت */}
-              <span className="absolute inset-0 grid place-items-center rounded-2xl border-[3px] border-ink-900 bg-grape-400 backface-hidden btn-3d [--btn-edge:var(--color-grape-500)]">
+              <span className="absolute inset-0 grid place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-grape-400 backface-hidden btn-3d [--btn-edge:var(--color-grape-500)]">
                 <svg viewBox="0 0 40 40" className="h-1/2 w-1/2 opacity-80" aria-hidden="true">
                   <circle cx="12" cy="12" r="5" fill="#bfa5ff" />
                   <circle cx="28" cy="20" r="5" fill="#bfa5ff" />
@@ -92,7 +92,7 @@ export function MemoryGame({ level, runtime, seed }: GameComponentProps<MemoryCo
               {/* روی کارت */}
               <span
                 className={cn(
-                  "absolute inset-0 grid rotate-y-180 place-items-center rounded-2xl border-[3px] border-ink-900 backface-hidden",
+                  "absolute inset-0 grid rotate-y-180 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] backface-hidden",
                   isMatched ? "bg-grass-100" : "bg-white",
                 )}
               >

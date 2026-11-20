@@ -40,7 +40,7 @@ export function PricingPlans({ plans }: { plans: Plan[] }) {
   return (
     <>
       <div className="mb-10 flex justify-center">
-        <div className="inline-flex rounded-full border-2 border-ink-900 bg-white p-1" role="radiogroup" aria-label="دوره‌ی پرداخت">
+        <div className="inline-flex rounded-full bg-white p-1 shadow-soft ring-1 ring-ink-900/10" role="radiogroup" aria-label="دوره‌ی پرداخت">
           {(["monthly", "yearly"] as const).map((p) => (
             <button key={p} type="button" role="radio" aria-checked={period === p} onClick={() => setPeriod(p)}
               className={cn("rounded-full px-5 py-2 font-display font-extrabold transition", period === p ? "bg-ink-900 text-white" : "text-ink-700")}>
@@ -57,9 +57,9 @@ export function PricingPlans({ plans }: { plans: Plan[] }) {
             <div
               key={p.id}
               id={p.audience === "school" ? "school" : undefined}
-              className={cn("relative scroll-mt-24 rounded-[2rem] border-2 border-ink-900 p-7", p.highlighted ? "bg-ink-900 text-white shadow-lift lg:-mt-4" : "bg-white shadow-soft")}
+              className={cn("relative scroll-mt-24 rounded-[2rem] p-7", p.highlighted ? "bg-gradient-to-b from-ink-900 to-[#2c2566] text-white shadow-float ring-1 ring-white/10 lg:-mt-4" : "bg-white shadow-soft ring-1 ring-ink-900/[0.06]")}
             >
-              {p.highlighted && <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full border-2 border-ink-900 bg-sun-400 px-4 py-1 text-sm font-black text-ink-900">پیشنهاد ما</span>}
+              {p.highlighted && <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-l from-sun-400 to-peach-400 px-4 py-1 text-sm font-black text-ink-900 shadow-soft">پیشنهاد ما</span>}
               <h2 className="text-2xl font-black">{p.name}</h2>
               <p className={cn("mt-1 text-sm", p.highlighted ? "text-ink-200" : "text-ink-500")}>{p.tagline}</p>
               <p className="mt-6 flex items-baseline gap-2">

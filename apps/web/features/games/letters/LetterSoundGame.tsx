@@ -45,7 +45,7 @@ export function LetterSoundGame({ level, runtime, seed }: GameComponentProps<Con
 
   return (
     <div className="flex w-full flex-col items-center gap-6" key={round}>
-      <div className="flex animate-pop flex-col items-center gap-2 rounded-[2rem] border-[3px] border-ink-900 bg-sun-100 px-10 py-6">
+      <div className="flex animate-pop flex-col items-center gap-2 rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-100 px-10 py-6">
         <PlayIcon name={r.target.icon} className="h-36 w-36" />
         <span className="font-display text-3xl font-black" dir={alphabet === "en" ? "ltr" : "rtl"}>
           {picked?.ok ? r.target.word : "؟"}

@@ -57,7 +57,7 @@ export function LessonVisual({ visual, size = "lg", className }: { visual: Visua
       return (
         <div className={cn("flex flex-wrap items-center justify-center gap-3", className)} dir={visual.ltr ? "ltr" : "rtl"}>
           {visual.forms.map((f, i) => (
-            <span key={i} className={cn("grid place-items-center rounded-2xl border-[3px] border-ink-900 bg-white font-display font-black leading-none", size === "lg" ? "h-24 min-w-24 px-3 text-6xl" : "h-14 min-w-14 px-2 text-3xl")}>
+            <span key={i} className={cn("grid place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white font-display font-black leading-none", size === "lg" ? "h-24 min-w-24 px-3 text-6xl" : "h-14 min-w-14 px-2 text-3xl")}>
               {f}
             </span>
           ))}

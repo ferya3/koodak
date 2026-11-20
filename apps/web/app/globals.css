@@ -38,6 +38,8 @@
   --color-ink-100: #eceaf6;
   --color-ink-50: #f6f5fb;
 
+  /* پس‌زمینه‌ی اصلی: سفیدِ کمی یاسی (مدرن‌تر از کرم گرم قبلی) */
+  --color-canvas: #f8f7fc;
   --color-cream-50: #fffbf3;
   --color-cream-100: #fff4e0;
   --color-cream-200: #fce8c6;
@@ -114,12 +116,14 @@
 
   /* ── Radius ── */
   --radius-chip: 999px;
-  --radius-card: 1.5rem;
+  --radius-card: 1.75rem;
   --radius-blob: 2.25rem;
 
   /* ── Shadows ── */
-  --shadow-soft: 0 1px 2px rgb(31 26 61 / 0.06), 0 8px 24px -8px rgb(31 26 61 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(31 26 61 / 0.06), 0 18px 40px -12px rgb(31 26 61 / 0.22);
+  --shadow-soft: 0 1px 2px rgb(31 26 61 / 0.04), 0 6px 20px -8px rgb(31 26 61 / 0.12);
+  --shadow-lift: 0 2px 6px rgb(31 26 61 / 0.05), 0 28px 56px -20px rgb(31 26 61 / 0.28);
+  --shadow-float: 0 30px 80px -24px rgb(31 26 61 / 0.35);
+  --shadow-glow: 0 12px 28px -10px rgb(242 85 63 / 0.6);
   --shadow-calm: 0 1px 2px rgb(15 27 45 / 0.05), 0 4px 12px -4px rgb(15 27 45 / 0.08);
 
   /* ── Motion ── */
@@ -161,14 +165,14 @@
     text-rendering: optimizeLegibility;
   }
   body {
-    background: var(--color-cream-50);
+    background: var(--color-canvas);
     color: var(--color-ink-900);
     font-family: var(--font-sans);
     font-feature-settings: "ss01";
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
   :focus-visible {
     outline: 3px solid var(--color-sky-400);
@@ -184,6 +188,42 @@
   transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
   &:hover { filter: brightness(1.04); }
   &:active { transform: translateY(4px); box-shadow: 0 2px 0 0 var(--btn-edge, rgb(0 0 0 / 0.18)); }
+}
+
+/* ── سطح‌های مدرن ── */
+/* کارت سفید با حاشیه‌ی بسیار ملایم و سایه‌ی لایه‌ای */
+@utility surface {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 0 1px rgb(31 26 61 / 0.06), var(--shadow-soft);
+}
+/* شیشه‌ی مات (هدر، کارت‌های روی پس‌زمینه‌ی رنگی) */
+@utility glass {
+  background: rgb(255 255 255 / 0.72);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.7), 0 1px 0 0 rgb(255 255 255 / 0.9) inset, var(--shadow-soft);
+}
+/* پس‌زمینه‌ی گرادیان چندنقطه‌ای (mesh) – رنگ اصلی با --hero */
+@utility mesh {
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(60% 70% at 85% 0%, color-mix(in oklab, var(--hero, var(--color-sky-300)) 55%, transparent) 0, transparent 70%),
+    radial-gradient(45% 55% at 10% 15%, color-mix(in oklab, var(--color-berry-300) 35%, transparent) 0, transparent 70%),
+    radial-gradient(50% 60% at 50% 100%, color-mix(in oklab, var(--color-sun-300) 35%, transparent) 0, transparent 70%);
+}
+/* متن با گرادیان برند */
+@utility text-gradient {
+  background: linear-gradient(90deg, var(--color-grape-500), var(--color-berry-500) 45%, var(--color-coral-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* شبکه‌ی نقطه‌ای که به لبه‌ها محو می‌شود */
+@utility grid-fade {
+  background-image: radial-gradient(circle, rgb(31 26 61 / 0.09) 1.2px, transparent 1.3px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000 30%, transparent 75%);
 }
 
 @utility bg-dots {

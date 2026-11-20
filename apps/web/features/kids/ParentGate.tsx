@@ -48,13 +48,13 @@ export function ParentGate({ href, onClose }: { href: string; onClose: () => voi
             setValue(e.target.value);
             setError(false);
           }}
-          className="mt-3 h-12 w-full rounded-xl border-2 border-ink-200 px-4 text-center text-lg font-bold focus:border-ink-900 focus:outline-none"
+          className="mt-3 h-12 w-full rounded-xl ring-1 ring-ink-900/10 px-4 text-center text-lg font-bold focus:border-ink-900 focus:outline-none"
           aria-label="پاسخ"
           aria-invalid={error}
         />
         {error && <p className="mt-2 text-sm font-bold text-coral-500">پاسخ درست نبود. دوباره امتحان کنید.</p>}
         <div className="mt-4 grid grid-cols-2 gap-2">
-          <button type="button" onClick={onClose} className="h-11 rounded-xl border-2 border-ink-200 font-bold">
+          <button type="button" onClick={onClose} className="h-11 rounded-xl ring-1 ring-ink-900/10 font-bold">
             انصراف
           </button>
           <button type="submit" className="h-11 rounded-xl bg-ink-900 font-bold text-white">

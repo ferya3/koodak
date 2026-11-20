@@ -6,7 +6,7 @@ export function ProgressBar({ value, tone = "grass", className, label }: { value
   const v = Math.max(0, Math.min(100, value));
   return (
     <div
-      className={cn("h-4 w-full overflow-hidden rounded-full border-2 border-ink-900 bg-white", className)}
+      className={cn("h-4 w-full overflow-hidden rounded-full border-2 border-ink-900/10 bg-white", className)}
       role="progressbar"
       aria-valuenow={v}
       aria-valuemin={0}

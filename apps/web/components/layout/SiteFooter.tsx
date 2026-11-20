@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
-import { Wave } from "@/components/brand/Decor";
 import { Container } from "@/components/ui/Section";
 
 const cols = [
@@ -11,13 +10,14 @@ const cols = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24">
-      <Wave fill="#1f1a3d" />
-      <div className="bg-ink-900 pb-10 pt-6 text-ink-200">
-        <Container>
+    <footer className="mt-24 px-3 pb-3 sm:px-5 sm:pb-5">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-ink-900 pb-10 pt-14 text-ink-200">
+        <div className="pointer-events-none absolute -left-24 -top-32 h-96 w-96 rounded-full bg-grape-500/30 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-coral-500/20 blur-3xl" aria-hidden="true" />
+        <Container className="relative">
           <div className="grid gap-10 md:grid-cols-[1.3fr_repeat(3,1fr)]">
             <div>
-              <div className="inline-block rounded-2xl bg-cream-50 px-3 py-2">
+              <div className="inline-block rounded-2xl bg-white px-3 py-2 shadow-soft">
                 <Logo />
               </div>
               <p className="mt-4 max-w-xs leading-7 text-ink-300">

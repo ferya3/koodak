@@ -97,10 +97,10 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
   };
 
   return (
-    <div className={cn("overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-white shadow-lift font-display", variant === "kids" && "min-h-[calc(100dvh-7rem)]")}>
+    <div className={cn("overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white shadow-lift font-display", variant === "kids" && "min-h-[calc(100dvh-7rem)]")}>
       {/* نوار بالا */}
-      <div className={cn("flex items-center gap-3 border-b-[3px] border-ink-900 px-3 py-3 sm:px-5", t.soft)}>
-        <Link href={exitHref} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]" aria-label="خروج از درس">
+      <div className={cn("flex items-center gap-3 border-b border-ink-900/5 px-3 py-3 sm:px-5", t.soft)}>
+        <Link href={exitHref} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white btn-3d [--btn-edge:var(--color-ink-200)]" aria-label="خروج از درس">
           <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" stroke="#1f1a3d" strokeWidth="3" strokeLinecap="round" /></svg>
         </Link>
         <div className="min-w-0 flex-1">
@@ -113,7 +113,7 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
           </div>
         </div>
         {!done && (
-          <button type="button" onClick={speak} aria-pressed={speaking} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]" aria-label={speaking ? "توقف خواندن" : "برام بخون"}>
+          <button type="button" onClick={speak} aria-pressed={speaking} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white btn-3d [--btn-edge:var(--color-ink-200)]" aria-label={speaking ? "توقف خواندن" : "برام بخون"}>
             <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
               <path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill={speaking ? "#ff7a66" : "#ffce3d"} stroke="#1f1a3d" strokeWidth="2" strokeLinejoin="round" />
               <path d="M16 9 C 17.5 10.5, 17.5 13.5, 16 15 M18.5 6.5 C 21.5 9.5, 21.5 14.5, 18.5 17.5" stroke="#1f1a3d" strokeWidth="2" fill="none" strokeLinecap="round" />
@@ -126,7 +126,7 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
         <div className="flex min-h-[460px] flex-col items-center gap-6 bg-dots px-4 py-8 text-center sm:px-10" key={step.id}>
           {step.type === "explain" ? (
             <>
-              <div className={cn("grid w-full max-w-xl animate-pop place-items-center rounded-[2rem] border-[3px] border-ink-900 p-6 sm:p-10", t.soft)}>
+              <div className={cn("grid w-full max-w-xl animate-pop place-items-center rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] p-6 sm:p-10", t.soft)}>
                 {step.visual ? <LessonVisual visual={step.visual} /> : <Mascot mood="happy" className="h-32 w-32" />}
               </div>
               <div className="max-w-xl">
@@ -142,7 +142,7 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
                   <h2 className="text-2xl font-black sm:text-3xl">{step.question.prompt}</h2>
                 </div>
                 {step.visual && (
-                  <div className={cn("w-full max-w-xl rounded-[2rem] border-[3px] border-ink-900 p-5", t.soft)}>
+                  <div className={cn("w-full max-w-xl rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] p-5", t.soft)}>
                     <LessonVisual visual={step.visual} size="md" />
                   </div>
                 )}
@@ -156,7 +156,7 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
                         onClick={() => choose(o.id)}
                         disabled={solved[step.id] && !isAnswer}
                         className={cn(
-                          "flex min-h-28 flex-col items-center justify-center gap-2 rounded-3xl border-[3px] border-ink-900 p-4 btn-3d [--btn-edge:var(--color-ink-900)] disabled:opacity-40",
+                          "flex min-h-28 flex-col items-center justify-center gap-2 rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] p-4 btn-3d [--btn-edge:var(--color-ink-200)] disabled:opacity-40",
                           solved[step.id] && isAnswer ? "bg-grass-300" : wrong === o.id ? "animate-shake bg-coral-100" : "bg-white",
                         )}
                       >
@@ -201,13 +201,13 @@ export function LessonPlayer({ lesson, exitHref, variant = "public" }: { lesson:
           {awards && awards.achievements.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-2" aria-live="polite">
               {awards.achievements.map((a) => (
-                <span key={a.id} className="rounded-2xl border-2 border-ink-900 bg-sun-300 px-4 py-2 font-black">🏅 مدال جدید: {a.title}</span>
+                <span key={a.id} className="rounded-2xl border-2 border-ink-900/10 bg-sun-300 px-4 py-2 font-black">🏅 مدال جدید: {a.title}</span>
               ))}
             </div>
           )}
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button variant="kid" tone="sky" size="lg" onClick={restart}>دوباره</Button>
-            <Link href={exitHref} className="inline-flex h-14 items-center rounded-2xl border-2 border-ink-900 bg-white px-7 text-lg font-extrabold btn-3d [--btn-edge:var(--color-ink-900)]">درس‌های دیگر</Link>
+            <Link href={exitHref} className="inline-flex h-14 items-center rounded-2xl border-2 border-ink-900/10 bg-white px-7 text-lg font-extrabold btn-3d [--btn-edge:var(--color-ink-200)]">درس‌های دیگر</Link>
           </div>
         </div>
       )}

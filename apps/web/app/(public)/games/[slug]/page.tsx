@@ -30,11 +30,11 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
       </nav>
       <GamePlayer game={game} exitHref="/games" />
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        <div className="rounded-card border-2 border-ink-900/10 bg-white p-5 md:col-span-2">
+        <div className="surface p-5 md:col-span-2">
           <h1 className="text-2xl font-black">{game.title}</h1>
           <p className="mt-2 leading-8 text-ink-700">{game.description}</p>
         </div>
-        <div className="rounded-card border-2 border-ink-900/10 bg-white p-5">
+        <div className="surface p-5">
           <h2 className="font-display font-extrabold">برای والدین</h2>
           <p className="mt-1 text-sm leading-7 text-ink-500">
             مناسب {ageRangeLabel(game.minAge, game.maxAge)} · تمرین {game.skills.map((s) => names.skill(s.skillId)).join("، ")}.

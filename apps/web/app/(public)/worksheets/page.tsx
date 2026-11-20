@@ -19,7 +19,7 @@ export default async function WorksheetsPage({ searchParams }: { searchParams: P
   const initialAge = age && /^\d+$/.test(age) ? Number(age) : undefined;
   return (
     <>
-      <section className="border-b-2 border-ink-900/5 bg-sun-100">
+      <section className="mesh relative -mt-19 overflow-hidden pt-19 [--hero:var(--color-sun-300)]">
         <Container className="flex flex-wrap items-center justify-between gap-6 py-10">
           <div>
             <nav aria-label="مسیر" className="mb-2 text-sm font-bold text-ink-500">

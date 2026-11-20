@@ -255,7 +255,7 @@ export function DrawingStudio() {
   return (
     <div className="grid gap-4 lg:grid-cols-[88px_1fr_220px]">
       {/* ابزارها */}
-      <div className="flex gap-2 rounded-[1.75rem] border-[3px] border-ink-900 bg-white p-2 lg:flex-col" role="toolbar" aria-label="ابزار نقاشی">
+      <div className="flex gap-2 rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-2 lg:flex-col" role="toolbar" aria-label="ابزار نقاشی">
         {tools.map((t) => (
           <button key={t.id} type="button" onClick={() => setTool(t.id)} aria-pressed={tool === t.id} aria-label={t.label} title={t.label} className={cn("grid h-16 flex-1 place-items-center rounded-2xl transition lg:flex-none", tool === t.id ? "bg-sun-300 ring-[3px] ring-ink-900" : "hover:bg-ink-50")}>
             <svg viewBox="0 0 24 24" className="h-9 w-9" aria-hidden="true">
@@ -274,7 +274,7 @@ export function DrawingStudio() {
 
       {/* بوم */}
       <div className="space-y-3">
-        <div className="relative overflow-hidden rounded-[1.75rem] border-[3px] border-ink-900 bg-white shadow-soft">
+        <div className="relative overflow-hidden rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white shadow-soft">
           <canvas
             ref={canvasRef}
             width={W}
@@ -292,14 +292,14 @@ export function DrawingStudio() {
             <img src={svgToDataUrl(coloringTemplates.find((t) => t.id === template)!.svg)} alt="" className="pointer-events-none absolute inset-0 h-full w-full" />
           )}
           {toast && (
-            <div className="absolute inset-x-0 top-4 mx-auto flex w-max animate-pop items-center gap-2 rounded-2xl border-[3px] border-ink-900 bg-grass-300 px-4 py-2 font-black">
+            <div className="absolute inset-x-0 top-4 mx-auto flex w-max animate-pop items-center gap-2 rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-grass-300 px-4 py-2 font-black">
               <Mascot mood="cheer" className="h-10 w-10" /> نقاشی‌ات در گالری ذخیره شد!
             </div>
           )}
         </div>
 
         {/* پالت */}
-        <div className="flex flex-wrap items-center gap-2 rounded-[1.75rem] border-[3px] border-ink-900 bg-white p-3" role="radiogroup" aria-label="رنگ">
+        <div className="flex flex-wrap items-center gap-2 rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-3" role="radiogroup" aria-label="رنگ">
           {PALETTE.map((c, i) => (
             <button
               key={c}
@@ -311,7 +311,7 @@ export function DrawingStudio() {
                 setColor(c);
                 if (tool === "eraser") setTool("brush");
               }}
-              className={cn("h-11 w-11 rounded-full border-[3px] border-ink-900 transition", color === c ? "scale-110 ring-4 ring-ink-900/20" : "hover:scale-105")}
+              className={cn("h-11 w-11 rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] transition", color === c ? "scale-110 ring-4 ring-ink-900/20" : "hover:scale-105")}
               style={{ backgroundColor: c }}
             />
           ))}
@@ -327,7 +327,7 @@ export function DrawingStudio() {
 
       {/* قالب‌ها و ذخیره */}
       <div className="space-y-4">
-        <div className="rounded-[1.75rem] border-[3px] border-ink-900 bg-white p-3">
+        <div className="rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-3">
           <p className="mb-2 px-1 text-lg font-black">صفحه‌ی رنگ‌آمیزی</p>
           <div className="grid grid-cols-2 gap-2">
             <button type="button" onClick={() => setTemplate(null)} aria-pressed={template === null} className={cn("grid aspect-[4/3] place-items-center rounded-2xl border-[3px] text-sm font-black", template === null ? "border-ink-900 bg-sun-100" : "border-ink-100")}>
@@ -342,10 +342,10 @@ export function DrawingStudio() {
           </div>
         </div>
         <div className="grid gap-2">
-          <button type="button" onClick={saveToProfile} className="h-14 rounded-2xl border-[3px] border-ink-900 bg-grass-400 text-lg font-black text-white btn-3d [--btn-edge:var(--color-grass-500)]">
+          <button type="button" onClick={saveToProfile} className="h-14 rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-grass-400 text-lg font-black text-white btn-3d [--btn-edge:var(--color-grass-500)]">
             ذخیره در گالری من
           </button>
-          <button type="button" onClick={exportPng} className="h-12 rounded-2xl border-[3px] border-ink-900 bg-white font-black btn-3d [--btn-edge:var(--color-ink-900)]">
+          <button type="button" onClick={exportPng} className="h-12 rounded-2xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white font-black btn-3d [--btn-edge:var(--color-ink-200)]">
             دانلود عکس
           </button>
           <button type="button" onClick={clear} className="h-12 rounded-2xl font-black text-coral-500 hover:bg-coral-100">
@@ -353,7 +353,7 @@ export function DrawingStudio() {
           </button>
         </div>
         {saved.length > 0 && (
-          <div className="rounded-[1.75rem] border-[3px] border-ink-900 bg-white p-3">
+          <div className="rounded-[1.75rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-3">
             <p className="mb-2 px-1 font-black">گالری من</p>
             <div className="grid grid-cols-2 gap-2">
               {saved.map((src, i) => (

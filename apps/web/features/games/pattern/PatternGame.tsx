@@ -104,7 +104,7 @@ export function PatternGame({ level, runtime, seed }: GameComponentProps<Pattern
             type="button"
             onClick={() => choose(i)}
             className={cn(
-              "grid h-24 w-24 place-items-center rounded-3xl border-[3px] border-ink-900 btn-3d [--btn-edge:var(--color-ink-900)] sm:h-28 sm:w-28",
+              "grid h-24 w-24 place-items-center rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] btn-3d [--btn-edge:var(--color-ink-200)] sm:h-28 sm:w-28",
               // فقط یک کلاس پس‌زمینه در هر حالت (ترتیب کلاس‌های هم‌خانواده در Tailwind تضمین‌شده نیست)
               picked === i ? "bg-grass-100" : wrongPick === i ? "animate-shake bg-coral-100" : "bg-white",
             )}
@@ -122,8 +122,8 @@ function Wagon({ children, dashed }: { children: React.ReactNode; dashed?: boole
     <div className="flex flex-col items-center">
       <div className={cn("grid h-16 w-16 place-items-center rounded-xl border-[3px] bg-white sm:h-20 sm:w-20", dashed ? "border-dashed border-ink-500 bg-sun-100" : "border-ink-900")}>{children}</div>
       <div className="-mt-1.5 flex gap-5">
-        <span className="h-4 w-4 rounded-full border-[3px] border-ink-900 bg-white" />
-        <span className="h-4 w-4 rounded-full border-[3px] border-ink-900 bg-white" />
+        <span className="h-4 w-4 rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white" />
+        <span className="h-4 w-4 rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white" />
       </div>
     </div>
   );

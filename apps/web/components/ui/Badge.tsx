@@ -12,7 +12,7 @@ export function Badge({ tone = "sun", className, children }: { tone?: ToneKey; c
 
 export function PremiumBadge({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full bg-ink-900 px-2.5 py-1 text-xs font-bold text-sun-300", className)}>
+    <span className={cn("inline-flex items-center gap-1 rounded-full bg-gradient-to-l from-sun-400 to-peach-400 px-2.5 py-1 text-xs font-extrabold text-ink-900 shadow-soft", className)}>
       <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" aria-hidden="true">
         <path d="M3 8 L 7 12 L 12 5 L 17 12 L 21 8 L 19 19 L 5 19 Z" fill="currentColor" />
       </svg>
@@ -33,8 +33,8 @@ export function Chip({
       type="button"
       aria-pressed={active}
       className={cn(
-        "inline-flex h-10 items-center gap-1.5 rounded-full border-2 px-4 text-sm font-bold transition",
-        active ? "border-ink-900 bg-ink-900 text-white" : "border-ink-200 bg-white text-ink-700 hover:border-ink-500",
+        "inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-sm font-bold transition",
+        active ? "bg-ink-900 text-white shadow-soft" : "bg-white text-ink-700 ring-1 ring-ink-900/10 hover:bg-ink-50 hover:ring-ink-900/20",
         className,
       )}
       {...props}

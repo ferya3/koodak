@@ -77,7 +77,7 @@ export default function KidsHome() {
   return (
     <div className="space-y-8">
       {/* ── سلام ── */}
-      <section className="relative overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-sun-300 p-5 sm:p-8">
+      <section className="relative overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sun-300 p-5 sm:p-8">
         <div className="absolute -left-10 -top-10 h-48 w-48 rounded-full bg-sun-100/60" aria-hidden="true" />
         <div className="relative flex flex-wrap items-center gap-5">
           {child ? <Avatar kind={child.avatar} className="h-24 w-24 sm:h-28 sm:w-28" /> : <Mascot className="h-24 w-24" />}
@@ -90,7 +90,7 @@ export default function KidsHome() {
       </section>
 
       {/* ── مأموریت امروز ── */}
-      <section aria-labelledby="mission-title" className="rounded-[2rem] border-[3px] border-ink-900 bg-white p-5 sm:p-6">
+      <section aria-labelledby="mission-title" className="rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-5 sm:p-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 id="mission-title" className="text-2xl font-black">
             مأموریت امروز
@@ -130,8 +130,8 @@ export default function KidsHome() {
           {recs.map(({ content, reason }) => {
             const best = history.filter((h) => h.gameId === content.id).reduce((m, h) => Math.max(m, h.stars), 0);
             return (
-              <Link key={content.id} href={kidHref(content)} className="group overflow-hidden rounded-[2rem] border-[3px] border-ink-900 bg-white btn-3d [--btn-edge:var(--color-ink-900)]">
-                <div className="aspect-[4/3] overflow-hidden border-b-[3px] border-ink-900">
+              <Link key={content.id} href={kidHref(content)} className="group overflow-hidden rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white btn-3d [--btn-edge:var(--color-ink-200)]">
+                <div className="aspect-[4/3] overflow-hidden border-b border-ink-900/5">
                   {content.type === "game" ? <GameCover game={content} className="h-full w-full transition duration-300 group-hover:scale-105" /> : content.type === "story" ? <StoryScene scene={content.chapters[0].scene} className="h-full w-full transition duration-300 group-hover:scale-105" /> : content.type === "lesson" && content.steps[0]?.visual ? <div className={cn("grid h-full w-full place-items-center", tones[content.tone].soft)}><LessonVisual visual={content.steps[0].visual} size="md" /></div> : null}
                 </div>
                 <div className="p-4">
@@ -157,7 +157,7 @@ export default function KidsHome() {
             const href = worldHref[c.slug];
             const inner = (
               <>
-                <span className={cn("grid aspect-square w-full max-w-36 place-items-center rounded-full border-[3px] border-ink-900", tones[c.tone].solid)}>
+                <span className={cn("grid aspect-square w-full max-w-36 place-items-center rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)]", tones[c.tone].solid)}>
                   <WorldIcon name={c.icon} className="h-3/5 w-3/5 transition duration-300 group-hover:scale-110 group-hover:-rotate-6" />
                 </span>
                 <span className="text-lg font-black leading-tight">{c.title}</span>
@@ -170,7 +170,7 @@ export default function KidsHome() {
             ) : (
               <div key={c.id} className="relative flex flex-col items-center gap-2 rounded-[2rem] p-2 text-center opacity-60" aria-label={`${c.title} – به‌زودی`}>
                 {inner}
-                <span className="absolute right-3 top-3 rounded-full border-2 border-ink-900 bg-white px-2 py-0.5 text-xs font-black">به‌زودی</span>
+                <span className="absolute right-3 top-3 rounded-full border-2 border-ink-900/10 bg-white px-2 py-0.5 text-xs font-black">به‌زودی</span>
               </div>
             );
           })}
@@ -178,7 +178,7 @@ export default function KidsHome() {
       </section>
 
       {/* ── قفسه‌ی مدال‌ها ── */}
-      <section aria-labelledby="badges-title" className="rounded-[2rem] border-[3px] border-ink-900 bg-white p-5 sm:p-6">
+      <section aria-labelledby="badges-title" className="rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white p-5 sm:p-6">
         <h2 id="badges-title" className="mb-4 text-2xl font-black">
           مدال‌های من
         </h2>

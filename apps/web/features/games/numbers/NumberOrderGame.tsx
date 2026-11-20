@@ -47,7 +47,7 @@ export function NumberOrderGame({ level, runtime, seed }: GameComponentProps<Con
       <p className="font-display text-2xl font-black">
         به ترتیب بزن: {fa(next > max ? max : next)} {next <= max && "←"}
       </p>
-      <div className="relative aspect-[4/3] w-full max-w-2xl rounded-[2rem] border-[3px] border-ink-900 bg-sky-100">
+      <div className="relative aspect-[4/3] w-full max-w-2xl rounded-[2rem] border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-sky-100">
         {bubbles.map((b) => (
           <button
             key={b.n}
@@ -56,7 +56,7 @@ export function NumberOrderGame({ level, runtime, seed }: GameComponentProps<Con
             disabled={b.n < next}
             style={{ left: `${b.x}%`, top: `${b.y}%` }}
             className={cn(
-              "absolute grid h-14 w-14 place-items-center rounded-full border-[3px] border-ink-900 font-display text-2xl font-black transition sm:h-16 sm:w-16",
+              "absolute grid h-14 w-14 place-items-center rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] font-display text-2xl font-black transition sm:h-16 sm:w-16",
               b.n < next ? "scale-75 bg-white opacity-30" : wrong === b.n ? "animate-shake bg-coral-100" : b.c,
             )}
           >

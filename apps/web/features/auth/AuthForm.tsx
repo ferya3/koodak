@@ -66,7 +66,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
           {mode === "login" ? "خوش برگشتید! روند یادگیری فرزندتان منتظر شماست." : "حساب والدین، کلید دنیای امن کودک شماست. فقط چند ثانیه طول می‌کشد."}
         </p>
       </div>
-      <form onSubmit={submit} className="rounded-[2rem] border-2 border-ink-900 bg-white p-6 shadow-lift sm:p-8" noValidate>
+      <form onSubmit={submit} className="rounded-[2rem] bg-white p-6 shadow-float ring-1 ring-ink-900/5 sm:p-8" noValidate>
         <h1 className="text-3xl font-black">{mode === "login" ? "ورود والدین" : "ساخت حساب والدین"}</h1>
         <p className="mt-1 text-sm text-ink-500">این بخش فقط برای بزرگسالان است.</p>
 

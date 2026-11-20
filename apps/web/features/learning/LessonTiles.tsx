@@ -29,7 +29,7 @@ export function LessonTiles({ lessons, hrefBase = "/learn", big }: { lessons: Le
               href={`${hrefBase}/${l.slug}`}
               title={l.title}
               className={cn(
-                "relative flex aspect-square flex-col items-center justify-center rounded-2xl border-2 border-ink-900 transition hover:-translate-y-1 hover:shadow-[0_5px_0_#1f1a3d]",
+                "relative flex aspect-square flex-col items-center justify-center rounded-2xl shadow-soft ring-1 ring-ink-900/[0.06] transition hover:-translate-y-1 hover:shadow-lift",
                 tones[l.tone].soft,
                 big && "rounded-[1.6rem] border-[3px]",
               )}
@@ -38,7 +38,7 @@ export function LessonTiles({ lessons, hrefBase = "/learn", big }: { lessons: Le
                 {g?.text ?? l.title}
               </span>
               {l.access === "premium" && (
-                <span className="absolute -top-2 left-1 rounded-full border-2 border-ink-900 bg-sun-400 px-1.5 text-[10px] font-black" aria-label="ویژه">
+                <span className="absolute -top-2 left-1 rounded-full bg-gradient-to-l from-sun-400 to-peach-400 px-1.5 text-[10px] font-black shadow-soft" aria-label="ویژه">
                   ★
                 </span>
               )}

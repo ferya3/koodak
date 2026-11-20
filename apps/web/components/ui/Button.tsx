@@ -28,9 +28,10 @@ const base =
   "inline-flex items-center justify-center gap-2 font-display font-extrabold whitespace-nowrap select-none transition disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Exclude<Variant, "kid">, string> = {
-  primary: "bg-coral-400 text-white btn-3d [--btn-edge:var(--color-coral-500)] rounded-2xl",
-  secondary: "bg-white text-ink-900 border-2 border-ink-900 btn-3d [--btn-edge:var(--color-ink-900)] rounded-2xl",
-  ghost: "text-ink-700 hover:bg-ink-100 rounded-2xl",
+  primary:
+    "rounded-full bg-gradient-to-l from-coral-400 via-coral-500 to-berry-500 text-white shadow-glow hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0",
+  secondary: "rounded-full bg-white text-ink-900 shadow-soft ring-1 ring-ink-900/10 hover:-translate-y-0.5 hover:shadow-lift hover:ring-ink-900/20 active:translate-y-0",
+  ghost: "text-ink-700 hover:bg-ink-900/5 rounded-full",
   calm: "bg-calm-900 text-white hover:bg-calm-700 rounded-xl font-sans font-bold",
   "calm-outline": "bg-white text-calm-900 border border-calm-300 hover:bg-calm-50 rounded-xl font-sans font-bold",
 };
