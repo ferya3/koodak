@@ -3,7 +3,7 @@ import type { PlayIconKey } from "@/components/brand/PlayIcon";
 import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import { tones } from "@/lib/tones";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_TOP, digits, Icon, INK, Instruction, num, PAD, str, TraceText, W, WritingLines } from "../kit";
+import { AnswerBox, BODY_TOP, digits, Icon, INK, Instruction, num, PAD, str, TraceGlyphs, W, WritingLines } from "../kit";
 
 /* قالب‌های اعداد و ریاضی */
 
@@ -49,9 +49,7 @@ export function NumberTrace({ ws }: { ws: Worksheet }) {
           <g key={ri}>
             <WritingLines y={y} height={72} tone={t.mid} />
             {Array.from({ length: per }, (_, k) => (
-              <TraceText key={k} x={(sc === "fa" ? W - PAD - 30 - step * k - step / 2 : PAD + 30 + step * k + step / 2)} y={y + 66} size={72} ltr solid={ri === 0 && k === 0}>
-                {glyph}
-              </TraceText>
+              <TraceGlyphs key={k} text={glyph} x={sc === "fa" ? W - PAD - 30 - step * k - step / 2 : PAD + 30 + step * k + step / 2} y={y + 72} size={sc === "fa" ? 90 : 100} solid={ri === 0 && k === 0} />
             ))}
           </g>
         );

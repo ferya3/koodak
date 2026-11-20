@@ -4,7 +4,7 @@ import { enLetters, faLetters, iconThemes, type IconTheme } from "@/lib/data/alp
 import { PIXEL_ART } from "@/lib/data/pixelArt";
 import { tones } from "@/lib/tones";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_BOTTOM, BODY_TOP, digits, H, Icon, INK, Instruction, num, PAD, SOFT_INK, str, W } from "../kit";
+import { AnswerBox, BODY_BOTTOM, BODY_TOP, digits, H, Icon, INK, Instruction, num, PAD, SOFT_INK, str, TraceGlyphs, W } from "../kit";
 
 /*
  * قالب‌های تکمیلی کاربرگ:
@@ -571,7 +571,7 @@ export function WordTrace({ ws }: { ws: Worksheet }) {
       {list.map(({ word, icon }, r) => {
         const y = BODY_TOP + 20 + r * rowH;
         const base = y + rowH - 26;
-        const size = l === "en" ? 40 : 44;
+        const size = l === "en" ? 40 : 54;
         const mid = (lineL + lineR) / 2;
         return (
           <g key={word}>
@@ -580,10 +580,7 @@ export function WordTrace({ ws }: { ws: Worksheet }) {
             <line x1={lineL} y1={base - size * 0.45} x2={lineR} y2={base - size * 0.45} stroke="#eceaf6" strokeWidth="1.5" strokeDasharray="6 6" />
             <line x1={lineL} y1={base} x2={lineR} y2={base} stroke={t.mid} strokeWidth="2.5" />
             <line x1={mid} y1={base - size} x2={mid} y2={base + 6} stroke="#eceaf6" strokeWidth="2" />
-            {/* کلمه‌ی کم‌رنگ برای ردگیری (خط‌چینِ کلمه‌ی کامل در اندازه‌ی کوچک شلوغ می‌شود) */}
-            <text x={(mid + lineR) / 2} y={base - 4} textAnchor="middle" direction={l === "en" ? "ltr" : undefined} className="ws-t" fontSize={size} fontWeight="800" fill="#dcd8ec" stroke="#b9b4d3" strokeWidth="1" strokeDasharray="3 3">
-              {word}
-            </text>
+            <TraceGlyphs text={word} x={(mid + lineR) / 2} y={base} size={l === "en" ? size * 1.25 : size} maxWidth={lineR - mid - 16} />
           </g>
         );
       })}

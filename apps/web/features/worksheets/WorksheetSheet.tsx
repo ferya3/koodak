@@ -16,7 +16,7 @@ import { fa, seeded, shuffle } from "@/lib/utils";
  * در Backend همین قرارداد با یک Job صف‌شده به PDF تبدیل می‌شود.
  */
 
-import { BODY_TOP, H, INK, PAD, W } from "./kit";
+import { BODY_TOP, H, INK, PAD, TraceGlyphs, W } from "./kit";
 
 /** توضیح بلند در سربرگ بریده می‌شود تا از کادر بیرون نزند */
 const clip = (s: string, n = 64) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
@@ -176,20 +176,7 @@ function Tracing({ ws }: { ws: Worksheet }) {
               const solid = r === 0 && i === 0;
               return (
                 <g key={i}>
-                  <text
-                    x={x}
-                    y={y + 88}
-                    textAnchor="middle"
-                    className="ws-t"
-                    fontSize="78"
-                    fontWeight="800"
-                    fill={solid ? INK : "none"}
-                    stroke={solid ? "none" : "#9a95b8"}
-                    strokeWidth="2.2"
-                    strokeDasharray="5 5"
-                  >
-                    {g}
-                  </text>
+                  <TraceGlyphs text={g} x={x} y={y + 92} size={78} solid={solid} />
                   {!solid && i === 0 && <circle cx={x + 18} cy={y + 30} r="5" fill="#4fcb72" />}
                 </g>
               );

@@ -2,8 +2,10 @@ import type { Worksheet } from "@kidsworld/types";
 import { playIconNames, playIconNamesEn, type PlayIconKey } from "@/components/brand/PlayIcon";
 import { enLetters, faForms, faLetters, iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import { tones } from "@/lib/tones";
+import { PERSIAN_CENTERLINES } from "@/lib/handwriting/persian";
+import { LATIN } from "@/lib/handwriting/latin";
 import { seeded, shuffle } from "@/lib/utils";
-import { AnswerBox, BODY_TOP, Icon, INK, Instruction, num, PAD, str, TraceText, W, WritingLines } from "../kit";
+import { AnswerBox, BODY_TOP, Icon, INK, Instruction, num, PAD, str, TraceGlyphs, W, WritingLines } from "../kit";
 
 /* قالب‌های حروف الفبا – هر دو الفبای فارسی (راست‌به‌چپ) و انگلیسی (چپ‌به‌راست) */
 
@@ -32,7 +34,7 @@ export function LetterTrace({ ws }: { ws: Worksheet }) {
     <g>
       {/* کارت معرفی */}
       <rect x={PAD} y={top - 20} width={W - PAD * 2} height="120" rx="22" fill={t.soft} stroke={INK} strokeWidth="2" />
-      <text x={W - PAD - 60} y={top + 72} textAnchor="middle" className="ws-t" fontSize="96" fontWeight="900" fill={INK} direction={en ? "ltr" : undefined}>
+      <text x={W - PAD - (en ? 70 : 64)} y={top + 72} textAnchor="middle" className="ws-t" fontSize={en ? 62 : 96} fontWeight="900" fill={INK} direction={en ? "ltr" : undefined}>
         {fa ? fa.char : `${en!.upper}${en!.lower}`}
       </text>
       <Icon name={icon} x={W / 2 - 30} y={top - 8} size={88} />
@@ -47,8 +49,10 @@ export function LetterTrace({ ws }: { ws: Worksheet }) {
 
       {/* ردیف‌های ردگیری */}
       {rows.map((r, ri) => {
-        const y = top + 130 + ri * 100;
-        const n = r.glyph.length > 2 ? 4 : 6;
+        const y = top + 122 + ri * 92;
+        // تعداد تکرار در هر ردیف بر اساس پهنای واقعی حرف (ص و ـصـ پهن‌اند و نباید روی هم بیفتند)
+        const gw = r.ltr ? (LATIN[r.glyph]?.w ?? 70) * 0.7 : ((PERSIAN_CENTERLINES[r.glyph]?.w ?? 60) * 84) / 100;
+        const n = Math.max(3, Math.min(6, Math.floor((W - PAD * 2 - 40) / (gw + 26))));
         const step = (W - PAD * 2 - 40) / n;
         return (
           <g key={ri}>
@@ -56,9 +60,7 @@ export function LetterTrace({ ws }: { ws: Worksheet }) {
             {Array.from({ length: n }, (_, k) => {
               const x = r.ltr ? PAD + 30 + step * k + step / 2 : W - PAD - 30 - step * k - step / 2;
               return (
-                <TraceText key={k} x={x} y={y + 64} size={68} ltr={r.ltr} solid={k === 0}>
-                  {r.glyph}
-                </TraceText>
+                <TraceGlyphs key={k} text={r.glyph} x={x} y={y + 70} size={r.ltr ? 100 : 84} solid={k === 0} />
               );
             })}
           </g>
@@ -67,11 +69,9 @@ export function LetterTrace({ ws }: { ws: Worksheet }) {
 
       {/* کلمه */}
       <g>
-        <WritingLines y={top + 130 + rows.length * 100} height={70} tone={t.mid} />
-        <Icon name={icon} x={en ? PAD + 6 : W - PAD - 70} y={top + 130 + rows.length * 100 + 6} size={60} />
-        <TraceText x={W / 2} y={top + 130 + rows.length * 100 + 62} size={56} ltr={!!en}>
-          {word}
-        </TraceText>
+        <WritingLines y={top + 122 + rows.length * 92} height={70} tone={t.mid} />
+        <Icon name={icon} x={en ? PAD + 6 : W - PAD - 70} y={top + 122 + rows.length * 92 + 6} size={60} />
+        <TraceGlyphs text={word} x={W / 2} y={top + 122 + rows.length * 92 + 70} size={en ? 100 : 72} maxWidth={W - PAD * 2 - 170} />
       </g>
     </g>
   );

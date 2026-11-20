@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/*
+ * نام ثابت «Vazirmatn» برای SVGها (کاربرگ‌ها، کاور بازی‌ها) و خروجی PNG/SVG.
+ * next/font نام فونت را هش می‌کند، پس font-family: Vazirmatn بدون این تعریف به فونت پیش‌فرض می‌افتاد.
+ */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 /* ════════════════════════════════════════════════════════════════
    KidsWorld Design Tokens  ·  v0.1
    منبع حقیقت (Single Source of Truth) رنگ، تایپوگرافی، فاصله، گردی و سایه.
