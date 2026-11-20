@@ -32,6 +32,8 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ path: st
     headers: {
       "Content-Type": res.headers.get("content-type") ?? "application/json",
       ...(res.headers.get("content-disposition") ? { "Content-Disposition": res.headers.get("content-disposition")! } : {}),
+      // تصویر پیش‌نمایش کاربرگ‌های آماده عمومی و قابل کش است؛ فایل‌های ویژه private می‌مانند
+      ...(res.headers.get("cache-control") ? { "Cache-Control": res.headers.get("cache-control")! } : {}),
     },
   });
 }

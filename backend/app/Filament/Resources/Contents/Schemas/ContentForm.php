@@ -12,7 +12,10 @@ use App\Modules\Learning\Models\LessonStep;
 use App\Modules\Stories\Models\Story;
 use App\Modules\Stories\Models\StoryChapter;
 use App\Modules\Worksheets\Models\Worksheet;
+use App\Modules\Worksheets\Support\WorksheetUploads;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -98,16 +101,37 @@ class ContentForm
 
         return [
             // ── کاربرگ ──
-            Section::make('کاربرگ (Worksheet Generator)')->relationship('worksheet')->visible($is('worksheet'))->schema([
-                Grid::make(4)->schema([
-                    Select::make('template')->label('قالب')->options(Worksheet::TEMPLATES)->required(),
-                    TextInput::make('page_count')->label('تعداد صفحه')->numeric()->default(1),
-                    Select::make('paper_size')->label('قطع')->options(['A4' => 'A4', 'Letter' => 'Letter'])->default('A4'),
-                    Select::make('orientation')->label('جهت')->options(['portrait' => 'عمودی', 'landscape' => 'افقی'])->default('portrait'),
+            Section::make('کاربرگ (Worksheet Generator)')->relationship('worksheet')->visible($is('worksheet'))
+                ->mutateRelationshipDataBeforeFillUsing(fn (array $data) => WorksheetUploads::toForm($data))
+                ->mutateRelationshipDataBeforeCreateUsing(fn (array $data) => WorksheetUploads::fromForm($data))
+                ->mutateRelationshipDataBeforeSaveUsing(fn (array $data) => WorksheetUploads::fromForm($data))
+                ->schema([
+                    Grid::make(4)->schema([
+                        Select::make('template')->label('قالب')->options(Worksheet::TEMPLATES)->required()->live()
+                            ->helperText('«فایل آماده» یعنی به‌جای تولید خودکار، PDF یا تصویری را که خودتان ساخته‌اید آپلود کنید.'),
+                        TextInput::make('page_count')->label('تعداد صفحه')->numeric()->default(1),
+                        Select::make('paper_size')->label('قطع')->options(['A4' => 'A4', 'Letter' => 'Letter'])->default('A4'),
+                        Select::make('orientation')->label('جهت')->options(['portrait' => 'عمودی', 'landscape' => 'افقی'])->default('portrait'),
+                    ]),
+                    KeyValue::make('params')->label('پارامترهای قالب')->keyLabel('کلید')->valueLabel('مقدار')
+                        ->visible(fn (Get $get) => $get('template') !== Worksheet::UPLOAD)
+                        ->helperText('مثال ردگیری: letter = ب ، word = بادکنک ، rows = 4 | ماز: size = 11 ، seed = 42'),
+
+                    // ── کاربرگ آماده (آپلود) ──
+                    Grid::make(2)->visible(fn (Get $get) => $get('template') === Worksheet::UPLOAD)->schema([
+                        FileUpload::make('upload_file')->label('فایل کاربرگ (PDF یا تصویر)')
+                            ->disk(WorksheetUploads::DISK)->directory(WorksheetUploads::FILE_DIR)->visibility('private')
+                            ->acceptedFileTypes(WorksheetUploads::FILE_TYPES)->maxSize(30720)
+                            ->storeFileNamesIn('upload_file_name')->downloadable()
+                            ->required(fn (Get $get) => $get('template') === Worksheet::UPLOAD)
+                            ->helperText('حداکثر ۳۰ مگابایت. فایل خصوصی ذخیره می‌شود؛ کاربرگ ویژه فقط برای مشترک‌ها دانلود می‌شود.'),
+                        FileUpload::make('upload_preview')->label('تصویر پیش‌نمایش (کاور)')
+                            ->disk(WorksheetUploads::DISK)->directory(WorksheetUploads::PREVIEW_DIR)->visibility('private')
+                            ->image()->imageEditor()->maxSize(4096)
+                            ->helperText('برای PDF لازم است تا کارت کاربرگ تصویر داشته باشد. برای کاربرگ ویژه نسخه‌ی کم‌کیفیت یا واترمارک‌دار بگذارید.'),
+                        Hidden::make('upload_file_name'),
+                    ]),
                 ]),
-                KeyValue::make('params')->label('پارامترهای قالب')->keyLabel('کلید')->valueLabel('مقدار')
-                    ->helperText('مثال ردگیری: letter = ب ، word = بادکنک ، rows = 4 | ماز: size = 11 ، seed = 42'),
-            ]),
 
             // ── بازی ──
             Section::make('بازی')->relationship('game')->visible($is('game'))->schema([

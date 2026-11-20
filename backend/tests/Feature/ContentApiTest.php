@@ -23,11 +23,11 @@ class ContentApiTest extends TestCase
                 'estimatedMinutes', 'access', 'skills' => [['skillId', 'weight']], 'tone', 'template', 'params', 'pageCount', 'paperSize']], 'meta' => ['page', 'perPage', 'total']]);
 
         $this->getJson('/api/v1/worksheets?q=ماز')->assertJsonPath('meta.total', 27);
-        $this->getJson('/api/v1/worksheets?access=premium')->assertJsonPath('meta.total', 53);
+        $this->getJson('/api/v1/worksheets?access=premium')->assertJsonPath('meta.total', 93);
 
         // کتابخانه‌ی بزرگ: فرانت همه‌ی صفحه‌ها را (۶۰تایی) می‌گیرد؛ کاربرگ‌های تولیدی قفسه (subject) دارند
         $all = $this->getJson('/api/v1/worksheets?perPage=60&page=2')->assertOk()->assertJsonPath('meta.page', 2);
-        $this->assertGreaterThan(300, $all->json('meta.total'));
+        $this->assertGreaterThan(450, $all->json('meta.total'));
         $this->assertNotNull($this->getJson('/api/v1/worksheets/fa-trace-be')->json('data.subjectId'));
         $this->getJson('/api/v1/worksheets?perPage=61')->assertUnprocessable();
     }

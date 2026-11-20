@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/worksheets" },
 };
 
-export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string; subject?: string; type?: string }> }) {
-  const { age, subject, type } = await searchParams;
+export default async function WorksheetsPage({ searchParams }: { searchParams: Promise<{ age?: string; subject?: string; type?: string; q?: string }> }) {
+  const { age, subject, type, q } = await searchParams;
   const [{ data }, shelves] = await Promise.all([api.worksheets(), api.worksheetSubjects()]);
   const initialAge = age && /^\d+$/.test(age) ? Number(age) : undefined;
   return (
@@ -37,7 +37,7 @@ export default async function WorksheetsPage({ searchParams }: { searchParams: P
         </Container>
       </section>
       <Container className="py-10">
-        <WorksheetLibrary key={`${age}-${subject}-${type}`} initialTemplate={type && type in templateLabel ? (type as WorksheetTemplate) : undefined} items={data} shelves={shelves} initialAge={initialAge} initialShelf={shelves.find((x) => x.slug === subject)?.id} />
+        <WorksheetLibrary key={`${age}-${subject}-${type}-${q}`} initialQuery={q?.slice(0, 60)} initialTemplate={type && type in templateLabel ? (type as WorksheetTemplate) : undefined} items={data} shelves={shelves} initialAge={initialAge} initialShelf={shelves.find((x) => x.slug === subject)?.id} />
       </Container>
     </>
   );

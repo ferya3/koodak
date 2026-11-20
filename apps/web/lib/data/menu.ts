@@ -26,6 +26,7 @@ export const worksheetMenu: MenuColumn[] = [
       { label: "صدای اول کلمه", href: ws("persian-letters", "beginning-sound") },
       { label: "حرف جاافتاده", href: ws("persian-letters", "missing-letter") },
       { label: "وصل کردن حرف و تصویر", href: ws("persian-letters", "letter-match") },
+      { label: "نوشتن کلمه", href: ws("persian-letters", "word-trace") },
     ],
   },
   {
@@ -37,6 +38,7 @@ export const worksheetMenu: MenuColumn[] = [
       { label: "صدای اول کلمه", href: ws("english-letters", "beginning-sound") },
       { label: "حرف جاافتاده", href: ws("english-letters", "missing-letter") },
       { label: "حرف بزرگ و کوچک", href: ws("english-letters", "letter-match") },
+      { label: "نوشتن کلمه", href: ws("english-letters", "word-trace") },
     ],
   },
   {
@@ -55,6 +57,8 @@ export const worksheetMenu: MenuColumn[] = [
       { label: "جمع", href: ws("math", "addition") },
       { label: "تفریق", href: ws("math", "subtraction") },
       { label: "بزرگ‌تر و کوچک‌تر", href: ws("math", "compare") },
+      { label: "ضرب و جدول ضرب", href: ws("math", "multiplication") },
+      { label: "تقسیم", href: ws("math", "division") },
       { label: "خواندن ساعت", href: ws("math", "clock") },
     ],
   },
@@ -66,23 +70,45 @@ export const worksheetMenu: MenuColumn[] = [
       { label: "سودوکوی تصویری", href: ws("logic", "sudoku") },
       { label: "کدام فرق دارد؟", href: ws("logic", "odd-one-out") },
       { label: "تطبیق و سایه", href: ws("logic", "matching") },
+      { label: "تفاوت‌ها را پیدا کن", href: ws("logic", "find-difference") },
     ],
   },
   {
     title: "ماز، نقطه و شکل",
     href: ws("mazes-tracing"),
     links: [
+      { label: "ردگیری خط", href: ws("mazes-tracing", "tracing-lines") },
       { label: "ماز", href: ws("mazes-tracing", "maze") },
       { label: "نقطه به نقطه", href: ws("mazes-tracing", "dot-to-dot") },
       { label: "ردگیری شکل‌ها", href: ws("mazes-tracing", "shapes") },
     ],
   },
   {
-    title: "رنگ‌آمیزی و واژه",
+    title: "نقاشی و رنگ‌آمیزی",
     href: ws("coloring"),
     links: [
-      { label: "رنگ‌آمیزی", href: ws("coloring") },
+      { label: "رنگ‌آمیزی", href: ws("coloring", "coloring") },
+      { label: "نقاشی شطرنجی و قرینه", href: ws("coloring", "grid-drawing") },
+    ],
+  },
+  {
+    title: "واژه و جدول",
+    href: ws("word-puzzles"),
+    links: [
+      { label: "جدول متقاطع", href: ws("word-puzzles", "crossword") },
       { label: "جدول کلمات", href: ws("word-puzzles", "word-search") },
+      { label: "کلمه‌ی درهم", href: ws("word-puzzles", "word-scramble") },
+      { label: "اعضای بدن", href: ws("word-puzzles", "body-parts") },
+    ],
+  },
+  {
+    title: "فلش‌کارت",
+    href: ws("flash-cards"),
+    links: [
+      { label: "حروف فارسی", href: "/worksheets?subject=flash-cards&q=فارسی" },
+      { label: "حروف انگلیسی", href: "/worksheets?subject=flash-cards&q=انگلیسی" },
+      { label: "اعداد", href: "/worksheets?subject=flash-cards&q=اعداد" },
+      { label: "واژه‌ها", href: "/worksheets?subject=flash-cards&q=واژه" },
     ],
   },
 ];

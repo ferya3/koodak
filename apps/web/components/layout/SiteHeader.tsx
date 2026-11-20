@@ -38,7 +38,7 @@ function MegaPanel({ item, onNavigate }: { item: NavItem; onNavigate: () => void
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <div className="rounded-card border-2 border-ink-900 bg-white p-6 shadow-[0_6px_0_#1f1a3d]">
-        <div className={cn("grid gap-x-6 gap-y-6", item.columns!.length > 4 ? "grid-cols-4 xl:grid-cols-7" : "grid-cols-4")}>
+        <div className={cn("grid gap-x-6 gap-y-6", item.columns!.length > 4 ? "grid-cols-5" : "grid-cols-4")}>
           {item.columns!.map((c) => (
             <div key={c.title}>
               <Link href={c.href} onClick={onNavigate} className="mb-2 block font-display font-extrabold text-ink-900 hover:text-coral-500">

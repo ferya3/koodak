@@ -12,12 +12,14 @@ use App\Modules\Worksheets\Http\Resources\WorksheetResource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class WorksheetController extends Controller
 {
     private function query(): Builder
     {
-        return Content::published()->ofType(ContentType::Worksheet)->with(['worksheet', 'skills', 'ageGroups']);
+        return Content::published()->ofType(ContentType::Worksheet)->with(['worksheet.file', 'worksheet.preview', 'skills', 'ageGroups']);
     }
 
     private function find(string $slug): Content
@@ -100,5 +102,49 @@ class WorksheetController extends Controller
             'params' => (object) $worksheet->params,
             'downloadCount' => $worksheet->download_count,
         ]);
+    }
+
+    /**
+     * فایل کاربرگ آماده (PDF/تصویر). ?inline=1 برای نمایش در مرورگر/چاپ؛ در غیر این صورت دانلود و شمارش.
+     * محتوای ویژه فقط برای والدِ دارای اشتراک.
+     */
+    public function file(Request $request, string $slug, Entitlements $entitlements): StreamedResponse
+    {
+        $content = $this->find($slug);
+        $worksheet = $content->worksheet;
+        abort_unless($worksheet->isUpload() && $worksheet->file, 404);
+
+        $user = $request->user('sanctum');
+        if ($content->isPremium()) {
+            abort_unless($user, 401, 'برای دانلود این کاربرگ وارد شوید.');
+            abort_unless($entitlements->for($user)->canAccessPremium(), 402, 'این کاربرگ مخصوص اشتراک خانواده است.');
+        }
+
+        $inline = $request->boolean('inline');
+        if (! $inline) {
+            $worksheet->increment('download_count');
+            $worksheet->downloads()->create(['user_id' => $user?->id, 'format' => 'file', 'downloaded_at' => now()]);
+        }
+
+        $asset = $worksheet->file;
+        $ext = pathinfo($asset->original_name ?? $asset->storage_path, PATHINFO_EXTENSION) ?: 'pdf';
+
+        return Storage::disk($asset->storage_disk)->response($asset->storage_path, "kidsworld-{$content->slug}.{$ext}", [
+            'Content-Type' => $asset->mime_type,
+            'Cache-Control' => 'private, no-store',
+        ], $inline ? 'inline' : 'attachment');
+    }
+
+    /** تصویر پیش‌نمایش (یا خود فایل اگر تصویر باشد) – عمومی و قابل کش */
+    public function previewImage(string $slug): StreamedResponse
+    {
+        $worksheet = $this->find($slug)->worksheet;
+        $asset = $worksheet->preview ?? (str_starts_with((string) $worksheet->file?->mime_type, 'image/') ? $worksheet->file : null);
+        abort_unless($asset, 404);
+
+        return Storage::disk($asset->storage_disk)->response($asset->storage_path, null, [
+            'Content-Type' => $asset->mime_type,
+            'Cache-Control' => 'public, max-age=86400',
+        ], 'inline');
     }
 }

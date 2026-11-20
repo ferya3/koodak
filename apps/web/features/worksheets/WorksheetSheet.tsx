@@ -4,7 +4,9 @@ import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import { BeginningSound, FindLetter, LetterMatch, LetterTrace, MissingLetter, WordSearch } from "./templates/letters";
 import { ClockFaces, Compare, MissingNumber, NumberTrace, Subtraction } from "./templates/math";
 import { ColoringTheme, OddOneOut, PatternNext, PictureSudoku, ShapeTrace } from "./templates/logic";
+import { Arithmetic, BodyParts, Crossword, FindDifference, FlashCards, GridDrawing, MultiplicationChart, TracingLines, WordScramble, WordTrace } from "./templates/more";
 import { tones } from "@/lib/tones";
+import { UploadedSheet } from "./UploadedSheet";
 import { fa, seeded, shuffle } from "@/lib/utils";
 
 /**
@@ -20,6 +22,8 @@ import { BODY_TOP, H, INK, PAD, W } from "./kit";
 const clip = (s: string, n = 64) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
 export function WorksheetSheet({ worksheet, className, id }: { worksheet: Worksheet; className?: string; id?: string }) {
+  // کاربرگ آماده (آپلود در پنل مدیریت) به‌جای SVG تولیدی، تصویر/فایل خودش را نشان می‌دهد
+  if (worksheet.template === "upload") return <UploadedSheet worksheet={worksheet} className={className} id={id} />;
   const t = tones[worksheet.tone].hex;
   return (
     <svg id={id} viewBox={`0 0 ${W} ${H}`} className={className} xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`پیش‌نمایش کاربرگ ${worksheet.title}`} direction="rtl">
@@ -109,6 +113,28 @@ function Body({ ws }: { ws: Worksheet }) {
       return <OddOneOut ws={ws} />;
     case "shapes":
       return <ShapeTrace ws={ws} />;
+    case "multiplication":
+      return <Arithmetic ws={ws} op="×" />;
+    case "division":
+      return <Arithmetic ws={ws} op="÷" />;
+    case "multiplication-chart":
+      return <MultiplicationChart ws={ws} />;
+    case "crossword":
+      return <Crossword ws={ws} />;
+    case "word-scramble":
+      return <WordScramble ws={ws} />;
+    case "flash-cards":
+      return <FlashCards ws={ws} />;
+    case "tracing-lines":
+      return <TracingLines ws={ws} />;
+    case "find-difference":
+      return <FindDifference ws={ws} />;
+    case "grid-drawing":
+      return <GridDrawing ws={ws} />;
+    case "word-trace":
+      return <WordTrace ws={ws} />;
+    case "body-parts":
+      return <BodyParts ws={ws} />;
     default:
       return null;
   }

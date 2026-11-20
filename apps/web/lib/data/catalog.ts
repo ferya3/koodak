@@ -1,5 +1,6 @@
 import type { Difficulty, ToneKey, Worksheet, WorksheetTemplate } from "@kidsworld/types";
 import { enLetters, faLetters, iconThemes, type IconTheme } from "./alphabet";
+import { PIXEL_ART } from "./pixelArt";
 
 /**
  * تولید خودکار کتابخانه‌ی کاربرگ از روی داده‌ی پایه (الفبا، اعداد، موضوع‌ها).
@@ -225,4 +226,116 @@ const vocabSheets: Worksheet[] = [
   ),
 ];
 
-export const generatedWorksheets: Worksheet[] = [...faSheets, ...enSheets, ...numberSheets, ...mathSheets, ...logicSheets, ...motorSheets, ...coloringSheets, ...vocabSheets];
+/* ── ضرب و تقسیم ── */
+const timesSheets: Worksheet[] = [
+  ...[2, 3, 4, 5, 6, 7, 8, 9, 10].map((n, i) =>
+    ws(`times-table-${n}`, `جدول ضرب ${fa(n)}`, `ضرب‌های عدد ${fa(n)} را تمرین کن.`, "multiplication", { table: n, seed: 700 + n },
+      { subject: "ws-math", min: 7, max: 10, difficulty: n <= 5 ? "easy" : "intermediate", tone: "grass", skills: ["s-number", "s-memory"], premium: i >= 6 }),
+  ),
+  ...[5, 10].flatMap((max) =>
+    [1, 2].map((k) =>
+      ws(`multiplication-${max}-${k}`, `ضرب تا ${fa(max)} (${fa(k)})`, `ضرب‌های مخلوط با اعداد ۱ تا ${fa(max)}.`, "multiplication", { max, seed: 720 + max * 3 + k },
+        { subject: "ws-math", min: 7, max: 10, difficulty: max === 5 ? "easy" : "intermediate", tone: "grass", skills: ["s-number"], premium: max === 10 && k === 2 }),
+    ),
+  ),
+  ws("multiplication-chart", "جدول ضرب کامل", "جدول ضرب ۱ تا ۱۰ برای چسباندن روی دیوار.", "multiplication-chart", { size: 10, blanks: 0 },
+    { subject: "ws-math", min: 7, max: 10, difficulty: "easy", tone: "sun", skills: ["s-number", "s-memory"] }),
+  ...[20, 40, 60].map((blanks, i) =>
+    ws(`multiplication-chart-fill-${blanks}`, `جدول ضرب را کامل کن (${fa(i + 1)})`, `${fa(blanks)} خانه‌ی خالی جدول ضرب را پر کن.`, "multiplication-chart", { size: 10, blanks, seed: 740 + i },
+      { subject: "ws-math", min: 8, max: 10, difficulty: i === 0 ? "intermediate" : "advanced", tone: "sun", skills: ["s-number", "s-memory"], premium: i === 2 }),
+  ),
+  ...[2, 3, 4, 5].map((n) =>
+    ws(`division-by-${n}`, `تقسیم بر ${fa(n)}`, `تقسیم‌های بر ${fa(n)} را حل کن.`, "division", { table: n, seed: 760 + n },
+      { subject: "ws-math", min: 8, max: 10, difficulty: "intermediate", tone: "peach", skills: ["s-number"], premium: n === 5 }),
+  ),
+  ...[1, 2].map((k) =>
+    ws(`division-mixed-${k}`, `تقسیم مخلوط (${fa(k)})`, "تقسیم‌های بدون باقی‌مانده بر اعداد ۲ تا ۱۰.", "division", { max: 10, seed: 780 + k },
+      { subject: "ws-math", min: 8, max: 10, difficulty: "advanced", tone: "peach", skills: ["s-number"], premium: k === 2 }),
+  ),
+];
+
+/* ── جدول متقاطع، کلمه‌ی درهم، اعضای بدن ── */
+const crossThemes: IconTheme[] = ["animals", "fruits", "birds", "food", "things", "sky"];
+const wordGameSheets: Worksheet[] = [
+  ...crossThemes.flatMap((t, i) => [
+    ws(`crossword-fa-${t}`, `جدول متقاطع: ${themeTitle(t)}`, `اسم ${themeTitle(t)} را در جدول متقاطع بنویس.`, "crossword", { lang: "fa", theme: t, seed: 800 + i, hint: 1 },
+      { subject: "ws-vocab", min: 6, max: 10, difficulty: "intermediate", tone: "ocean", skills: ["s-letters", "s-spatial"], minutes: 15, premium: i >= 4 }),
+    ws(`crossword-en-${t}`, `Crossword: ${themeTitle(t)}`, `نام انگلیسی ${themeTitle(t)} را در جدول متقاطع بنویس.`, "crossword", { lang: "en", theme: t, seed: 820 + i, hint: i % 2 ? 0 : 1 },
+      { subject: "ws-vocab", min: 7, max: 10, difficulty: "advanced", tone: "ocean", skills: ["s-letters", "s-spatial"], minutes: 15, premium: i >= 3 }),
+  ]),
+  ...(["animals", "fruits", "birds", "food", "things", "sky", "sea", "vehicles"] as IconTheme[]).flatMap((t, i) => [
+    ws(`scramble-fa-${t}`, `کلمه‌ی درهم: ${themeTitle(t)}`, "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.", "word-scramble", { lang: "fa", theme: t, seed: 840 + i },
+      { subject: "ws-vocab", min: 6, max: 9, difficulty: "intermediate", tone: "berry", skills: ["s-letters"], premium: i >= 6 }),
+    ws(`scramble-en-${t}`, `Word scramble: ${themeTitle(t)}`, "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.", "word-scramble", { lang: "en", theme: t, seed: 860 + i },
+      { subject: "ws-vocab", min: 7, max: 10, difficulty: "intermediate", tone: "berry", skills: ["s-letters"], premium: i >= 5 }),
+  ]),
+  ws("body-parts-fa", "اعضای بدن", "اسم اعضای بدن را به جای درستش وصل کن.", "body-parts", { lang: "fa", seed: 1 },
+    { subject: "ws-vocab", min: 4, max: 7, difficulty: "easy", tone: "peach", skills: ["s-letters", "s-attention"] }),
+  ws("body-parts-fa-2", "اعضای بدن (۲)", "این بار کلمه‌ها جابه‌جا شده‌اند!", "body-parts", { lang: "fa", seed: 2 },
+    { subject: "ws-vocab", min: 5, max: 8, difficulty: "easy", tone: "mint", skills: ["s-letters", "s-attention"] }),
+  ws("body-parts-en", "Body parts", "اسم انگلیسی اعضای بدن را وصل کن.", "body-parts", { lang: "en", seed: 3 },
+    { subject: "ws-vocab", min: 6, max: 9, difficulty: "easy", tone: "sky", skills: ["s-letters"], premium: true }),
+];
+
+/* ── نوشتن کلمه ── */
+const wordTraceSheets: Worksheet[] = [
+  ...chunk(faLetters, 6).map((g, i) =>
+    ws(`word-trace-fa-${i + 1}`, `نوشتن کلمه‌ها (${fa(i + 1)})`, `کلمه‌های ${g.map((x) => x.word).join("، ")} را بنویس.`, "word-trace", { lang: "fa", from: i * 6 },
+      { subject: "ws-fa", min: 5, max: 8, difficulty: "easy", tone: "coral", skills: ["s-letters", "s-motor"], premium: i >= 4 }),
+  ),
+  ...chunk(enLetters, 6).map((g, i) =>
+    ws(`word-trace-en-${i + 1}`, `Word tracing (${fa(i + 1)})`, `Write: ${g.map((x) => x.word).join(", ")}`, "word-trace", { lang: "en", from: i * 6 },
+      { subject: "ws-en", min: 5, max: 9, difficulty: "easy", tone: "sky", skills: ["s-letters", "s-motor"], premium: i >= 3 }),
+  ),
+];
+
+/* ── فلش‌کارت ── */
+const cardSheets: Worksheet[] = [
+  ...chunk(faLetters, 6).map((g, i) =>
+    ws(`flash-cards-fa-${i + 1}`, `فلش‌کارت حروف فارسی (${fa(i + 1)})`, `کارت‌های حروف ${g.map((x) => x.char).join(" ")} با تصویر.`, "flash-cards", { kind: "fa-letters", from: i * 6 },
+      { subject: "ws-cards", min: 3, max: 7, difficulty: "beginner", tone: "coral", skills: ["s-letters", "s-memory"], minutes: 5, premium: i >= 4 }),
+  ),
+  ...chunk(enLetters, 6).map((g, i) =>
+    ws(`flash-cards-en-${i + 1}`, `فلش‌کارت حروف انگلیسی (${fa(i + 1)})`, `Cards: ${g.map((x) => x.upper).join(" ")}`, "flash-cards", { kind: "en-letters", from: i * 6 },
+      { subject: "ws-cards", min: 4, max: 8, difficulty: "beginner", tone: "sky", skills: ["s-letters", "s-memory"], minutes: 5, premium: i >= 3 }),
+  ),
+  ...[0, 6].map((from, i) =>
+    ws(`flash-cards-numbers-${i + 1}`, `فلش‌کارت اعداد ${fa(from)} تا ${fa(from + 5)}`, "کارت‌های عدد با تصویر برای شمردن.", "flash-cards", { kind: "numbers", from, theme: i ? "fruits" : "sky" },
+      { subject: "ws-cards", min: 3, max: 6, difficulty: "beginner", tone: "sun", skills: ["s-number", "s-memory"], minutes: 5 }),
+  ),
+  ...(Object.keys(iconThemes) as IconTheme[]).map((t, i) =>
+    ws(`flash-cards-words-${t}`, `فلش‌کارت واژه: ${themeTitle(t)}`, `کارت‌های ${themeTitle(t)} با نام فارسی و انگلیسی.`, "flash-cards", { kind: "words", theme: t },
+      { subject: "ws-cards", min: 3, max: 8, difficulty: "beginner", tone: (["mint", "grape", "peach", "lilac"] as ToneKey[])[i % 4], skills: ["s-letters", "s-memory"], minutes: 5, premium: i >= 5 }),
+  ),
+];
+
+/* ── ردگیری خط، نقاشی شطرنجی، تفاوت‌ها ── */
+const drawSheets: Worksheet[] = [
+  ...[1, 2, 3].flatMap((level) =>
+    [1, 2].map((k) =>
+      ws(`tracing-lines-${level}-${k}`, `ردگیری خط‌ها: سطح ${fa(level)}${k > 1 ? ` (${fa(k)})` : ""}`, "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.", "tracing-lines", { level, seed: level * 10 + k },
+        { subject: "ws-motor", min: 2, max: level === 3 ? 6 : 5, difficulty: level === 1 ? "beginner" : level === 2 ? "easy" : "intermediate", tone: "peach", skills: ["s-motor"], minutes: 8, premium: k === 2 && level === 3 }),
+    ),
+  ),
+  ...Object.entries(PIXEL_ART).map(([key, p], i) =>
+    ws(`grid-copy-${key}`, `نقاشی شطرنجی: ${p.title}`, `${p.title} را خانه به خانه کپی کن و رنگ کن.`, "grid-drawing", { pic: key, mode: "copy" },
+      { subject: "ws-coloring", min: 5, max: 9, difficulty: "easy", tone: "lilac", skills: ["s-spatial", "s-creativity"], minutes: 15, premium: i >= 7 }),
+  ),
+  ...Object.entries(PIXEL_ART)
+    .filter(([, p]) => p.symmetric)
+    .map(([key, p], i) =>
+      ws(`symmetry-${key}`, `قرینه‌کشی: ${p.title}`, `نیمه‌ی دیگر ${p.title} را قرینه بکش.`, "grid-drawing", { pic: key, mode: "mirror" },
+        { subject: "ws-coloring", min: 6, max: 10, difficulty: "intermediate", tone: "grape", skills: ["s-spatial", "s-creativity"], minutes: 15, premium: i >= 6 }),
+    ),
+  ...(["animals", "fruits", "birds", "sea", "food", "things", "sky", "vehicles"] as IconTheme[]).flatMap((t, i) =>
+    [5, 7].map((count) =>
+      ws(`find-difference-${t}-${count}`, `${fa(count)} تفاوت: ${themeTitle(t)}`, `${fa(count)} تفاوت بین دو تصویر را پیدا کن.`, "find-difference", { theme: t, count, seed: 900 + i * 3 + count },
+        { subject: "ws-logic", min: count === 5 ? 4 : 6, max: 10, difficulty: count === 5 ? "easy" : "intermediate", tone: (["sky", "mint", "sun", "ocean"] as ToneKey[])[i % 4], skills: ["s-attention", "s-spatial"], premium: count === 7 && i >= 4 }),
+    ),
+  ),
+];
+
+export const generatedWorksheets: Worksheet[] = [
+  ...faSheets, ...enSheets, ...numberSheets, ...mathSheets, ...timesSheets, ...logicSheets, ...motorSheets,
+  ...coloringSheets, ...vocabSheets, ...wordGameSheets, ...wordTraceSheets, ...cardSheets, ...drawSheets,
+];

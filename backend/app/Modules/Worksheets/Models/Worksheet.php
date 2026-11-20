@@ -18,9 +18,17 @@ class Worksheet extends Model
         'word-search' => 'جدول کلمات', 'number-trace' => 'ردگیری عدد', 'missing-number' => 'عدد جاافتاده',
         'compare' => 'مقایسه', 'clock' => 'ساعت', 'pattern' => 'الگو', 'sudoku' => 'سودوکوی تصویری',
         'odd-one-out' => 'کدام فرق دارد؟', 'shapes' => 'شکل‌ها',
+        'multiplication' => 'ضرب', 'multiplication-chart' => 'جدول ضرب', 'division' => 'تقسیم',
+        'crossword' => 'جدول متقاطع', 'word-scramble' => 'کلمه‌ی درهم', 'flash-cards' => 'فلش‌کارت',
+        'tracing-lines' => 'ردگیری خط', 'find-difference' => 'تفاوت‌ها', 'grid-drawing' => 'نقاشی شطرنجی',
+        'word-trace' => 'نوشتن کلمه', 'body-parts' => 'اعضای بدن',
+        self::UPLOAD => 'فایل آماده (آپلود PDF یا تصویر)',
     ];
 
-    protected $fillable = ['content_id', 'template', 'params', 'file_asset_id', 'page_count', 'paper_size', 'orientation', 'printable', 'download_count'];
+    /** قالبی که به‌جای تولید خودکار، فایل آپلودشده را نشان می‌دهد */
+    public const UPLOAD = 'upload';
+
+    protected $fillable = ['content_id', 'template', 'params', 'file_asset_id', 'preview_asset_id', 'page_count', 'paper_size', 'orientation', 'printable', 'download_count'];
 
     protected $attributes = ['params' => '{}'];
 
@@ -37,6 +45,16 @@ class Worksheet extends Model
     public function file(): BelongsTo
     {
         return $this->belongsTo(MediaAsset::class, 'file_asset_id');
+    }
+
+    public function preview(): BelongsTo
+    {
+        return $this->belongsTo(MediaAsset::class, 'preview_asset_id');
+    }
+
+    public function isUpload(): bool
+    {
+        return $this->template === self::UPLOAD;
     }
 
     public function downloads(): HasMany

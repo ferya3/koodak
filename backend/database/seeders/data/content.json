@@ -10089,6 +10089,903 @@
       "downloadCount": 3951
     },
     {
+      "id": "w-times-table-2",
+      "slug": "times-table-2",
+      "type": "worksheet",
+      "title": "جدول ضرب ۲",
+      "description": "ضرب‌های عدد ۲ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 2,
+        "seed": 702
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3689
+    },
+    {
+      "id": "w-times-table-3",
+      "slug": "times-table-3",
+      "type": "worksheet",
+      "title": "جدول ضرب ۳",
+      "description": "ضرب‌های عدد ۳ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 3,
+        "seed": 703
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3690
+    },
+    {
+      "id": "w-times-table-4",
+      "slug": "times-table-4",
+      "type": "worksheet",
+      "title": "جدول ضرب ۴",
+      "description": "ضرب‌های عدد ۴ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 4,
+        "seed": 704
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3691
+    },
+    {
+      "id": "w-times-table-5",
+      "slug": "times-table-5",
+      "type": "worksheet",
+      "title": "جدول ضرب ۵",
+      "description": "ضرب‌های عدد ۵ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 5,
+        "seed": 705
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3692
+    },
+    {
+      "id": "w-times-table-6",
+      "slug": "times-table-6",
+      "type": "worksheet",
+      "title": "جدول ضرب ۶",
+      "description": "ضرب‌های عدد ۶ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 6,
+        "seed": 706
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3693
+    },
+    {
+      "id": "w-times-table-7",
+      "slug": "times-table-7",
+      "type": "worksheet",
+      "title": "جدول ضرب ۷",
+      "description": "ضرب‌های عدد ۷ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 7,
+        "seed": 707
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3694
+    },
+    {
+      "id": "w-times-table-8",
+      "slug": "times-table-8",
+      "type": "worksheet",
+      "title": "جدول ضرب ۸",
+      "description": "ضرب‌های عدد ۸ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 8,
+        "seed": 708
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3695
+    },
+    {
+      "id": "w-times-table-9",
+      "slug": "times-table-9",
+      "type": "worksheet",
+      "title": "جدول ضرب ۹",
+      "description": "ضرب‌های عدد ۹ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 9,
+        "seed": 709
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3696
+    },
+    {
+      "id": "w-times-table-10",
+      "slug": "times-table-10",
+      "type": "worksheet",
+      "title": "جدول ضرب ۱۰",
+      "description": "ضرب‌های عدد ۱۰ را تمرین کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "table": 10,
+        "seed": 710
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2560
+    },
+    {
+      "id": "w-multiplication-5-1",
+      "slug": "multiplication-5-1",
+      "type": "worksheet",
+      "title": "ضرب تا ۵ (۱)",
+      "description": "ضرب‌های مخلوط با اعداد ۱ تا ۵.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "max": 5,
+        "seed": 736
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1957
+    },
+    {
+      "id": "w-multiplication-5-2",
+      "slug": "multiplication-5-2",
+      "type": "worksheet",
+      "title": "ضرب تا ۵ (۲)",
+      "description": "ضرب‌های مخلوط با اعداد ۱ تا ۵.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "max": 5,
+        "seed": 737
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1958
+    },
+    {
+      "id": "w-multiplication-10-1",
+      "slug": "multiplication-10-1",
+      "type": "worksheet",
+      "title": "ضرب تا ۱۰ (۱)",
+      "description": "ضرب‌های مخلوط با اعداد ۱ تا ۱۰.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "max": 10,
+        "seed": 751
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 679
+    },
+    {
+      "id": "w-multiplication-10-2",
+      "slug": "multiplication-10-2",
+      "type": "worksheet",
+      "title": "ضرب تا ۱۰ (۲)",
+      "description": "ضرب‌های مخلوط با اعداد ۱ تا ۱۰.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "grass",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication",
+      "params": {
+        "max": 10,
+        "seed": 752
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 680
+    },
+    {
+      "id": "w-multiplication-chart",
+      "slug": "multiplication-chart",
+      "type": "worksheet",
+      "title": "جدول ضرب کامل",
+      "description": "جدول ضرب ۱ تا ۱۰ برای چسباندن روی دیوار.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication-chart",
+      "params": {
+        "size": 10,
+        "blanks": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2202
+    },
+    {
+      "id": "w-multiplication-chart-fill-20",
+      "slug": "multiplication-chart-fill-20",
+      "type": "worksheet",
+      "title": "جدول ضرب را کامل کن (۱)",
+      "description": "۲۰ خانه‌ی خالی جدول ضرب را پر کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication-chart",
+      "params": {
+        "size": 10,
+        "blanks": 20,
+        "seed": 740
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1453
+    },
+    {
+      "id": "w-multiplication-chart-fill-40",
+      "slug": "multiplication-chart-fill-40",
+      "type": "worksheet",
+      "title": "جدول ضرب را کامل کن (۲)",
+      "description": "۴۰ خانه‌ی خالی جدول ضرب را پر کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication-chart",
+      "params": {
+        "size": 10,
+        "blanks": 40,
+        "seed": 741
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1515
+    },
+    {
+      "id": "w-multiplication-chart-fill-60",
+      "slug": "multiplication-chart-fill-60",
+      "type": "worksheet",
+      "title": "جدول ضرب را کامل کن (۳)",
+      "description": "۶۰ خانه‌ی خالی جدول ضرب را پر کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "multiplication-chart",
+      "params": {
+        "size": 10,
+        "blanks": 60,
+        "seed": 742
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1577
+    },
+    {
+      "id": "w-division-by-2",
+      "slug": "division-by-2",
+      "type": "worksheet",
+      "title": "تقسیم بر ۲",
+      "description": "تقسیم‌های بر ۲ را حل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "table": 2,
+        "seed": 762
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2489
+    },
+    {
+      "id": "w-division-by-3",
+      "slug": "division-by-3",
+      "type": "worksheet",
+      "title": "تقسیم بر ۳",
+      "description": "تقسیم‌های بر ۳ را حل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "table": 3,
+        "seed": 763
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2490
+    },
+    {
+      "id": "w-division-by-4",
+      "slug": "division-by-4",
+      "type": "worksheet",
+      "title": "تقسیم بر ۴",
+      "description": "تقسیم‌های بر ۴ را حل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "table": 4,
+        "seed": 764
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2491
+    },
+    {
+      "id": "w-division-by-5",
+      "slug": "division-by-5",
+      "type": "worksheet",
+      "title": "تقسیم بر ۵",
+      "description": "تقسیم‌های بر ۵ را حل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "table": 5,
+        "seed": 765
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2492
+    },
+    {
+      "id": "w-division-mixed-1",
+      "slug": "division-mixed-1",
+      "type": "worksheet",
+      "title": "تقسیم مخلوط (۱)",
+      "description": "تقسیم‌های بدون باقی‌مانده بر اعداد ۲ تا ۱۰.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "max": 10,
+        "seed": 781
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 778
+    },
+    {
+      "id": "w-division-mixed-2",
+      "slug": "division-mixed-2",
+      "type": "worksheet",
+      "title": "تقسیم مخلوط (۲)",
+      "description": "تقسیم‌های بدون باقی‌مانده بر اعداد ۲ تا ۱۰.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-math",
+      "ageGroupIds": [
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 8,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "division",
+      "params": {
+        "max": 10,
+        "seed": 782
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 779
+    },
+    {
       "id": "w-pattern-1-fruits",
       "slug": "pattern-1-fruits",
       "type": "worksheet",
@@ -14115,6 +15012,4327 @@
       "paperSize": "A4",
       "orientation": "portrait",
       "downloadCount": 2066
+    },
+    {
+      "id": "w-crossword-fa-animals",
+      "slug": "crossword-fa-animals",
+      "type": "worksheet",
+      "title": "جدول متقاطع: حیوانات",
+      "description": "اسم حیوانات را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "animals",
+        "seed": 800,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3859
+    },
+    {
+      "id": "w-crossword-en-animals",
+      "slug": "crossword-en-animals",
+      "type": "worksheet",
+      "title": "Crossword: حیوانات",
+      "description": "نام انگلیسی حیوانات را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "animals",
+        "seed": 820,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1025
+    },
+    {
+      "id": "w-crossword-fa-fruits",
+      "slug": "crossword-fa-fruits",
+      "type": "worksheet",
+      "title": "جدول متقاطع: میوه‌ها",
+      "description": "اسم میوه‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "fruits",
+        "seed": 801,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 499
+    },
+    {
+      "id": "w-crossword-en-fruits",
+      "slug": "crossword-en-fruits",
+      "type": "worksheet",
+      "title": "Crossword: میوه‌ها",
+      "description": "نام انگلیسی میوه‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "fruits",
+        "seed": 821,
+        "hint": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3341
+    },
+    {
+      "id": "w-crossword-fa-birds",
+      "slug": "crossword-fa-birds",
+      "type": "worksheet",
+      "title": "جدول متقاطع: پرنده‌ها و حشره‌ها",
+      "description": "اسم پرنده‌ها و حشره‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "birds",
+        "seed": 802,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 886
+    },
+    {
+      "id": "w-crossword-en-birds",
+      "slug": "crossword-en-birds",
+      "type": "worksheet",
+      "title": "Crossword: پرنده‌ها و حشره‌ها",
+      "description": "نام انگلیسی پرنده‌ها و حشره‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "birds",
+        "seed": 822,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3316
+    },
+    {
+      "id": "w-crossword-fa-food",
+      "slug": "crossword-fa-food",
+      "type": "worksheet",
+      "title": "جدول متقاطع: خوراکی‌ها",
+      "description": "اسم خوراکی‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "food",
+        "seed": 803,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3370
+    },
+    {
+      "id": "w-crossword-en-food",
+      "slug": "crossword-en-food",
+      "type": "worksheet",
+      "title": "Crossword: خوراکی‌ها",
+      "description": "نام انگلیسی خوراکی‌ها را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "food",
+        "seed": 823,
+        "hint": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1852
+    },
+    {
+      "id": "w-crossword-fa-things",
+      "slug": "crossword-fa-things",
+      "type": "worksheet",
+      "title": "جدول متقاطع: وسایل خانه و مدرسه",
+      "description": "اسم وسایل خانه و مدرسه را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "things",
+        "seed": 804,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2913
+    },
+    {
+      "id": "w-crossword-en-things",
+      "slug": "crossword-en-things",
+      "type": "worksheet",
+      "title": "Crossword: وسایل خانه و مدرسه",
+      "description": "نام انگلیسی وسایل خانه و مدرسه را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "things",
+        "seed": 824,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1555
+    },
+    {
+      "id": "w-crossword-fa-sky",
+      "slug": "crossword-fa-sky",
+      "type": "worksheet",
+      "title": "جدول متقاطع: آسمان",
+      "description": "اسم آسمان را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "fa",
+        "theme": "sky",
+        "seed": 805,
+        "hint": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1901
+    },
+    {
+      "id": "w-crossword-en-sky",
+      "slug": "crossword-en-sky",
+      "type": "worksheet",
+      "title": "Crossword: آسمان",
+      "description": "نام انگلیسی آسمان را در جدول متقاطع بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "advanced",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "crossword",
+      "params": {
+        "lang": "en",
+        "theme": "sky",
+        "seed": 825,
+        "hint": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2123
+    },
+    {
+      "id": "w-scramble-fa-animals",
+      "slug": "scramble-fa-animals",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: حیوانات",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "animals",
+        "seed": 840
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1666
+    },
+    {
+      "id": "w-scramble-en-animals",
+      "slug": "scramble-en-animals",
+      "type": "worksheet",
+      "title": "Word scramble: حیوانات",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "animals",
+        "seed": 860
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4128
+    },
+    {
+      "id": "w-scramble-fa-fruits",
+      "slug": "scramble-fa-fruits",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: میوه‌ها",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "fruits",
+        "seed": 841
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1412
+    },
+    {
+      "id": "w-scramble-en-fruits",
+      "slug": "scramble-en-fruits",
+      "type": "worksheet",
+      "title": "Word scramble: میوه‌ها",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "fruits",
+        "seed": 861
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4254
+    },
+    {
+      "id": "w-scramble-fa-birds",
+      "slug": "scramble-fa-birds",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: پرنده‌ها و حشره‌ها",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "birds",
+        "seed": 842
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 509
+    },
+    {
+      "id": "w-scramble-en-birds",
+      "slug": "scramble-en-birds",
+      "type": "worksheet",
+      "title": "Word scramble: پرنده‌ها و حشره‌ها",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "birds",
+        "seed": 862
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2939
+    },
+    {
+      "id": "w-scramble-fa-food",
+      "slug": "scramble-fa-food",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: خوراکی‌ها",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "food",
+        "seed": 843
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2427
+    },
+    {
+      "id": "w-scramble-en-food",
+      "slug": "scramble-en-food",
+      "type": "worksheet",
+      "title": "Word scramble: خوراکی‌ها",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "food",
+        "seed": 863
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2005
+    },
+    {
+      "id": "w-scramble-fa-things",
+      "slug": "scramble-fa-things",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: وسایل خانه و مدرسه",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "things",
+        "seed": 844
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3826
+    },
+    {
+      "id": "w-scramble-en-things",
+      "slug": "scramble-en-things",
+      "type": "worksheet",
+      "title": "Word scramble: وسایل خانه و مدرسه",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "things",
+        "seed": 864
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2468
+    },
+    {
+      "id": "w-scramble-fa-sky",
+      "slug": "scramble-fa-sky",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: آسمان",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "sky",
+        "seed": 845
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3620
+    },
+    {
+      "id": "w-scramble-en-sky",
+      "slug": "scramble-en-sky",
+      "type": "worksheet",
+      "title": "Word scramble: آسمان",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "sky",
+        "seed": 865
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3842
+    },
+    {
+      "id": "w-scramble-fa-sea",
+      "slug": "scramble-fa-sea",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: دریا",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "sea",
+        "seed": 846
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3410
+    },
+    {
+      "id": "w-scramble-en-sea",
+      "slug": "scramble-en-sea",
+      "type": "worksheet",
+      "title": "Word scramble: دریا",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "sea",
+        "seed": 866
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3632
+    },
+    {
+      "id": "w-scramble-fa-vehicles",
+      "slug": "scramble-fa-vehicles",
+      "type": "worksheet",
+      "title": "کلمه‌ی درهم: وسایل نقلیه",
+      "description": "حرف‌های به‌هم‌ریخته را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "fa",
+        "theme": "vehicles",
+        "seed": 847
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2836
+    },
+    {
+      "id": "w-scramble-en-vehicles",
+      "slug": "scramble-en-vehicles",
+      "type": "worksheet",
+      "title": "Word scramble: وسایل نقلیه",
+      "description": "حرف‌های انگلیسی را مرتب کن و کلمه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 7,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "berry",
+      "publishedAt": "2026-11-15",
+      "template": "word-scramble",
+      "params": {
+        "lang": "en",
+        "theme": "vehicles",
+        "seed": 867
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 630
+    },
+    {
+      "id": "w-body-parts-fa",
+      "slug": "body-parts-fa",
+      "type": "worksheet",
+      "title": "اعضای بدن",
+      "description": "اسم اعضای بدن را به جای درستش وصل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 4,
+      "maxAge": 7,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "body-parts",
+      "params": {
+        "lang": "fa",
+        "seed": 1
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3184
+    },
+    {
+      "id": "w-body-parts-fa-2",
+      "slug": "body-parts-fa-2",
+      "type": "worksheet",
+      "title": "اعضای بدن (۲)",
+      "description": "این بار کلمه‌ها جابه‌جا شده‌اند!",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-attention",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "body-parts",
+      "params": {
+        "lang": "fa",
+        "seed": 2
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1373
+    },
+    {
+      "id": "w-body-parts-en",
+      "slug": "body-parts-en",
+      "type": "worksheet",
+      "title": "Body parts",
+      "description": "اسم انگلیسی اعضای بدن را وصل کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-vocab",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 6,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "body-parts",
+      "params": {
+        "lang": "en",
+        "seed": 3
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3166
+    },
+    {
+      "id": "w-word-trace-fa-1",
+      "slug": "word-trace-fa-1",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۱)",
+      "description": "کلمه‌های اسب، بادکنک، پروانه، توپ، ثانیه‌شمار، جوجه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1839
+    },
+    {
+      "id": "w-word-trace-fa-2",
+      "slug": "word-trace-fa-2",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۲)",
+      "description": "کلمه‌های چتر، حلزون، خرگوش، درخت، ذرت، روباه را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 6
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1840
+    },
+    {
+      "id": "w-word-trace-fa-3",
+      "slug": "word-trace-fa-3",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۳)",
+      "description": "کلمه‌های زنبور، ژله، سیب، شیر، صندلی، ضربان قلب را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 12
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1841
+    },
+    {
+      "id": "w-word-trace-fa-4",
+      "slug": "word-trace-fa-4",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۴)",
+      "description": "کلمه‌های طوطی، ظرف، عینک، غاز، فیل، قایق را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 18
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1842
+    },
+    {
+      "id": "w-word-trace-fa-5",
+      "slug": "word-trace-fa-5",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۵)",
+      "description": "کلمه‌های کتاب، گل، لاک‌پشت، ماهی، نان، وال را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 24
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1843
+    },
+    {
+      "id": "w-word-trace-fa-6",
+      "slug": "word-trace-fa-6",
+      "type": "worksheet",
+      "title": "نوشتن کلمه‌ها (۶)",
+      "description": "کلمه‌های هویج، یخ را بنویس.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-fa",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 5,
+      "maxAge": 8,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "fa",
+        "from": 30
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1844
+    },
+    {
+      "id": "w-word-trace-en-1",
+      "slug": "word-trace-en-1",
+      "type": "worksheet",
+      "title": "Word tracing (۱)",
+      "description": "Write: apple, ball, cat, dog, egg, fish",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-en",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "en",
+        "from": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1341
+    },
+    {
+      "id": "w-word-trace-en-2",
+      "slug": "word-trace-en-2",
+      "type": "worksheet",
+      "title": "Word tracing (۲)",
+      "description": "Write: grapes, hat, ice cream, jelly, kite, lion",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-en",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "en",
+        "from": 6
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1342
+    },
+    {
+      "id": "w-word-trace-en-3",
+      "slug": "word-trace-en-3",
+      "type": "worksheet",
+      "title": "Word tracing (۳)",
+      "description": "Write: moon, nest, orange, pig, queen's crown, rabbit",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-en",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "en",
+        "from": 12
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1343
+    },
+    {
+      "id": "w-word-trace-en-4",
+      "slug": "word-trace-en-4",
+      "type": "worksheet",
+      "title": "Word tracing (۴)",
+      "description": "Write: sun, tree, umbrella, van, whale, xylophone",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-en",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "en",
+        "from": 18
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1344
+    },
+    {
+      "id": "w-word-trace-en-5",
+      "slug": "word-trace-en-5",
+      "type": "worksheet",
+      "title": "Word tracing (۵)",
+      "description": "Write: yo-yo, zebra",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-en",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-motor",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "word-trace",
+      "params": {
+        "lang": "en",
+        "from": 24
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1345
+    },
+    {
+      "id": "w-flash-cards-fa-1",
+      "slug": "flash-cards-fa-1",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۱)",
+      "description": "کارت‌های حروف ا ب پ ت ث ج با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1385
+    },
+    {
+      "id": "w-flash-cards-fa-2",
+      "slug": "flash-cards-fa-2",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۲)",
+      "description": "کارت‌های حروف چ ح خ د ذ ر با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 6
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1386
+    },
+    {
+      "id": "w-flash-cards-fa-3",
+      "slug": "flash-cards-fa-3",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۳)",
+      "description": "کارت‌های حروف ز ژ س ش ص ض با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 12
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1387
+    },
+    {
+      "id": "w-flash-cards-fa-4",
+      "slug": "flash-cards-fa-4",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۴)",
+      "description": "کارت‌های حروف ط ظ ع غ ف ق با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 18
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1388
+    },
+    {
+      "id": "w-flash-cards-fa-5",
+      "slug": "flash-cards-fa-5",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۵)",
+      "description": "کارت‌های حروف ک گ ل م ن و با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 24
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1389
+    },
+    {
+      "id": "w-flash-cards-fa-6",
+      "slug": "flash-cards-fa-6",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف فارسی (۶)",
+      "description": "کارت‌های حروف ه ی با تصویر.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6"
+      ],
+      "minAge": 3,
+      "maxAge": 7,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "coral",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "fa-letters",
+        "from": 30
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1390
+    },
+    {
+      "id": "w-flash-cards-en-1",
+      "slug": "flash-cards-en-1",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف انگلیسی (۱)",
+      "description": "Cards: A B C D E F",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 4,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "en-letters",
+        "from": 0
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 887
+    },
+    {
+      "id": "w-flash-cards-en-2",
+      "slug": "flash-cards-en-2",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف انگلیسی (۲)",
+      "description": "Cards: G H I J K L",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 4,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "en-letters",
+        "from": 6
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 888
+    },
+    {
+      "id": "w-flash-cards-en-3",
+      "slug": "flash-cards-en-3",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف انگلیسی (۳)",
+      "description": "Cards: M N O P Q R",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 4,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "en-letters",
+        "from": 12
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 889
+    },
+    {
+      "id": "w-flash-cards-en-4",
+      "slug": "flash-cards-en-4",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف انگلیسی (۴)",
+      "description": "Cards: S T U V W X",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 4,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "en-letters",
+        "from": 18
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 890
+    },
+    {
+      "id": "w-flash-cards-en-5",
+      "slug": "flash-cards-en-5",
+      "type": "worksheet",
+      "title": "فلش‌کارت حروف انگلیسی (۵)",
+      "description": "Cards: Y Z",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 4,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "en-letters",
+        "from": 24
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 891
+    },
+    {
+      "id": "w-flash-cards-numbers-1",
+      "slug": "flash-cards-numbers-1",
+      "type": "worksheet",
+      "title": "فلش‌کارت اعداد ۰ تا ۵",
+      "description": "کارت‌های عدد با تصویر برای شمردن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 3,
+      "maxAge": 6,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "numbers",
+        "from": 0,
+        "theme": "sky"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3908
+    },
+    {
+      "id": "w-flash-cards-numbers-2",
+      "slug": "flash-cards-numbers-2",
+      "type": "worksheet",
+      "title": "فلش‌کارت اعداد ۶ تا ۱۱",
+      "description": "کارت‌های عدد با تصویر برای شمردن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 3,
+      "maxAge": 6,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-number",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "numbers",
+        "from": 6,
+        "theme": "fruits"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3909
+    },
+    {
+      "id": "w-flash-cards-words-animals",
+      "slug": "flash-cards-words-animals",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: حیوانات",
+      "description": "کارت‌های حیوانات با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "animals"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3633
+    },
+    {
+      "id": "w-flash-cards-words-fruits",
+      "slug": "flash-cards-words-fruits",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: میوه‌ها",
+      "description": "کارت‌های میوه‌ها با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "fruits"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 957
+    },
+    {
+      "id": "w-flash-cards-words-vehicles",
+      "slug": "flash-cards-words-vehicles",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: وسایل نقلیه",
+      "description": "کارت‌های وسایل نقلیه با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "vehicles"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 997
+    },
+    {
+      "id": "w-flash-cards-words-birds",
+      "slug": "flash-cards-words-birds",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: پرنده‌ها و حشره‌ها",
+      "description": "کارت‌های پرنده‌ها و حشره‌ها با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "birds"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3516
+    },
+    {
+      "id": "w-flash-cards-words-sea",
+      "slug": "flash-cards-words-sea",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: دریا",
+      "description": "کارت‌های دریا با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "sea"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3417
+    },
+    {
+      "id": "w-flash-cards-words-food",
+      "slug": "flash-cards-words-food",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: خوراکی‌ها",
+      "description": "کارت‌های خوراکی‌ها با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "food"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4468
+    },
+    {
+      "id": "w-flash-cards-words-things",
+      "slug": "flash-cards-words-things",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: وسایل خانه و مدرسه",
+      "description": "کارت‌های وسایل خانه و مدرسه با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "things"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3371
+    },
+    {
+      "id": "w-flash-cards-words-sky",
+      "slug": "flash-cards-words-sky",
+      "type": "worksheet",
+      "title": "فلش‌کارت واژه: آسمان",
+      "description": "کارت‌های آسمان با نام فارسی و انگلیسی.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-cards",
+      "ageGroupIds": [
+        "ag-3",
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7"
+      ],
+      "minAge": 3,
+      "maxAge": 8,
+      "difficulty": "beginner",
+      "estimatedMinutes": 5,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-letters",
+          "weight": 1
+        },
+        {
+          "skillId": "s-memory",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "flash-cards",
+      "params": {
+        "kind": "words",
+        "theme": "sky"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3627
+    },
+    {
+      "id": "w-tracing-lines-1-1",
+      "slug": "tracing-lines-1-1",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۱",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 2,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 8,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 1,
+        "seed": 11
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4489
+    },
+    {
+      "id": "w-tracing-lines-1-2",
+      "slug": "tracing-lines-1-2",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۱ (۲)",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 2,
+      "maxAge": 5,
+      "difficulty": "beginner",
+      "estimatedMinutes": 8,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 1,
+        "seed": 12
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4490
+    },
+    {
+      "id": "w-tracing-lines-2-1",
+      "slug": "tracing-lines-2-1",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۲",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 2,
+      "maxAge": 5,
+      "difficulty": "easy",
+      "estimatedMinutes": 8,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 2,
+        "seed": 21
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1250
+    },
+    {
+      "id": "w-tracing-lines-2-2",
+      "slug": "tracing-lines-2-2",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۲ (۲)",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4"
+      ],
+      "minAge": 2,
+      "maxAge": 5,
+      "difficulty": "easy",
+      "estimatedMinutes": 8,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 2,
+        "seed": 22
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1251
+    },
+    {
+      "id": "w-tracing-lines-3-1",
+      "slug": "tracing-lines-3-1",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۳",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 2,
+      "maxAge": 6,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 8,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 3,
+        "seed": 31
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2211
+    },
+    {
+      "id": "w-tracing-lines-3-2",
+      "slug": "tracing-lines-3-2",
+      "type": "worksheet",
+      "title": "ردگیری خط‌ها: سطح ۳ (۲)",
+      "description": "از روی خط‌چین برو و هر کدام را به خانه‌اش برسان.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-motor",
+      "ageGroupIds": [
+        "ag-2",
+        "ag-3",
+        "ag-4",
+        "ag-5"
+      ],
+      "minAge": 2,
+      "maxAge": 6,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 8,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-motor",
+          "weight": 1
+        }
+      ],
+      "tone": "peach",
+      "publishedAt": "2026-11-15",
+      "template": "tracing-lines",
+      "params": {
+        "level": 3,
+        "seed": 32
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2212
+    },
+    {
+      "id": "w-grid-copy-heart",
+      "slug": "grid-copy-heart",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: قلب",
+      "description": "قلب را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "heart",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1490
+    },
+    {
+      "id": "w-grid-copy-house",
+      "slug": "grid-copy-house",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: خانه",
+      "description": "خانه را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "house",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3636
+    },
+    {
+      "id": "w-grid-copy-tree",
+      "slug": "grid-copy-tree",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: درخت",
+      "description": "درخت را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "tree",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1514
+    },
+    {
+      "id": "w-grid-copy-rocket",
+      "slug": "grid-copy-rocket",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: موشک",
+      "description": "موشک را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "rocket",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1968
+    },
+    {
+      "id": "w-grid-copy-mushroom",
+      "slug": "grid-copy-mushroom",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: قارچ",
+      "description": "قارچ را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "mushroom",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 484
+    },
+    {
+      "id": "w-grid-copy-flower",
+      "slug": "grid-copy-flower",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: گل",
+      "description": "گل را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "flower",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 415
+    },
+    {
+      "id": "w-grid-copy-cat",
+      "slug": "grid-copy-cat",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: گربه",
+      "description": "گربه را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "cat",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3674
+    },
+    {
+      "id": "w-grid-copy-car",
+      "slug": "grid-copy-car",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: ماشین",
+      "description": "ماشین را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "car",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3672
+    },
+    {
+      "id": "w-grid-copy-sun",
+      "slug": "grid-copy-sun",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: خورشید",
+      "description": "خورشید را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "sun",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2864
+    },
+    {
+      "id": "w-grid-copy-fish",
+      "slug": "grid-copy-fish",
+      "type": "worksheet",
+      "title": "نقاشی شطرنجی: ماهی",
+      "description": "ماهی را خانه به خانه کپی کن و رنگ کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8"
+      ],
+      "minAge": 5,
+      "maxAge": 9,
+      "difficulty": "easy",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "lilac",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "fish",
+        "mode": "copy"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 428
+    },
+    {
+      "id": "w-symmetry-heart",
+      "slug": "symmetry-heart",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: قلب",
+      "description": "نیمه‌ی دیگر قلب را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "heart",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 520
+    },
+    {
+      "id": "w-symmetry-house",
+      "slug": "symmetry-house",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: خانه",
+      "description": "نیمه‌ی دیگر خانه را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "house",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2666
+    },
+    {
+      "id": "w-symmetry-tree",
+      "slug": "symmetry-tree",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: درخت",
+      "description": "نیمه‌ی دیگر درخت را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "tree",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1524
+    },
+    {
+      "id": "w-symmetry-rocket",
+      "slug": "symmetry-rocket",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: موشک",
+      "description": "نیمه‌ی دیگر موشک را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "rocket",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 4402
+    },
+    {
+      "id": "w-symmetry-mushroom",
+      "slug": "symmetry-mushroom",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: قارچ",
+      "description": "نیمه‌ی دیگر قارچ را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "mushroom",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1046
+    },
+    {
+      "id": "w-symmetry-flower",
+      "slug": "symmetry-flower",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: گل",
+      "description": "نیمه‌ی دیگر گل را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "flower",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2849
+    },
+    {
+      "id": "w-symmetry-cat",
+      "slug": "symmetry-cat",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: گربه",
+      "description": "نیمه‌ی دیگر گربه را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "cat",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2296
+    },
+    {
+      "id": "w-symmetry-car",
+      "slug": "symmetry-car",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: ماشین",
+      "description": "نیمه‌ی دیگر ماشین را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "car",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 2294
+    },
+    {
+      "id": "w-symmetry-sun",
+      "slug": "symmetry-sun",
+      "type": "worksheet",
+      "title": "قرینه‌کشی: خورشید",
+      "description": "نیمه‌ی دیگر خورشید را قرینه بکش.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-coloring",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 15,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-spatial",
+          "weight": 1
+        },
+        {
+          "skillId": "s-creativity",
+          "weight": 0.5
+        }
+      ],
+      "tone": "grape",
+      "publishedAt": "2026-11-15",
+      "template": "grid-drawing",
+      "params": {
+        "pic": "sun",
+        "mode": "mirror"
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1486
+    },
+    {
+      "id": "w-find-difference-animals-5",
+      "slug": "find-difference-animals-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: حیوانات",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "animals",
+        "count": 5,
+        "seed": 905
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1736
+    },
+    {
+      "id": "w-find-difference-animals-7",
+      "slug": "find-difference-animals-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: حیوانات",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "animals",
+        "count": 7,
+        "seed": 907
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1738
+    },
+    {
+      "id": "w-find-difference-fruits-5",
+      "slug": "find-difference-fruits-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: میوه‌ها",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "fruits",
+        "count": 5,
+        "seed": 908
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 390
+    },
+    {
+      "id": "w-find-difference-fruits-7",
+      "slug": "find-difference-fruits-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: میوه‌ها",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "fruits",
+        "count": 7,
+        "seed": 910
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 392
+    },
+    {
+      "id": "w-find-difference-birds-5",
+      "slug": "find-difference-birds-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: پرنده‌ها و حشره‌ها",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "birds",
+        "count": 5,
+        "seed": 911
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1819
+    },
+    {
+      "id": "w-find-difference-birds-7",
+      "slug": "find-difference-birds-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: پرنده‌ها و حشره‌ها",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "birds",
+        "count": 7,
+        "seed": 913
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1821
+    },
+    {
+      "id": "w-find-difference-sea-5",
+      "slug": "find-difference-sea-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: دریا",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "sea",
+        "count": 5,
+        "seed": 914
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 712
+    },
+    {
+      "id": "w-find-difference-sea-7",
+      "slug": "find-difference-sea-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: دریا",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "sea",
+        "count": 7,
+        "seed": 916
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 714
+    },
+    {
+      "id": "w-find-difference-food-5",
+      "slug": "find-difference-food-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: خوراکی‌ها",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "food",
+        "count": 5,
+        "seed": 917
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1053
+    },
+    {
+      "id": "w-find-difference-food-7",
+      "slug": "find-difference-food-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: خوراکی‌ها",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sky",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "food",
+        "count": 7,
+        "seed": 919
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1055
+    },
+    {
+      "id": "w-find-difference-things-5",
+      "slug": "find-difference-things-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: وسایل خانه و مدرسه",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "things",
+        "count": 5,
+        "seed": 920
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3092
+    },
+    {
+      "id": "w-find-difference-things-7",
+      "slug": "find-difference-things-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: وسایل خانه و مدرسه",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "mint",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "things",
+        "count": 7,
+        "seed": 922
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 3094
+    },
+    {
+      "id": "w-find-difference-sky-5",
+      "slug": "find-difference-sky-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: آسمان",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "sky",
+        "count": 5,
+        "seed": 923
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 922
+    },
+    {
+      "id": "w-find-difference-sky-7",
+      "slug": "find-difference-sky-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: آسمان",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "sun",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "sky",
+        "count": 7,
+        "seed": 925
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 924
+    },
+    {
+      "id": "w-find-difference-vehicles-5",
+      "slug": "find-difference-vehicles-5",
+      "type": "worksheet",
+      "title": "۵ تفاوت: وسایل نقلیه",
+      "description": "۵ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-4",
+        "ag-5",
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 4,
+      "maxAge": 10,
+      "difficulty": "easy",
+      "estimatedMinutes": 10,
+      "access": "free",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "vehicles",
+        "count": 5,
+        "seed": 926
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1294
+    },
+    {
+      "id": "w-find-difference-vehicles-7",
+      "slug": "find-difference-vehicles-7",
+      "type": "worksheet",
+      "title": "۷ تفاوت: وسایل نقلیه",
+      "description": "۷ تفاوت بین دو تصویر را پیدا کن.",
+      "categoryId": "c-sheets",
+      "subjectId": "ws-logic",
+      "ageGroupIds": [
+        "ag-6",
+        "ag-7",
+        "ag-8",
+        "ag-9"
+      ],
+      "minAge": 6,
+      "maxAge": 10,
+      "difficulty": "intermediate",
+      "estimatedMinutes": 10,
+      "access": "premium",
+      "status": "published",
+      "skills": [
+        {
+          "skillId": "s-attention",
+          "weight": 1
+        },
+        {
+          "skillId": "s-spatial",
+          "weight": 0.5
+        }
+      ],
+      "tone": "ocean",
+      "publishedAt": "2026-11-15",
+      "template": "find-difference",
+      "params": {
+        "theme": "vehicles",
+        "count": 7,
+        "seed": 928
+      },
+      "pageCount": 1,
+      "paperSize": "A4",
+      "orientation": "portrait",
+      "downloadCount": 1296
     }
   ],
   "games": [

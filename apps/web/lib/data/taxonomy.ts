@@ -46,8 +46,9 @@ export const subjects: Subject[] = [
   { id: "ws-math", categoryId: "c-sheets", slug: "math", title: "ریاضی و ساعت" },
   { id: "ws-logic", categoryId: "c-sheets", slug: "logic", title: "منطق و الگو" },
   { id: "ws-motor", categoryId: "c-sheets", slug: "mazes-tracing", title: "ماز، نقطه‌به‌نقطه و شکل‌ها" },
-  { id: "ws-coloring", categoryId: "c-sheets", slug: "coloring", title: "رنگ‌آمیزی" },
+  { id: "ws-coloring", categoryId: "c-sheets", slug: "coloring", title: "رنگ‌آمیزی و نقاشی" },
   { id: "ws-vocab", categoryId: "c-sheets", slug: "word-puzzles", title: "جدول و واژه" },
+  { id: "ws-cards", categoryId: "c-sheets", slug: "flash-cards", title: "فلش‌کارت" },
 ];
 
 export const skills: Skill[] = [

@@ -20,6 +20,13 @@ class WorksheetResource extends ContentResource
             'paperSize' => $w->paper_size,
             'orientation' => $w->orientation,
             'downloadCount' => $w->download_count,
+            // کاربرگ آماده: مشخصات فایل (آدرس فایل فقط از مسیر /file با بررسی دسترسی)
+            'file' => $w->isUpload() && $w->file ? [
+                'name' => $w->file->original_name,
+                'mime' => $w->file->mime_type,
+                'size' => (int) $w->file->file_size,
+            ] : null,
+            'hasPreview' => $w->isUpload() && ($w->preview_asset_id !== null || str_starts_with((string) $w->file?->mime_type, 'image/')),
         ];
     }
 }

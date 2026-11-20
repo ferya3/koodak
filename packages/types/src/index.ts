@@ -89,7 +89,11 @@ export type WorksheetTemplate =
   | "tracing" | "counting" | "maze" | "dot-to-dot" | "matching" | "coloring" | "addition"
   | "letter-trace" | "find-letter" | "beginning-sound" | "missing-letter" | "letter-match" | "word-search"
   | "number-trace" | "missing-number" | "subtraction" | "compare" | "clock"
-  | "pattern" | "sudoku" | "odd-one-out" | "shapes";
+  | "pattern" | "sudoku" | "odd-one-out" | "shapes"
+  | "multiplication" | "multiplication-chart" | "division" | "crossword" | "word-scramble" | "flash-cards"
+  | "tracing-lines" | "find-difference" | "grid-drawing" | "word-trace" | "body-parts"
+  /** فایل آماده (PDF/تصویر) که در پنل مدیریت آپلود شده است */
+  | "upload";
 
 export interface Worksheet extends ContentBase {
   type: "worksheet";
@@ -100,6 +104,10 @@ export interface Worksheet extends ContentBase {
   paperSize: "A4" | "Letter";
   orientation: "portrait" | "landscape";
   downloadCount: number;
+  /** فقط برای template = "upload": مشخصات فایل آپلودشده (خود فایل از /worksheets/{slug}/file) */
+  file?: { name: string; mime: string; size: number } | null;
+  /** تصویر پیش‌نمایش دارد (/worksheets/{slug}/preview-image) */
+  hasPreview?: boolean;
 }
 
 export type GameType = "memory" | "pattern" | "counting" | "maze" | "sorting" | "puzzle" | "letter-sound" | "letter-hunt" | "odd-one-out" | "number-order" | "more-less";

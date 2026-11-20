@@ -22,6 +22,7 @@ const shelfLook: Record<string, { glyph: string; tone: ToneKey; ltr?: boolean }>
   "mazes-tracing": { glyph: "↯", tone: "peach" },
   coloring: { glyph: "✎", tone: "berry" },
   "word-puzzles": { glyph: "ک ل م", tone: "mint" },
+  "flash-cards": { glyph: "▭▭", tone: "lilac" },
 };
 const look = (s: Subject) => shelfLook[s.slug] ?? { glyph: s.title.slice(0, 2), tone: "lilac" as ToneKey };
 
@@ -31,8 +32,8 @@ const norm = (t: string) => t.replace(/ي/g, "ی").replace(/ك/g, "ک").replace(
 /** عبارت‌های یک‌حرفی (مثل «ب» یا «A») فقط با کلمه‌ی کامل جور می‌شوند، وگرنه داخل همه‌ی کلمه‌ها پیدا می‌شوند */
 const hit = (hay: string, t: string) => (t.length > 1 ? hay.includes(t) : ` ${hay.replace(/[«»"(),.:؛،]/g, " ")} `.includes(` ${t} `));
 
-export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, initialTemplate }: { items: Worksheet[]; shelves: Subject[]; initialAge?: number; initialShelf?: string; initialTemplate?: WorksheetTemplate }) {
-  const [q, setQ] = useState("");
+export function WorksheetLibrary({ items, shelves, initialAge, initialShelf, initialTemplate, initialQuery = "" }: { items: Worksheet[]; shelves: Subject[]; initialAge?: number; initialShelf?: string; initialTemplate?: WorksheetTemplate; initialQuery?: string }) {
+  const [q, setQ] = useState(initialQuery);
   const [age, setAge] = useState<number | undefined>(initialAge);
   const [shelf, setShelf] = useState<string | undefined>(initialShelf);
   const [template, setTemplate] = useState<WorksheetTemplate | undefined>(initialTemplate);

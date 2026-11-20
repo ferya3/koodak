@@ -10,6 +10,8 @@ import { Container } from "@/components/ui/Section";
 import { Badge, PremiumBadge } from "@/components/ui/Badge";
 import { WorksheetSheet } from "@/features/worksheets/WorksheetSheet";
 import { WorksheetActions } from "@/features/worksheets/WorksheetActions";
+import { UploadActions } from "@/features/worksheets/UploadActions";
+import { isPdf, uploadUrls } from "@/features/worksheets/UploadedSheet";
 import { templateLabel } from "@/features/worksheets/labels";
 import { ContentCard } from "@/features/content/ContentCard";
 import { ButtonLink } from "@/components/ui/Button";
@@ -37,6 +39,7 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
   const [{ data: sameTemplate }, names] = await Promise.all([api.worksheets({ template: w.template }), api.lookups()]);
   const related = sameTemplate.filter((x) => x.id !== w.id).slice(0, 3);
   const t = tones[w.tone];
+  const upload = w.template === "upload";
 
   return (
     <>
@@ -49,7 +52,11 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
 
         <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
           <div className={cn("rounded-[2rem] border-2 border-ink-900 p-4 sm:p-10", t.soft)}>
-            <WorksheetSheet id="worksheet-svg" worksheet={w} className="print-area mx-auto w-full max-w-[620px] rounded-xl bg-white shadow-lift" />
+            {upload && isPdf(w) && w.access === "free" && !w.hasPreview ? (
+              <iframe src={uploadUrls(w.slug).inline} title={`کاربرگ ${w.title}`} className="mx-auto block aspect-[595/842] w-full max-w-[620px] rounded-xl bg-white shadow-lift" />
+            ) : (
+              <WorksheetSheet id="worksheet-svg" worksheet={w} className="print-area mx-auto w-full max-w-[620px] rounded-xl bg-white shadow-lift" />
+            )}
           </div>
 
           <div className="space-y-6">
@@ -87,15 +94,15 @@ export default async function WorksheetPage({ params }: { params: Promise<{ slug
               </div>
             </div>
 
-            {w.access === "premium" ? (
+            {w.access === "premium" && (
               <div className="rounded-3xl border-2 border-ink-900 bg-ink-900 p-5 text-white">
                 <p className="font-display text-lg font-black">این کاربرگ مخصوص اشتراک خانواده است</p>
                 <p className="mt-1 text-sm text-ink-200">پیش‌نمایش رایگان است؛ برای چاپ و دانلود نامحدود اشتراک بگیرید.</p>
                 <ButtonLink href="/pricing" variant="kid" tone="sun" className="mt-4 w-full">مشاهده‌ی اشتراک‌ها</ButtonLink>
               </div>
-            ) : (
-              <WorksheetActions svgId="worksheet-svg" slug={w.slug} />
             )}
+            {/* کاربرگ آماده: مشترک‌ها همین‌جا دانلود می‌کنند؛ سرور دسترسی را بررسی می‌کند */}
+            {upload ? <UploadActions worksheet={w} /> : w.access === "free" && <WorksheetActions svgId="worksheet-svg" slug={w.slug} />}
 
             <p className="text-sm text-ink-500">
               {faNumber(w.downloadCount)} بار دانلود شده · دسته‌ی {names.category(w.categoryId)}
