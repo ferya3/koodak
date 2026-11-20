@@ -23,7 +23,7 @@ type Phase = "intro" | "playing" | "result";
  * GamePlayer – پوسته‌ی مشترک همه‌ی بازی‌ها
  * Level Manager · Timer · Scoring · Audio · Event Tracker · Progress Manager
  */
-export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game; exitHref: string; variant?: "public" | "kids" }) {
+export function GamePlayer({ game, exitHref, variant = "public", offline = false }: { game: Game; exitHref: string; variant?: "public" | "kids"; /** بازی ساخت والدین: جلسه به سرور فرستاده نمی‌شود */ offline?: boolean }) {
   const def = gameRegistry[game.gameType];
   const [phase, setPhase] = useState<Phase>("intro");
   const [levelIdx, setLevelIdx] = useState(0);
@@ -69,7 +69,7 @@ export function GamePlayer({ game, exitHref, variant = "public" }: { game: Game;
     // حالت متصل: POST /games/{slug}/sessions با توکن جلسه‌ی کودک (خطا = ادامه‌ی آفلاین)
     const childId = readProgress().activeChildId;
     remoteSession.current =
-      LIVE && childId
+      LIVE && childId && !offline
         ? live.game.start(game.slug, childId, game.levels[idx].levelNumber).then((r) => r.sessionId).catch(() => null)
         : null;
     setPhase("playing");

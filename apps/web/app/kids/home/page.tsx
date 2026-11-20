@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { FamilyGames } from "@/features/custom-games/FamilyGames";
 import { useEffect, useState } from "react";
 import { live, LIVE } from "@/lib/api/live";
 import type { Content, ToneKey } from "@kidsworld/types";
@@ -148,6 +149,8 @@ export default function KidsHome() {
       </section>
 
       {/* ── نقشه‌ی دنیاها ── */}
+      <FamilyGames />
+
       <section aria-labelledby="worlds-title">
         <h2 id="worlds-title" className="mb-4 text-2xl font-black">
           دنیاها

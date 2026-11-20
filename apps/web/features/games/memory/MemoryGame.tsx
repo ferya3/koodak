@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { PlayIcon, playIconKeys, type PlayIconKey } from "@/components/brand/PlayIcon";
+import { isPlayIcon, PlayIcon, playIconKeys, type PlayIconKey } from "@/components/brand/PlayIcon";
 import { cn, seeded, shuffle } from "@/lib/utils";
 import { iconThemes, type IconTheme } from "@/lib/data/alphabet";
 import type { GameComponentProps } from "../engine/types";
@@ -10,18 +10,24 @@ interface MemoryConfig {
   cols: number;
   /** موضوع کارت‌ها (اختیاری): animals | fruits | sky | ... */
   theme?: IconTheme;
+  /** حالت ساخت والدین: تصویرهای دلخواه (تعداد جفت‌ها = تعداد تصویرها) */
+  icons?: string[];
 }
 
 /** بازی حافظه‌ی تصویری – Brain Games › Memory › Visual Memory */
 export function MemoryGame({ level, runtime, seed }: GameComponentProps<MemoryConfig>) {
-  const { pairs, cols, theme } = level.configuration;
-  const pool = (theme && iconThemes[theme] ? iconThemes[theme].icons : playIconKeys) as PlayIconKey[];
+  const { theme } = level.configuration;
+  const customIcons = (level.configuration.icons ?? []).filter(isPlayIcon) as PlayIconKey[];
+  const pairs = customIcons.length >= 2 ? customIcons.length : level.configuration.pairs;
+  const cols = customIcons.length >= 2 ? (pairs <= 3 ? 3 : 4) : level.configuration.cols;
+  const pool = (customIcons.length >= 2 ? customIcons : theme && iconThemes[theme] ? iconThemes[theme].icons : playIconKeys) as PlayIconKey[];
   const deck = useMemo(() => {
     const rand = seeded(seed);
     const picks = shuffle(pool.length >= pairs ? pool : playIconKeys, rand).slice(0, pairs);
     return shuffle([...picks, ...picks], rand).map((icon, i) => ({ id: i, icon }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pairs, seed, theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pairs, seed, theme, customIcons.join(",")]);
 
   const [open, setOpen] = useState<number[]>([]);
   const [matched, setMatched] = useState<Set<PlayIconKey>>(new Set());

@@ -1,5 +1,5 @@
 import type { Game } from "@kidsworld/types";
-import { art, type PlayIconKey } from "@/components/brand/PlayIcon";
+import { art, isPlayIcon, type PlayIconKey } from "@/components/brand/PlayIcon";
 import { tones } from "@/lib/tones";
 
 const INK = "#1f1a3d";
@@ -43,7 +43,10 @@ function Card({ x, y, r, children, back }: { x: number; y: number; r: number; ch
   );
 }
 
-const memoryIcon = (g: Game) => {
+const memoryIcon = (g: Game): PlayIconKey => {
+  // بازی ساخت والدین: اولین تصویر انتخاب‌شده
+  const custom = (g.levels[0]?.configuration?.icons as string[] | undefined)?.find(isPlayIcon);
+  if (custom) return custom;
   const theme = g.levels[0]?.configuration?.theme as string | undefined;
   return theme === "animals" ? "cat" : theme === "sky" ? "rocket" : theme === "fruits" ? "strawberry" : "apple";
 };

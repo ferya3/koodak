@@ -126,6 +126,20 @@ export interface Game extends ContentBase {
   levels: GameLevel[];
 }
 
+/** بازی ساخت والدین: پیکربندی یکی از بازی‌های موجود که فقط کودکان همان خانواده می‌بینند */
+export type CustomGameType = "pattern" | "counting" | "memory";
+export interface CustomGame {
+  id: ID;
+  title: string;
+  gameType: CustomGameType;
+  /** pattern: { unit, wagons, shown } · counting: { counts, icon } · memory: { icons } */
+  config: Record<string, unknown>;
+  tone: ToneKey;
+  /** null = همه‌ی کودکان خانواده */
+  childIds: ID[] | null;
+  updatedAt?: string;
+}
+
 export interface StoryChoice {
   id: ID;
   text: string;

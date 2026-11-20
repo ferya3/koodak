@@ -2,38 +2,20 @@
 import { useMemo, useState } from "react";
 import { cn, seeded, shuffle } from "@/lib/utils";
 import type { GameComponentProps } from "../engine/types";
+import { parseToken, TokenArt, type Token as TokenT } from "@/features/custom-games/tokens";
 
 interface PatternConfig {
-  patterns: string[];
-  rounds: number;
+  patterns?: string[];
+  rounds?: number;
+  /** حالت ساخت والدین: الگوی واگن‌ها (مثل ["circle-red","square-blue"])، تعداد کل واگن‌ها و تعداد واگن‌های از پیش چیده‌شده */
+  unit?: string[];
+  wagons?: number;
+  shown?: number;
 }
 
-type Shape = "circle" | "square" | "triangle" | "star";
-interface Token {
-  shape: Shape;
-  color: string;
-  name: string;
-}
+type Token = TokenT;
 
-const TOKENS: Token[] = [
-  { shape: "circle", color: "#ff7a66", name: "دایره‌ی قرمز" },
-  { shape: "square", color: "#4fb8f5", name: "مربع آبی" },
-  { shape: "triangle", color: "#4fcb72", name: "مثلث سبز" },
-  { shape: "star", color: "#ffce3d", name: "ستاره‌ی زرد" },
-  { shape: "circle", color: "#9b7bff", name: "دایره‌ی بنفش" },
-];
-
-function TokenArt({ t, className }: { t: Token; className?: string }) {
-  const S = { stroke: "#1f1a3d", strokeWidth: 4, strokeLinejoin: "round" as const };
-  return (
-    <svg viewBox="0 0 60 60" className={className} aria-label={t.name} role="img">
-      {t.shape === "circle" && <circle cx="30" cy="30" r="20" fill={t.color} {...S} />}
-      {t.shape === "square" && <rect x="11" y="11" width="38" height="38" rx="7" fill={t.color} {...S} />}
-      {t.shape === "triangle" && <path d="M30 8 L 52 50 L 8 50 Z" fill={t.color} {...S} />}
-      {t.shape === "star" && <path d="M30 6 L 36 22 L 53 23 L 40 34 L 44 51 L 30 42 L 16 51 L 20 34 L 7 23 L 24 22 Z" fill={t.color} {...S} />}
-    </svg>
-  );
-}
+const TOKENS: Token[] = ["circle-red", "square-blue", "triangle-green", "star-yellow", "circle-purple"].map(parseToken);
 
 function buildRound(template: string, rand: () => number) {
   const letters = [...new Set(template.split(""))];
@@ -47,8 +29,13 @@ function buildRound(template: string, rand: () => number) {
 }
 
 /** قطار الگوها – Brain Games › Logic › Pattern Recognition */
-export function PatternGame({ level, runtime, seed }: GameComponentProps<PatternConfig>) {
-  const { patterns, rounds } = level.configuration;
+export function PatternGame(props: GameComponentProps<PatternConfig>) {
+  return props.level.configuration.unit?.length ? <CustomTrain {...props} /> : <RandomTrain {...props} />;
+}
+
+function RandomTrain({ level, runtime, seed }: GameComponentProps<PatternConfig>) {
+  const patterns = level.configuration.patterns ?? ["AB"];
+  const rounds = level.configuration.rounds ?? 5;
   const data = useMemo(() => {
     const rand = seeded(seed);
     return Array.from({ length: rounds }, (_, i) => buildRound(patterns[i % patterns.length], rand));
@@ -117,10 +104,98 @@ export function PatternGame({ level, runtime, seed }: GameComponentProps<Pattern
   );
 }
 
-function Wagon({ children, dashed }: { children: React.ReactNode; dashed?: boolean }) {
+/**
+ * قطار ساخت والدین: همه‌ی واگن‌ها دیده می‌شوند؛ چند واگن اول چیده شده‌اند و کودک
+ * بقیه را یکی‌یکی و به ترتیب الگو پر می‌کند (هر واگن = یک دور).
+ */
+function CustomTrain({ level, runtime, seed }: GameComponentProps<PatternConfig>) {
+  const unit = useMemo(() => (level.configuration.unit ?? []).map(parseToken), [level.configuration.unit]);
+  const wagons = Math.min(12, Math.max(unit.length + 1, level.configuration.wagons ?? 8));
+  const shown = Math.min(wagons - 1, Math.max(unit.length, level.configuration.shown ?? unit.length));
+  const seq = useMemo(() => Array.from({ length: wagons }, (_, i) => unit[i % unit.length]), [unit, wagons]);
+  const total = wagons - shown;
+  const [filled, setFilled] = useState(0);
+  const [wrongPick, setWrongPick] = useState<number | null>(null);
+  const [okPick, setOkPick] = useState<number | null>(null);
+  const target = shown + filled;
+  const answer = seq[Math.min(target, wagons - 1)];
+  // گزینه‌ها: جواب + بقیه‌ی شکل‌های الگو + در صورت نیاز یک شکل دیگر (حداقل ۳ گزینه)
+  const options = useMemo(() => {
+    const rand = seeded(seed + target * 7);
+    const uniq = [...new Map(unit.map((t) => [t.id, t])).values()];
+    const extra = TOKENS.filter((t) => !uniq.some((u) => u.id === t.id));
+    const pool = [...uniq, ...shuffle(extra, rand)].slice(0, Math.max(3, Math.min(4, uniq.length)));
+    return shuffle(pool, rand);
+  }, [unit, seed, target]);
+  const small = wagons > 8;
+
+  const choose = (i: number) => {
+    if (okPick !== null || target >= wagons) return;
+    if (options[i].id === answer.id) {
+      setOkPick(i);
+      runtime.correct({ wagon: target });
+      setTimeout(() => {
+        setOkPick(null);
+        const next = filled + 1;
+        setFilled(next);
+        runtime.progress(next / total);
+        if (next >= total) runtime.complete();
+      }, 650);
+    } else {
+      setWrongPick(i);
+      runtime.wrong({ wagon: target });
+      setTimeout(() => setWrongPick(null), 500);
+    }
+  };
+
+  return (
+    <div className="flex w-full flex-col items-center gap-8">
+      <div className="w-full overflow-x-auto scrollbar-none">
+        <div className="mx-auto flex w-max items-end gap-1.5 px-2 pb-3">
+          <Locomotive />
+          {seq.map((t, i) => {
+            const done = i < target;
+            const current = i === target;
+            return (
+              <Wagon key={i} dashed={!done} active={current} small={small}>
+                {done ? <TokenArt t={t} className={cn(small ? "h-8 w-8 sm:h-11 sm:w-11" : "h-10 w-10 sm:h-14 sm:w-14", i >= shown && "animate-pop")} /> : current ? <span className="font-display text-3xl font-black text-ink-300">؟</span> : null}
+              </Wagon>
+            );
+          })}
+        </div>
+        <div className="mx-auto h-2 w-full max-w-5xl rounded-full bg-ink-900" />
+      </div>
+      <div className="flex gap-4 sm:gap-6" role="group" aria-label="گزینه‌ها">
+        {options.map((t, i) => (
+          <button
+            key={t.id}
+            type="button"
+            onClick={() => choose(i)}
+            className={cn(
+              "grid h-24 w-24 place-items-center rounded-3xl border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] btn-3d [--btn-edge:var(--color-ink-200)] sm:h-28 sm:w-28",
+              okPick === i ? "bg-grass-100" : wrongPick === i ? "animate-shake bg-coral-100" : "bg-white",
+            )}
+          >
+            <TokenArt t={t} className="h-14 w-14 sm:h-16 sm:w-16" />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Wagon({ children, dashed, active, small }: { children: React.ReactNode; dashed?: boolean; active?: boolean; small?: boolean }) {
   return (
     <div className="flex flex-col items-center">
-      <div className={cn("grid h-16 w-16 place-items-center rounded-xl border-[3px] bg-white sm:h-20 sm:w-20", dashed ? "border-dashed border-ink-500 bg-sun-100" : "border-ink-900")}>{children}</div>
+      <div
+        className={cn(
+          "grid place-items-center rounded-xl border-[3px] bg-white",
+          small ? "h-12 w-12 sm:h-16 sm:w-16" : "h-16 w-16 sm:h-20 sm:w-20",
+          dashed ? (active ? "border-dashed border-coral-400 bg-sun-100 ring-4 ring-sun-300" : "border-dashed border-ink-300 bg-white") : "border-ink-900",
+        )}
+      >
+        {children}
+      </div>
       <div className="-mt-1.5 flex gap-5">
         <span className="h-4 w-4 rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white" />
         <span className="h-4 w-4 rounded-full border-[3px] border-white shadow-[0_10px_28px_-12px_rgb(31_26_61/0.35)] bg-white" />

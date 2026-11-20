@@ -1,20 +1,26 @@
 "use client";
 import { useMemo, useState } from "react";
-import { PlayIcon } from "@/components/brand/PlayIcon";
+import { isPlayIcon, PlayIcon, type PlayIconKey } from "@/components/brand/PlayIcon";
 import { cn, fa, seeded, shuffle } from "@/lib/utils";
 import type { GameComponentProps } from "../engine/types";
 
 interface CountingConfig {
-  max: number;
-  rounds: number;
+  max?: number;
+  rounds?: number;
+  /** حالت ساخت والدین: تعداد اشیا در هر دور (۱ تا ۱۵) و تصویر اشیا */
+  counts?: number[];
+  icon?: string;
 }
 
 /** ماهی‌ها را بشمار – Learning Academy › Math › Number Sense */
 export function CountingGame({ level, runtime, seed }: GameComponentProps<CountingConfig>) {
-  const { max, rounds } = level.configuration;
+  const custom = level.configuration.counts?.length ? level.configuration.counts.map((n) => Math.min(15, Math.max(1, Math.round(n)))) : null;
+  const max = custom ? Math.max(...custom) : (level.configuration.max ?? 5);
+  const rounds = custom ? custom.length : (level.configuration.rounds ?? 5);
+  const icon: PlayIconKey = isPlayIcon(level.configuration.icon ?? "") ? (level.configuration.icon as PlayIconKey) : "fish";
   const data = useMemo(() => {
     const rand = seeded(seed);
-    const values = shuffle(Array.from({ length: max }, (_, i) => i + 1), rand);
+    const values = custom ?? shuffle(Array.from({ length: max }, (_, i) => i + 1), rand);
     return Array.from({ length: rounds }, (_, i) => {
       const n = values[i % values.length];
       // چیدمان روی شبکه‌ی ۴×۴ بدون هم‌پوشانی
@@ -23,11 +29,12 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
       const options = new Set([n]);
       while (options.size < 3) {
         const d = n + Math.floor(rand() * 5) - 2;
-        if (d >= 1 && d <= max + 1 && d !== n) options.add(d);
+        if (d >= 1 && d <= Math.max(max + 1, n + 2) && d !== n) options.add(d);
       }
       return { n, fish, options: shuffle([...options], rand) };
     });
-  }, [max, rounds, seed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [max, rounds, seed, custom?.join(",")]);
 
   const [round, setRound] = useState(0);
   const [tapped, setTapped] = useState<Set<number>>(new Set());
@@ -74,10 +81,10 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
             }}
             className="absolute transition-transform hover:scale-110"
             style={{ left: `${f.x}%`, top: `${f.y}%`, width: `${17 * f.s}%` }}
-            aria-label={`ماهی ${i + 1}`}
+            aria-label={`شیء ${i + 1}`}
           >
             <span className="block" style={{ transform: f.flip ? "scaleX(-1)" : undefined }}>
-              <PlayIcon name="fish" className="w-full animate-float" />
+              <PlayIcon name={icon} className="w-full animate-float" />
             </span>
             {tapped.has(i) && (
               <span className="absolute -top-2 left-1/2 grid h-7 w-7 -translate-x-1/2 animate-pop place-items-center rounded-full border-2 border-ink-900/10 bg-sun-400 font-display text-sm font-black">
@@ -87,7 +94,7 @@ export function CountingGame({ level, runtime, seed }: GameComponentProps<Counti
           </button>
         ))}
       </div>
-      <p className="text-center font-display text-lg font-bold text-ink-500">روی هر ماهی بزن تا با هم بشماریم!</p>
+      <p className="text-center font-display text-lg font-bold text-ink-500">روی هر کدام بزن تا با هم بشماریم!</p>
       <div className="flex gap-4" role="group" aria-label="عددها">
         {r.options.map((o, i) => (
           <button

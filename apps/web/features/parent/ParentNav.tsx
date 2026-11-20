@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const items = [
   { href: "/parent", label: "داشبورد", d: "M4 13 H10 V20 H4 Z M14 4 H20 V20 H14 Z M4 4 H10 V9 H4 Z" },
+  { href: "/parent/games", label: "بازی‌ساز", d: "M6 9 H18 A3 3 0 0 1 21 12 V15 A3 3 0 0 1 18 18 H6 A3 3 0 0 1 3 15 V12 A3 3 0 0 1 6 9 Z M8 12 V15 M6.5 13.5 H9.5 M15 13 H15.01 M17 15 H17.01 M12 9 V6 L15 4" },
   { href: "/parent/reports", label: "گزارش‌ها", d: "M7 3 H15 L19 7 V21 H7 Z M10 12 H16 M10 16 H16 M15 3 V7 H19" },
   { href: "/parent/billing", label: "اشتراک و پرداخت", d: "M3 7 H21 V17 H3 Z M3 10 H21 M7 14 H10" },
   { href: "/parent/settings", label: "کنترل و حریم خصوصی", d: "M12 3 L20 6 V12 C20 17 16 20 12 21 C8 20 4 17 4 12 V6 Z M9 12 L11 14 L15 10" },
